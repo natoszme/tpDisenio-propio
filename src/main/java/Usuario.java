@@ -34,7 +34,7 @@ public class Usuario {
 	}
 	
 	public long cantidadEncendidos() {
-		return dispositivos.stream().filter(dispositivo -> dispositivo.estaEncendido()).count();
+		return dispositivos.stream().filter(Dispositivo::estaEncendido).count();
 	}
 	
 	public long cantidadApagados() {

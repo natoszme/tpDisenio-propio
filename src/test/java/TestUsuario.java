@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class testUsuario {
+public class TestUsuario {
 	
 	Categoria r1 = new Categoria("r1", 0, 150, 18.76, 0.644);
 	Usuario nico = new Usuario("nico", "otamendi", TIPO_DOCUMENTO.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>());
