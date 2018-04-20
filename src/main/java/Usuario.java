@@ -46,7 +46,7 @@ public class Usuario {
 	}
 	
 	private Categoria obtenerNuevaCategoria(double consumo) {
-		return RepoCategorias.obtenerCategoriaSegunConsumo(consumo);
+		return RepoCategorias.getInstance().obtenerCategoriaSegunConsumo(consumo);
 	}
 	
 	public double consumoHastaElMomento() {
