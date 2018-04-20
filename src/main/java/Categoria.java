@@ -13,4 +13,12 @@ public class Categoria {
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
 	}
+	
+	public boolean meCorrespondeElConsumo(double consumo) {
+		return estaEntre(consumo, consumoMinimo, consumoMaximo);
+	}
+	
+	private boolean estaEntre(double consumo, double consumoMinimo, double consumoMaximo) {
+		return consumo < consumoMaximo && consumo > consumoMinimo;
+	}
 }

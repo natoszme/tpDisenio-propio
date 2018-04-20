@@ -30,7 +30,7 @@ public class Usuario {
 	}
 	
 	public boolean algunDispositivoEncendido() {
-		return dispositivos.stream().anyMatch(dispositivo -> dispositivo.estaEncendido());
+		return dispositivos.stream().anyMatch(Dispositivo::estaEncendido);
 	}
 	
 	public long cantidadEncendidos() {
@@ -43,5 +43,25 @@ public class Usuario {
 	
 	public long cantidadDispositivos() {
 		return dispositivos.stream().count();
+	}
+	
+	public void recategorizar() {
+		categoria = obtenerNuevaCategoria(consumoHastaElMomento());
+	}
+	
+	private Categoria obtenerNuevaCategoria(double consumo) {
+		return RepoCategorias.obtenerCategoriaSegunConsumo(consumo);
+	}
+	
+	public double consumoHastaElMomento() {
+		return dispositivos.stream().mapToDouble(Dispositivo::consumo).sum();
+	}
+
+	public void agregarDispositivo(Dispositivo dispositivo) {
+		dispositivos.add(dispositivo);		
+	}
+
+	public Categoria categoria() {
+		return categoria;
 	}
 }
