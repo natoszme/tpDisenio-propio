@@ -23,3 +23,6 @@ hs_err_pid*
 
 #Saco los .classpath
 *.classpath
+
+#Saco la carpeta .settings
+.settings/
