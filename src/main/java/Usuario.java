@@ -22,11 +22,7 @@ public class Usuario {
 		this.domicilio = domicilio;
 		this.categoria = categoria;
 		this.dispositivos = dispositivos;
-		this.fechaAlta = fechaDeHoy();
-	}
-	
-	private LocalDate fechaDeHoy() {
-		return LocalDate.now();
+		this.fechaAlta = LocalDate.now();
 	}
 	
 	public boolean algunDispositivoEncendido() {

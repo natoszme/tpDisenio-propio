@@ -1,9 +1,9 @@
 public class Dispositivo {
 	String nombre;
-	float kwh;
+	double kwh;
 	boolean estado = false;
 	
-	Dispositivo(String nombre, float kwh) {
+	Dispositivo(String nombre, double kwh) {
 		this.nombre = nombre;
 		this.kwh = kwh;
 	}
@@ -12,7 +12,7 @@ public class Dispositivo {
 		return estado;
 	}
 	
-	float consumo() {
+	double consumo() {
 		return kwh;
 	}
 }

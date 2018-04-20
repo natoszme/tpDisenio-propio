@@ -1,4 +1,3 @@
-
 public class Categoria {
 	String nombre;
 	double consumoMinimo;
@@ -14,7 +13,7 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}
 	
-	public boolean meCorrespondeElConsumo(double consumo) {
+	public boolean consumoCorrespondiente(double consumo) {
 		return estaEntre(consumo, consumoMinimo, consumoMaximo);
 	}
 	
