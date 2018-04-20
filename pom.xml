@@ -1,7 +1,7 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>disenio</groupId>
-  <artifactId>TPAnual-propio</artifactId>
+  <artifactId>TPAnual</artifactId>
   <version>1</version>
 
   <build>
