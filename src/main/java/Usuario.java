@@ -64,4 +64,8 @@ public class Usuario {
 	public Categoria categoria() {
 		return categoria;
 	}
+
+	public String mostrar() {
+		return nombre + " " +  apellido;
+	}
 }
