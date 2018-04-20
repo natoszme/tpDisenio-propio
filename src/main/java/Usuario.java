@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Usuario {
 	String nombre;
@@ -33,16 +34,16 @@ public class Usuario {
 		return dispositivos.stream().anyMatch(Dispositivo::estaEncendido);
 	}
 	
-	public long cantidadEncendidos() {
-		return dispositivos.stream().filter(Dispositivo::estaEncendido).count();
+	public int cantidadEncendidos() {
+		return dispositivos.stream().filter(Dispositivo::estaEncendido).collect(Collectors.toList()).size();
 	}
 	
-	public long cantidadApagados() {
+	public int cantidadApagados() {
 		return cantidadDispositivos() - cantidadEncendidos();
 	}
 	
-	public long cantidadDispositivos() {
-		return dispositivos.stream().count();
+	public int cantidadDispositivos() {
+		return dispositivos.size();
 	}
 	
 	public void recategorizar() {
