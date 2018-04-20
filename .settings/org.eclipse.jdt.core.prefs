@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Thu Apr 19 22:56:42 ART 2018
+=======
+#Wed Apr 18 16:57:53 ART 2018
+>>>>>>> 4328c0a9fc98697a3613d12f6ee7a4cf50419e3e
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.source=1.8
