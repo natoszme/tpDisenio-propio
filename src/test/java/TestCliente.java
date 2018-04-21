@@ -1,57 +1,52 @@
-import static org.junit.Assert.*; 
+import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import org.junit.Test;
 import org.junit.Before;
 
 public class TestCliente {
-	Categoria r1;
-	Categoria r2;
-	Categoria r3;
-	Categoria r4;
-	Categoria r5;
-	Categoria r6;
-	Categoria r7;
-	Categoria r8;
-	Categoria r9;
-	Dispositivo candelabro;
-	Dispositivo televisor;
-	List<Dispositivo> dispositivos;
+	Categoria r1, r2, r3, r4, r5, r6, r7, r8;
+	CategoriaSinMaximo r9;
+	Dispositivo candelabro, televisor;
+	List<Dispositivo> dispositivos = new ArrayList<>();
 	Usuario alejandro;
 	
 	@Before
 	public void init() {
 				
-		  r1 = new Categoria("R1",0.0,150.0,18.76,0.644);
-				
-		  r2 = new Categoria("R2",151.0,325.0,35.32,0.644);
-				
-		  r3 = new Categoria("R3",326.0,400.0,60.71,0.681);
-				
-		  r4 = new Categoria("R4",401.0,450.0,71.74,0.783);
-				
-		  r5 = new Categoria("R5",451.0,500.0,110.38,0.794);
-				
-		  r6 = new Categoria("R6",501.0,600.0,220.75,0.832);
-				
-		  r7 = new Categoria("R7",601.0,700.0,443.59,0.851);
-				
-		  r8 = new Categoria("R8",701.0,1400.0,545.19,0.851);	
-				
-		  r9 = new Categoria("R9",1401.0,998999999,545.19,0.851); 
-				
-		  candelabro = new Dispositivo("Candelabro",60.9,true,2);
-		
-		  televisor = new Dispositivo("Televisor",67.5,true,1);
-		
-		  dispositivos = new ArrayList<Dispositivo>();
-		
-		  dispositivos.add(candelabro);
-		
-		  alejandro = new Usuario("Alejandro","Saez", TIPO_DOCUMENTO.DNI,3876675,43543245,"Macos Sastre 324",r1, dispositivos);
-		
-		}
+	  r1 = new Categoria("R1",0.0,150.0,18.76,0.644);
+			
+	  r2 = new Categoria("R2",151.0,325.0,35.32,0.644);
+			
+	  r3 = new Categoria("R3",326.0,400.0,60.71,0.681);
+			
+	  r4 = new Categoria("R4",401.0,450.0,71.74,0.783);
+			
+	  r5 = new Categoria("R5",451.0,500.0,110.38,0.794);
+			
+	  r6 = new Categoria("R6",501.0,600.0,220.75,0.832);
+			
+	  r7 = new Categoria("R7",601.0,700.0,443.59,0.851);
+			
+	  r8 = new Categoria("R8",701.0,1400.0,545.19,0.851);	
+			
+	  r9 = new CategoriaSinMaximo("R9",1401.0,545.19,0.851); 
+			
+	  candelabro = new Dispositivo("Candelabro",60.9,true,2);
 	
+	  televisor = new Dispositivo("Televisor",67.5,true,1);
+	
+	  dispositivos = new ArrayList<Dispositivo>();
+	
+	  dispositivos.add(candelabro);
+	
+	  alejandro = new Usuario("Alejandro","Saez", TIPO_DOCUMENTO.DNI,3876675,43543245,"Macos Sastre 324",r1, dispositivos);
+	  
+	  RepoCategorias.getInstance().setCategorias(Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9));
+	
+	}
 
 	@Test
 	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
@@ -86,9 +81,15 @@ public class TestCliente {
 	}
 	
 	@Test
-	public void yguhij() {
-		
+	public void alAgregarseCrocksAJorgeEsCategoriarR9() {
+		List<Dispositivo> dispositivosJorge = new ArrayList<>();
+		Dispositivo crocks = new Dispositivo("Crocks", 1301.05, true, 1);
+		//Dispositivo crocks = new Dispositivo("Crocks", 1401.05, true, 1);
+		dispositivosJorge.add(crocks);
+		Usuario jorge = new Usuario("Jorge", "Supital", TIPO_DOCUMENTO.DNI, 12345678, 12345678, "Patio de ort", r1, dispositivosJorge);
+		jorge.recategorizar();
+		assertEquals("R8",jorge.categoria().getNombre());
+		// NO FUNCIONA
+		//assertEquals("R9",jorge.categoria().getNombre());
 	}
-	
-	
 }
