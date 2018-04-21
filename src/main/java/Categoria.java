@@ -13,6 +13,10 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}
 	
+	public String getNombre() {
+		return this.nombre;
+	}
+	
 	public boolean consumoCorrespondiente(double consumo) {
 		return estaEntre(consumo, consumoMinimo, consumoMaximo);
 	}
