@@ -29,12 +29,12 @@ public class Usuario {
 		return dispositivos.stream().anyMatch(Dispositivo::estaEncendido);
 	}
 	
-	public long cantidadEncendidos() {
+	public long cantidadDispositivosEncendidos() {
 		return dispositivos.stream().filter(Dispositivo::estaEncendido).count();
 	}
 	
-	public long cantidadApagados() {
-		return cantidadDispositivos() - cantidadEncendidos();
+	public long cantidadDispositivosApagados() {
+		return cantidadDispositivos() - cantidadDispositivosEncendidos();
 	}
 	
 	public long cantidadDispositivos() {

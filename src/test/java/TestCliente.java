@@ -41,12 +41,12 @@ public class TestCliente {
 
 	@Test
 	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
-		assertEquals(0, alejandro.cantidadApagados());
+		assertEquals(0, alejandro.cantidadDispositivosApagados());
 	}
 	
 	@Test
 	public void elClienteAlejandroTiene0DispositivosApagados() {
-		assertEquals(0, alejandro.cantidadApagados());
+		assertEquals(0, alejandro.cantidadDispositivosApagados());
 	}
 	@Test
 	public void elClienteAlejandroTiene1DispositivoInicialmente() {
