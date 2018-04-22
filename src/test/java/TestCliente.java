@@ -9,7 +9,7 @@ import org.junit.Before;
 public class TestCliente {
 	Categoria r1, r2, r3, r4, r5, r6, r7, r8;
 	CategoriaSinMaximo r9;
-	Dispositivo candelabro, televisor;
+	Dispositivo candelabro, televisor, microondas;
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	Usuario alejandro;
 	
@@ -32,11 +32,13 @@ public class TestCliente {
 			
 	  r8 = new Categoria("R8",701.0,1400.0,545.19,0.851);	
 			
-	  r9 = new CategoriaSinMaximo("R9",1401.0,545.19,0.851); 
+	  r9 = new CategoriaSinMaximo("R9",1401.0, 9999999999999.0,545.19,0.851); 
 			
 	  candelabro = new Dispositivo("Candelabro",60.9,true,2);
 	
 	  televisor = new Dispositivo("Televisor",67.5,true,1);
+	  
+	  microondas = new Dispositivo("Microondas", 1402.0, false, 0);
 	
 	  dispositivos = new ArrayList<Dispositivo>();
 	
@@ -73,6 +75,14 @@ public class TestCliente {
 		assertEquals("R1",alejandro.categoria().getNombre());
 	}
 	
+
+	@Test
+	public void alAgregarleAAlejandroUnDispositivoSinHorasPrendidoSuConsumoNoCambia() {
+		double consumoActual = alejandro.consumoHastaElMomento();
+		alejandro.agregarDispositivo(microondas);
+		assertEquals(consumoActual, alejandro.consumoHastaElMomento(), .000001); //para comparar double con assert hay que agregar un valor delta hasta el cual
+		//  considerasdos numeros double iguales, ej: 189.0 == 189.000001. 
+	}
 	@Test
 	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {
 		alejandro.agregarDispositivo(televisor);
@@ -83,13 +93,11 @@ public class TestCliente {
 	@Test
 	public void alAgregarseCrocksAJorgeEsCategoriarR9() {
 		List<Dispositivo> dispositivosJorge = new ArrayList<>();
-		Dispositivo crocks = new Dispositivo("Crocks", 1301.05, true, 1);
+		Dispositivo crocks = new Dispositivo("Crocks", 1401.05, true, 1);
 		//Dispositivo crocks = new Dispositivo("Crocks", 1401.05, true, 1);
 		dispositivosJorge.add(crocks);
 		Usuario jorge = new Usuario("Jorge", "Supital", TIPO_DOCUMENTO.DNI, 12345678, 12345678, "Patio de ort", r1, dispositivosJorge);
 		jorge.recategorizar();
-		assertEquals("R8",jorge.categoria().getNombre());
-		// NO FUNCIONA
-		//assertEquals("R9",jorge.categoria().getNombre());
+		assertEquals("R9",jorge.categoria().getNombre());
 	}
 }
