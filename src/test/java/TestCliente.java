@@ -71,6 +71,13 @@ public class TestCliente {
 		assertEquals(consumoActual, alejandro.consumoHastaElMomento(), 0);
 	}
 	@Test
+	public void alAgregarleAAlejandroUnDispositivoSinHorasPrendidoSuCategoriaNoCambia() {
+		Categoria categoriaActual = alejandro.categoria();
+		alejandro.agregarDispositivo(microondas);
+		alejandro.recategorizar();
+		assertEquals(categoriaActual, alejandro.categoria());
+	}
+	@Test
 	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {
 		alejandro.agregarDispositivo(televisor);
 		alejandro.recategorizar();
