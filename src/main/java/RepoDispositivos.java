@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.fasterxml.jackson.databind.JsonNode;
-
 public class RepoDispositivos {
 	private static RepoDispositivos repoDispositivos;
 	private static List<Dispositivo> dispositivos = new ArrayList<>();

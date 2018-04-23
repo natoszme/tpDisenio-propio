@@ -17,7 +17,7 @@ public class Categoria {
 		return this.nombre;
 	}
 	
-	public boolean consumoCorrespondiente(double consumo) {
-		return consumo < this.consumoMaximo && consumo >= this.consumoMinimo;
+	public boolean meCorrespondeElConsumo(double consumo) {
+		return consumo <= consumoMaximo && consumo > consumoMinimo;
 	}
 }

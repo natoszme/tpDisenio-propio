@@ -4,7 +4,7 @@ public class CategoriaSinMinimo extends Categoria{
 		super(nombre, consumoMinimo, consumoMaximo, cargoFijo, cargoVariable);
 	}
 
-	public boolean consumoCorrespondiente(double consumo) {
+	public boolean meCorrespondeElConsumo(double consumo) {
 		return consumo <= consumoMaximo;
 	}
 

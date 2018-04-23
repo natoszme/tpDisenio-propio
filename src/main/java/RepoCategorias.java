@@ -14,7 +14,7 @@ public class RepoCategorias {
 	}
 	
 	public Categoria obtenerCategoriaSegunConsumo(double consumo){
-		return categorias.stream().filter(categoria -> categoria.consumoCorrespondiente(consumo)).findFirst().orElse(null);
+		return categorias.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(null);
 	}
 	
 	public void agregarCategoria(Categoria categoria) {

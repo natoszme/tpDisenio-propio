@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.Before;
 
-public class TestCliente {
+public class TestUsuario {
 	Categoria r1, r2, r3, r4, r5, r6, r7, r8;
 	CategoriaSinMaximo r9;
 	Dispositivo candelabro, televisor, microondas, play4;
@@ -68,8 +68,7 @@ public class TestCliente {
 	public void alAgregarleAAlejandroUnDispositivoSinHorasPrendidoSuConsumoNoCambia() {
 		double consumoActual = alejandro.consumoHastaElMomento();
 		alejandro.agregarDispositivo(microondas);
-		assertEquals(consumoActual, alejandro.consumoHastaElMomento(), .000001); //para comparar double con assert hay que agregar un valor delta hasta el cual
-		//  considerasdos numeros double iguales, ej: 189.0 == 189.000001. 
+		assertEquals(consumoActual, alejandro.consumoHastaElMomento(), 0);
 	}
 	@Test
 	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {
