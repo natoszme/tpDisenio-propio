@@ -15,7 +15,7 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}
 	
-	//como no queremos pasar nulls en estaEntre...
+	//como evitar pasale un null al constructor de las subclases?
 	/*public Categoria(String nombre, double consumoMinimo, double cargoFijo, double cargoVariable) {
 		this.nombre = nombre;
 		this.consumoMinimo = consumoMinimo;
@@ -23,9 +23,8 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}*/
 	
-	public Categoria() {
-		
-	}
+	//necesario para leer un JSON
+	public Categoria() {}
 	
 	public String getNombre() {
 		return nombre;

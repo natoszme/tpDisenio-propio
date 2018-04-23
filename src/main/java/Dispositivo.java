@@ -11,6 +11,8 @@ public class Dispositivo {
 		this.encendido = encendido;
 		this.horasEncendido = horasEncendido;
 	}
+	
+	public Dispositivo() {}
 
 	public boolean estaEncendido() { 
 		return encendido;
@@ -18,5 +20,21 @@ public class Dispositivo {
 	
 	public double consumo() {
 		return horasEncendido * kwPorHora;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getKwPorHora() {
+		return kwPorHora;
+	}
+
+	public boolean isEncendido() {
+		return encendido;
+	}
+
+	public double getHorasEncendido() {
+		return horasEncendido;
 	}
 }

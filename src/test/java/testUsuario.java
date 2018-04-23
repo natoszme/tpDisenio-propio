@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,10 +20,7 @@ public class TestUsuario {
 	
 	@Before
 	public void fixture() {
-		RepoCategorias.getInstance().agregarCategoria(r1);
-		RepoCategorias.getInstance().agregarCategoria(r2);
-		RepoCategorias.getInstance().agregarCategoria(r3);
-		RepoCategorias.getInstance().agregarCategoria(r4);
+		RepoCategorias.getInstance().agregarCategorias(new ArrayList<>(Arrays.asList(r1, r2, r3, r4)));
 		pepe.agregarDispositivo(tv);
 		pepe.agregarDispositivo(aire);
 		
@@ -79,12 +77,12 @@ public class TestUsuario {
 	@Test
 	public void estaEnR1YAlConsumir120NoSeRecategoriza() {
 		pepe.recategorizar();
-		Assert.assertEquals(r2, pepe.getCategoria());
+		Assert.assertEquals(r2.getNombre(), pepe.getCategoria().getNombre());
 	}
 	
 	@Test
 	public void estaEnR2YAlConsumir380PasaAR3() {
 		lio.recategorizar();
-		Assert.assertEquals(r3, lio.categoria);
+		Assert.assertEquals(r3.getNombre(), lio.categoria.getNombre());
 	}
 }

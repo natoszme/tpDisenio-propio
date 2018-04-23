@@ -6,13 +6,26 @@
 	    "nroDocumento": 40216458,
 	    "telefono" : 10101010,
 	    "domicilio" : "Av. Catalunia 10",
-	    "categoria" : {
-	    	"nombre" : "r2",
-	    	"consumoMinimo" : 150,
-	    	"consumoMaximo" : 325,
-	    	"cargoFijo" : 35.32,
-	    	"cargoVariable" : 0.644
-	    }
+	    "dispositivos" : [
+			{
+			    "nombre" : "tv",
+			    "kwPorHora" : 12,
+			    "encendido": true,
+			    "horasEncendido" : 10
+			},
+			{
+			    "nombre" : "aire",
+			    "kwPorHora" : 80,
+			    "encendido": false,
+			    "horasEncendido" : 2
+			},
+			{
+			    "nombre" : "home theater",
+			    "kwPorHora" : 100,
+			    "encendido": true,
+			    "horasEncendido" : 1
+			}
+		]
 	},
 	{
 	    "nombre" : "pepe",

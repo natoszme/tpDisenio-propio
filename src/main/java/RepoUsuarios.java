@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,20 @@ public class RepoUsuarios {
 	}
 
 	public void agregarUsuarios(List<Usuario> usuarios) {
-		usuarios.forEach(usuario -> RepoUsuarios.getInstance().agregarUsuario(usuario));
+		this.usuarios.addAll(usuarios);
+	}
+	
+	public void cargarUsuarios() {
+		CargarDataDesdeJSON cargadorDeDatos = new CargarDataDesdeJSON().getInstance();
+		RepoCategorias.getInstance().cargarCategorias();
+		
+		cargadorDeDatos.setTipoDato(new CargarUsuarios());
+		
+		//estaria bueno que esto devuelva a los usuarios, pero tendriamos quilombo con los tipos que devuelve cargadorDeDatos
+		//habria que agregar una superclase que englobe a las 2 y se complejizaria mucho
+		//esto esta mal?
+		cargadorDeDatos.cargar("usuarios");
+		
+		this.usuarios.forEach(Usuario::recategorizar);
 	}
 }

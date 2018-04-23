@@ -19,4 +19,18 @@ public class RepoCategorias {
 	public static void agregarCategoria(Categoria categoria) {
 		categorias.add(categoria);		
 	}
+
+	public void agregarCategorias(List<Categoria> categorias) {
+		this.categorias.addAll(categorias);
+	}
+
+	public static void cargarCategorias() {
+		CargarDataDesdeJSON cargadorDeDatos = new CargarDataDesdeJSON().getInstance();
+		cargadorDeDatos.setTipoDato(new CargarCategorias());
+		cargadorDeDatos.cargar("categorias");		
+	}
+
+	public List<Categoria> obtenerTodas() {
+		return categorias;
+	}
 }

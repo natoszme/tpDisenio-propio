@@ -27,9 +27,7 @@ public class Usuario {
 	}
 	
 	//para que ande el tema json
-	public Usuario() {
-		
-	}
+	public Usuario() {}
 	
 	public TIPO_DOCUMENTO getTipoDocumento() {
 		return tipoDocumento;
