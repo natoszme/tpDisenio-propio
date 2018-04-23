@@ -33,7 +33,8 @@
 	    "tipoDocumento": "DNI",
 	    "nroDocumento": 40513264,
 	    "telefono" : 411112061,
-	    "domicilio" : "Juan B. Justo 24"
+	    "domicilio" : "Juan B. Justo 24",
+	    "dispositivos" : []
 	},
 	{
 	    "nombre" : "rodri",
@@ -41,6 +42,7 @@
 	    "tipoDocumento": "DNI",
 	    "nroDocumento": 40000000,
 	    "telefono" : 465219475,
-	    "domicilio" : "Rodriguez Peña 3051"
+	    "domicilio" : "Rodriguez Peña 3051",
+	    "dispositivos" : []
 	}
 ]

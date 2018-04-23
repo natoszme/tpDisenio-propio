@@ -38,6 +38,8 @@ public class RepoUsuarios {
 		//esto esta mal?
 		cargadorDeDatos.cargar("usuarios");
 		
+		//si se ejecutan en paralelo, podria no tener a todos los usuarios cargados...
+		//se solucionaria con que cargarDatos devuelva una lista?
 		this.usuarios.forEach(Usuario::recategorizar);
 	}
 }
