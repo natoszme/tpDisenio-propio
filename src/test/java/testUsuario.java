@@ -79,7 +79,7 @@ public class TestUsuario {
 	@Test
 	public void estaEnR1YAlConsumir120NoSeRecategoriza() {
 		pepe.recategorizar();
-		Assert.assertEquals(r2, pepe.categoria());
+		Assert.assertEquals(r2, pepe.getCategoria());
 	}
 	
 	@Test

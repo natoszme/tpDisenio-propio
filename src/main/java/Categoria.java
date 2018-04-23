@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 public class Categoria {
 	String nombre;
@@ -22,6 +23,30 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}*/
 	
+	public Categoria() {
+		
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getConsumoMinimo() {
+		return consumoMinimo;
+	}
+
+	public double getConsumoMaximo() {
+		return consumoMaximo;
+	}
+
+	public double getCargoFijo() {
+		return cargoFijo;
+	}
+
+	public double getCargoVariable() {
+		return cargoVariable;
+	}
+
 	public boolean meCorrespondeElConsumo(double consumo) {
 		return estaEntre(consumo, consumoMinimo, consumoMaximo);
 	}

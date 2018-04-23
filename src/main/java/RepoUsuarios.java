@@ -21,4 +21,8 @@ public class RepoUsuarios {
 	public void agregarUsuario(Usuario usuario) {
 		usuarios.add(usuario);
 	}
+
+	public void agregarUsuarios(List<Usuario> usuarios) {
+		usuarios.forEach(usuario -> RepoUsuarios.getInstance().agregarUsuario(usuario));
+	}
 }

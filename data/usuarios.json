@@ -2,13 +2,32 @@
 	{
 	    "nombre" : "lio",
 	    "apellido" : "messi",
-	    "nroDocumento": 1010101010,
-	    "telefono" : 49216549
+	    "tipoDocumento": "DNI",
+	    "nroDocumento": 40216458,
+	    "telefono" : 10101010,
+	    "domicilio" : "Av. Catalunia 10",
+	    "categoria" : {
+	    	"nombre" : "r2",
+	    	"consumoMinimo" : 150,
+	    	"consumoMaximo" : 325,
+	    	"cargoFijo" : 35.32,
+	    	"cargoVariable" : 0.644
+	    }
 	},
 	{
 	    "nombre" : "pepe",
 	    "apellido" : "sanchez",
+	    "tipoDocumento": "DNI",
 	    "nroDocumento": 40513264,
-	    "telefono" : 411112061
+	    "telefono" : 411112061,
+	    "domicilio" : "Juan B. Justo 24"
+	},
+	{
+	    "nombre" : "rodri",
+	    "apellido" : "alvarez",
+	    "tipoDocumento": "DNI",
+	    "nroDocumento": 40000000,
+	    "telefono" : 465219475,
+	    "domicilio" : "Rodriguez Peña 3051"
 	}
 ]

@@ -26,6 +26,47 @@ public class Usuario {
 		this.fechaAlta = fechaDeHoy();
 	}
 	
+	//para que ande el tema json
+	public Usuario() {
+		
+	}
+	
+	public TIPO_DOCUMENTO getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public LocalDate getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public List<Dispositivo> getDispositivos() {
+		return dispositivos;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public long getNroDocumento() {
+		return nroDocumento;
+	}
+
+	public long getTelefono() {
+		return telefono;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
 	private LocalDate fechaDeHoy() {
 		return LocalDate.now();
 	}
@@ -60,13 +101,5 @@ public class Usuario {
 
 	public void agregarDispositivo(Dispositivo dispositivo) {
 		dispositivos.add(dispositivo);		
-	}
-
-	public Categoria categoria() {
-		return categoria;
-	}
-
-	public String mostrar() {
-		return nombre + " " +  apellido;
 	}
 }
