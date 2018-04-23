@@ -24,7 +24,7 @@ public class TestCliente {
 	  r6 = new Categoria("R6",501.0,600.0,220.75,0.832);			
 	  r7 = new Categoria("R7",601.0,700.0,443.59,0.851);			
 	  r8 = new Categoria("R8",701.0,1400.0,545.19,0.851);				
-	  r9 = new CategoriaSinMaximo("R9",1401.0, 9999999999999.0,545.19,0.851); 
+	  r9 = new CategoriaSinMaximo("R9",1401.0,545.19,0.851); 
 			
 	  candelabro = new Dispositivo("Candelabro",60.9,true,2);	
 	  televisor = new Dispositivo("Televisor",67.5,true,1);	  
