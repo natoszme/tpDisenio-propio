@@ -3,7 +3,7 @@ import org.junit.Test;
 
 public class TestCategoria {
 	
-	//ojo que se esta repitiendo con TestUsuario
+	//ojo que se esta repitiendo con TestCliente
 	Categoria r1 = new CategoriaSinMinimo("r1", 0, 150, 18.76, 0.644);
 	Categoria r2 = new Categoria("r2", 150, 325, 35.32, 0.644);
 	Categoria r3 = new Categoria("r3", 325, 400, 60.71, 0.681);

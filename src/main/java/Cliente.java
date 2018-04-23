@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class Cliente {
 	String nombre;
 	String apellido;
 	TIPO_DOCUMENTO tipoDocumento;
@@ -13,7 +13,7 @@ public class Usuario {
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	
-	public Usuario(String nombre, String apellido, TIPO_DOCUMENTO tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
+	public Cliente(String nombre, String apellido, TIPO_DOCUMENTO tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;

@@ -6,12 +6,12 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.Before;
 
-public class TestUsuario {
+public class TestCliente {
 	Categoria r1, r2, r3, r4, r5, r6, r7, r8;
 	CategoriaSinMaximo r9;
 	Dispositivo candelabro, televisor, microondas, play4;
 	List<Dispositivo> dispositivos = new ArrayList<>();
-	Usuario alejandro;
+	Cliente alejandro;
 	
 	@Before
 	public void init() {
@@ -34,7 +34,7 @@ public class TestUsuario {
 	  dispositivos = new ArrayList<Dispositivo>();	
 	  dispositivos.add(candelabro);
 	
-	  alejandro = new Usuario("Alejandro","Saez", TIPO_DOCUMENTO.DNI,3876675,43543245,"Macos Sastre 324",r1, dispositivos);
+	  alejandro = new Cliente("Alejandro","Saez", TIPO_DOCUMENTO.DNI,3876675,43543245,"Macos Sastre 324",r1, dispositivos);
 	  
 	  RepoCategorias.getInstance().setCategorias(Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9));	
 	}
