@@ -5,7 +5,7 @@ public class CategoriaSinMinimo extends Categoria{
 	}
 
 	public boolean meCorrespondeElConsumo(double consumo) {
-		return consumo <= consumoMaximo;
+		return super.consumoAcordeAMaximo(consumo);
 	}
 
 }

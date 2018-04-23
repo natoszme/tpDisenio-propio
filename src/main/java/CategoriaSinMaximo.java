@@ -6,6 +6,6 @@ public class CategoriaSinMaximo extends Categoria {
 	}
 
 	public boolean meCorrespondeElConsumo(double consumo) {
-		return consumo > consumoMinimo;
+		return super.consumoAcordeAMinimo(consumo);
 	}
 }
