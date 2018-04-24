@@ -43,7 +43,7 @@ public class TestCategoria {
 	}
 	
 	@Test
-	public void aR9LeCorrespondeElConsumo0() {
+	public void aR9LeCorrespondeElConsumo1400Con05() {
 		Assert.assertTrue(r9.meCorrespondeElConsumo(1400.05));
 	}
 	
