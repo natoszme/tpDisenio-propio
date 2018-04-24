@@ -24,4 +24,18 @@ public class RepoCategorias {
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;		
 	}
+
+	public void agregarCategorias(List<Categoria> categorias) {
+		this.categorias.addAll(categorias);
+	}
+
+	public static void cargarCategorias() {
+		JSONParser parserDeDatos = JSONParser.getInstance();
+		parserDeDatos.setTipoDato(new ParserCategorias());
+		parserDeDatos.parsear("categorias");
+	}
+
+	public List<Categoria> obtenerTodas() {
+		return categorias;
+	}
 }
