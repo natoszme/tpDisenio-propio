@@ -47,10 +47,6 @@ public class Categoria {
 	}
 
 	public boolean meCorrespondeElConsumo(double consumo) {
-		return estaEntre(consumo, consumoMinimo, consumoMaximo);
-	}
-	
-	private boolean estaEntre(double consumo, double consumoMinimo, double consumoMaximo) {
 		return consumo <= consumoMaximo && consumo > consumoMinimo;
 	}
 }

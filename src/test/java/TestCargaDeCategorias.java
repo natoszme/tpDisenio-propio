@@ -4,12 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestCargaDeCategorias {
+public class TestCargaDeCategorias extends FixtureGlobal{
 	
-	Categoria r1 = new CategoriaSinMinimo("r1", 0, 150, 18.76, 0.644);
-	Categoria r2 = new Categoria("r2", 150, 325, 35.32, 0.644);
-	List<Categoria> categorias;
-	
+	List<Categoria> categorias;	
 	
 	@Before
 	public void fixture() {
