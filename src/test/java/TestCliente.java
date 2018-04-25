@@ -60,6 +60,20 @@ public class TestCliente extends Fixture {
 	}
 	
 	@Test
+	public void seAgregaEquipoDeMusicaAAlejandroYAlRecategorizarEsR3() {
+		alejandro.agregarDispositivo(equipoMusica);
+		alejandro.recategorizar();
+		assertEquals("R3",alejandro.categoria().getNombre());
+	}
+	
+	@Test
+	public void seAgregaDvdAAlejandroYAlRecategorizarEsR4() {
+		alejandro.agregarDispositivo(dvd);
+		alejandro.recategorizar();
+		assertEquals("R4",alejandro.categoria().getNombre());
+	}
+	
+	@Test
 	public void seAgregaPlay4AAlejandroYAlRecategorizarEsR9() {
 		alejandro.agregarDispositivo(play4);
 		alejandro.recategorizar();
