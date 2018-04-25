@@ -8,6 +8,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ParserCategorias implements TipoJSON {
+	
+	private String nombreArchivo = "usuarios";
+	
+	public String nombreArchivo() {
+		return nombreArchivo;
+	}
 
 	public void cargarSegunTipo(File archivo, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException {
 		List<Categoria> categorias = mapper.readValue(archivo, new TypeReference<List<Categoria>>(){});

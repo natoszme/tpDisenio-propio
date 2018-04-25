@@ -21,8 +21,8 @@ public class JSONParser {
 		this.tipo = tipo;
 	}
 	
-	public void parsear(String nombreArchivo) {	
-		File archivoJson = new File("./data/" + nombreArchivo + ".json");
+	public void parsear() {	
+		File archivoJson = new File("./data/" + tipo.nombreArchivo() + ".json");
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
@@ -43,4 +43,5 @@ public class JSONParser {
 
 interface TipoJSON {
 	public void cargarSegunTipo(File archivo, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException;
+	public String nombreArchivo();
 }

@@ -32,7 +32,7 @@ public class RepoCategorias {
 	public static void cargarCategorias() {
 		JSONParser parserDeDatos = JSONParser.getInstance();
 		parserDeDatos.setTipoDato(new ParserCategorias());
-		parserDeDatos.parsear("categorias");
+		parserDeDatos.parsear();
 	}
 
 	public List<Categoria> obtenerTodas() {

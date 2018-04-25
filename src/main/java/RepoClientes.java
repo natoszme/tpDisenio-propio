@@ -29,7 +29,7 @@ public class RepoClientes {
 		RepoCategorias.getInstance().cargarCategorias();
 		
 		cargadorDeDatos.setTipoDato(new ParserClientes());
-		cargadorDeDatos.parsear("usuarios");
+		cargadorDeDatos.parsear();
 		this.clientes.forEach(Cliente::recategorizar);
 	}
 }
