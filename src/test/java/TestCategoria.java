@@ -1,16 +1,13 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-public class TestCategoria {
+public class TestCategoria extends Fixture {
 	
-	//ojo que se esta repitiendo con TestCliente
-	Categoria r1 = new CategoriaSinMinimo("r1", 150, 18.76, 0.644);
-	Categoria r2 = new Categoria("r2", 150, 325, 35.32, 0.644);
-	Categoria r3 = new Categoria("r3", 325, 400, 60.71, 0.681);
-	Categoria r4 = new Categoria("r4", 400, 450, 71.74, 0.738);
-	Categoria r8 = new Categoria("r8", 700, 1400, 545.96, 0.851);
-	//TODO: revisar este feo 0
-	Categoria r9 = new CategoriaSinMaximo("r9", 1400, 887.19, 0.851);
+	@Before
+	public void init() {
+		iniciarFixture();
+	}
 	
 	@Test
 	public void aR1LeCorrespondeElConsumo100() {
@@ -23,8 +20,18 @@ public class TestCategoria {
 	}
 	
 	@Test
+	public void aR1LeCorrespondeElConsumo0Con01() {
+		Assert.assertTrue(r1.meCorrespondeElConsumo(0.01));
+	}
+	
+	@Test
 	public void aR1LeCorrespondeElConsumo0() {
 		Assert.assertTrue(r1.meCorrespondeElConsumo(0));
+	}
+	
+	@Test
+	public void aR1LeCorrespondeElConsumo10() {
+		Assert.assertTrue(r1.meCorrespondeElConsumo(10));
 	}
 	
 	@Test
@@ -43,8 +50,8 @@ public class TestCategoria {
 	}
 	
 	@Test
-	public void aR9LeCorrespondeElConsumo1400Con05() {
-		Assert.assertTrue(r9.meCorrespondeElConsumo(1400.05));
+	public void aR9LeCorrespondeElConsumo1401Con05() {
+		Assert.assertTrue(r9.meCorrespondeElConsumo(1401.05));
 	}
 	
 	@Test
