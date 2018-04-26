@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fixture.Fixture;
+import repositorio.RepoClientes;
 
 public class TestJsonCliente extends Fixture {
 	
@@ -14,7 +15,7 @@ public class TestJsonCliente extends Fixture {
 	
 	@Before
 		public void fixture(){
-			RepoClientes.getInstance().cargarClientes();
+			RepoClientes.getInstance().importarJSON();
 			clientes = RepoClientes.getInstance().obtenerTodos();
 		}
 	

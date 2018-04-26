@@ -1,34 +1,25 @@
 package json;
 import java.io.File; 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
-
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JSONParser {
+public class JSONParser<Entidad> {
 	
-	private static JSONParser instancia;
-	private TipoJSON tipo;
+	private ObjectMapper mapper = new ObjectMapper(); 
 	
-	public static JSONParser getInstance() {
-		if (instancia == null) {
-			instancia = new JSONParser();
-		}
-		return instancia;
-	}
-	
-	public void setTipoDato(TipoJSON tipo) {
-		this.tipo = tipo;
-	}
-	
-	public void parsear() {	
-		File archivoJson = new File("./data/" + tipo.nombreArchivo() + ".json");
-		ObjectMapper mapper = new ObjectMapper();
-
+	public List<Entidad> obtenerImportados(String rutaArchivo) {	
+		
+		File archivo = new File(rutaArchivo + ".json");
+		List<Entidad> importados = new ArrayList<>();
+		
 		try {
-			tipo.cargarSegunTipo(archivoJson, mapper);
+			importados = mapper.readValue(archivo, new TypeReference<List<Entidad>>(){});
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,11 +30,8 @@ public class JSONParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return importados;
 	}
 
-}
-
-interface TipoJSON {
-	public void cargarSegunTipo(File archivo, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException;
-	public String nombreArchivo();
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import categoria.Categoria;
-import categoria.RepoCategorias;
 import dispositivo.Dispositivo;
+import repositorio.RepoCategorias;
 
 public class Cliente {
 	String nombre;

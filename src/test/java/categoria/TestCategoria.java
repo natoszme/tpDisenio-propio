@@ -7,11 +7,6 @@ import fixture.Fixture;
 public class TestCategoria extends Fixture {
 	
 	@Test
-	public void aR1LeCorrespondeElConsumo100() {
-		Assert.assertTrue(r1.meCorrespondeElConsumo(100));
-	}
-	
-	@Test
 	public void aR1LeCorrespondeElConsumo150() {
 		Assert.assertTrue(r1.meCorrespondeElConsumo(150));
 	}
