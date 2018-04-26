@@ -1,16 +1,20 @@
+package categoria;
 import java.util.ArrayList;
 import java.util.List;
 
+import json.JSONParser;
+import json.ParserCategorias;
+
 public class RepoCategorias {
 	
-	private static RepoCategorias repoCategorias;
+	private static RepoCategorias instancia;
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	public static RepoCategorias getInstance(){
-		if (repoCategorias == null) {
-			repoCategorias = new RepoCategorias();
+		if (instancia == null) {
+			instancia = new RepoCategorias();
 		}
-		return repoCategorias;
+		return instancia;
 	}
 	
 	public Categoria obtenerCategoriaSegunConsumo(double consumo){
@@ -29,7 +33,7 @@ public class RepoCategorias {
 		this.categorias.addAll(categorias);
 	}
 
-	public static void cargarCategorias() {
+	public void cargarCategorias() {
 		JSONParser parserDeDatos = JSONParser.getInstance();
 		parserDeDatos.setTipoDato(new ParserCategorias());
 		parserDeDatos.parsear();

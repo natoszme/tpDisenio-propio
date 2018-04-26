@@ -1,13 +1,14 @@
+package cliente;
 import java.util.List;   
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestJsonCliente extends Fixture{
+import fixture.Fixture;
+
+public class TestJsonCliente extends Fixture {
 	
 		List<Cliente> clientes;
 	
@@ -34,7 +35,7 @@ public class TestJsonCliente extends Fixture{
 		
 	@Test
 		public void elTipoDeDocumentoDeLioEsDNI() {
-			Assert.assertEquals(TIPO_DOCUMENTO.DNI, clientes.get(0).getTipoDocumento());
+			Assert.assertEquals(TipoDocumento.DNI, clientes.get(0).getTipoDocumento());
 		}
 		
 	@Test

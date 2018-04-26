@@ -1,15 +1,20 @@
+package cliente;
 import java.util.ArrayList;
 import java.util.List;
 
+import categoria.RepoCategorias;
+import json.JSONParser;
+import json.ParserClientes;
+
 public class RepoClientes {
-	private static RepoClientes repoClientes;
+	private static RepoClientes instancia;
 	private List<Cliente> clientes = new ArrayList<>();
 	
 	public static RepoClientes getInstance(){
-		if (repoClientes == null) {
-			repoClientes = new RepoClientes();
+		if (instancia == null) {
+			instancia = new RepoClientes();
 		}
-		return repoClientes;
+		return instancia;
 	}
 	
 	public List<Cliente> obtenerTodos() {

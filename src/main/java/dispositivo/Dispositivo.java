@@ -1,3 +1,4 @@
+package dispositivo;
 public class Dispositivo {
 	String nombre;
 	double kwPorHora;

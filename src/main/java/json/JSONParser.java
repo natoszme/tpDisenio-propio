@@ -1,3 +1,4 @@
+package json;
 import java.io.File; 
 import java.io.IOException;
 
@@ -8,14 +9,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JSONParser {
 	
-	private static JSONParser parser;
+	private static JSONParser instancia;
 	private TipoJSON tipo;
 	
 	public static JSONParser getInstance() {
-		if (parser == null) {
-			parser = new JSONParser();
+		if (instancia == null) {
+			instancia = new JSONParser();
 		}
-		return parser;
+		return instancia;
 	}
 	
 	public void setTipoDato(TipoJSON tipo) {

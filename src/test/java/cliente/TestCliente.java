@@ -1,18 +1,12 @@
+package cliente;
 import static org.junit.Assert.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Test;
-import org.junit.Before;
+
+import fixture.Fixture;
+import categoria.Categoria;
 
 public class TestCliente extends Fixture {
-	
-	
-	@Before
-	public void init() {
-		iniciarFixture();
-	}
 
 	@Test
 	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {

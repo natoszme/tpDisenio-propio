@@ -1,13 +1,10 @@
+package categoria;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
+import fixture.Fixture;
+
 public class TestCategoria extends Fixture {
-	
-	@Before
-	public void init() {
-		iniciarFixture();
-	}
 	
 	@Test
 	public void aR1LeCorrespondeElConsumo100() {

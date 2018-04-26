@@ -1,21 +1,26 @@
+package cliente;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import categoria.Categoria;
+import categoria.RepoCategorias;
+import dispositivo.Dispositivo;
+
 public class Cliente {
 	String nombre;
 	String apellido;
-	TIPO_DOCUMENTO tipoDocumento;
+	TipoDocumento tipoDocumento;
 	long nroDocumento;
 	long telefono;
 	String domicilio;
 	LocalDate fechaAlta;
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
-	public Cliente() { //Es para el Json
-		
-	}
-	public Cliente(String nombre, String apellido, TIPO_DOCUMENTO tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
+	
+	public Cliente() { /*Es para el Json*/ }
+	
+	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -28,7 +33,7 @@ public class Cliente {
 	}
 	
 	public boolean algunDispositivoEncendido() {
-		return dispositivos.stream().anyMatch(Dispositivo::estaEncendido);
+		return this.cantidadDispositivosEncendidos() > 0;
 	}
 	
 	public long cantidadDispositivosEncendidos() {
@@ -71,7 +76,7 @@ public class Cliente {
 		return this.apellido;
 	}
 	
-	public TIPO_DOCUMENTO getTipoDocumento() {
+	public TipoDocumento getTipoDocumento() {
 		return this.tipoDocumento;
 	}
 	
