@@ -12,7 +12,9 @@ public class Cliente {
 	LocalDate fechaAlta;
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
-	
+	public Cliente() { //Es para el Json
+		
+	}
 	public Cliente(String nombre, String apellido, TIPO_DOCUMENTO tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -58,6 +60,42 @@ public class Cliente {
 	}
 
 	public Categoria categoria() {
-		return categoria;
+		return this.categoria;
+	}
+	
+	public String getNombre(){
+		return this.nombre;
+	}
+	
+	public String getApellido() {
+		return this.apellido;
+	}
+	
+	public TIPO_DOCUMENTO getTipoDocumento() {
+		return this.tipoDocumento;
+	}
+	
+	public long getNroDocumento() {
+		return this.nroDocumento;
+	}
+	public long getTelefono(){
+		return this.telefono;
+	}
+	public String getDomicilio() {
+		return this.domicilio;
+	}
+	public LocalDate getFechaAlta() {
+		return this.fechaAlta;
+	}
+	
+	public Categoria getCategoria() {
+		return this.categoria;
+	}
+	public List<Dispositivo> getDispositivos(){
+		return this.dispositivos;
+	}
+	
+	public int getCantidadDispositivos(){
+		return dispositivos.size();
 	}
 }

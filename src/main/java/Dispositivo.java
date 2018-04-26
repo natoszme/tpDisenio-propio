@@ -1,21 +1,40 @@
 public class Dispositivo {
 	String nombre;
 	double kwPorHora;
-	boolean estado;
+	boolean encendido;
 	double horasEncendido;
 	
-	Dispositivo(String nombre, double kwPorHora, boolean estado, double horasEncedido) {
+	public Dispositivo() {
+		
+	}
+	
+	public Dispositivo(String nombre, double kwPorHora, boolean estado, double horasEncendido) {
 		this.nombre = nombre;
 		this.kwPorHora = kwPorHora;
-		this.estado = estado;
-		this.horasEncendido = horasEncedido;
+		this.encendido = estado;
+		this.horasEncendido = horasEncendido;
 	}
 	
-	boolean estaEncendido() {
-		return estado;
+	public boolean estaEncendido() {
+		return encendido;
 	}
 	
-	double consumo() {
+	public double consumo() {
 		return horasEncendido * kwPorHora;
 	}
-}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public double getKwPorHora() {
+		return kwPorHora;
+	}
+	
+	public boolean isEncendido() {
+		return encendido;
+	}
+	
+	public double getHorasEncendido(){
+		return horasEncendido;
+	}
+} 

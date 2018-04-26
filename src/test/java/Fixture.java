@@ -7,7 +7,7 @@ public class Fixture {
 	CategoriaSinMaximo r9;
 	Dispositivo candelabro, televisor, microondas,equipoMusica ,dvd, play4;
 	List<Dispositivo> dispositivos = new ArrayList<>();
-	Cliente alejandro;
+	Cliente alejandro, lio, pepe, nico;
 	
 	public void iniciarFixture() {
 		  r1 = new CategoriaSinMinimo("R1",150.0,18.76,0.644);			
@@ -31,7 +31,9 @@ public class Fixture {
 		  dispositivos.add(candelabro);
 		
 		  alejandro = new Cliente("Alejandro","Saez", TIPO_DOCUMENTO.DNI,3876675,43543245,"Macos Sastre 324",r1, dispositivos);
-		  
+		  Cliente nico = new Cliente("nico", "otamendi", TIPO_DOCUMENTO.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>());
+		  Cliente pepe = new Cliente("pepe", "argento", TIPO_DOCUMENTO.CI, 12549785, 40000001, "Manuel Rodriguez 1251", r1, new ArrayList<Dispositivo>());
+		  Cliente lio = new Cliente("lio", "messi", TIPO_DOCUMENTO.DNI, 40216458, 10101010, "Av. Catalunia 10", r2, new ArrayList<Dispositivo>());
 		  RepoCategorias.getInstance().setCategorias(Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9));	
 
 	}

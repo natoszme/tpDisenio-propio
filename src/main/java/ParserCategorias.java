@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ParserCategorias implements TipoJSON {
 	
-	private String nombreArchivo = "usuarios";
+	private String nombreArchivo = "categorias";
 	
 	public String nombreArchivo() {
 		return nombreArchivo;
