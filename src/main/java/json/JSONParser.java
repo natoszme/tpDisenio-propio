@@ -11,11 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JSONParser<Entidad> {
 	
-	private ObjectMapper mapper = new ObjectMapper(); 
+	 
 	
 	public List<Entidad> importar(String rutaArchivo, Class<Entidad> tipoEntidad) {	
 		
 		File archivoJson = new File(rutaArchivo);
+		ObjectMapper mapper = new ObjectMapper();
 		List<Entidad> importados = new ArrayList<>();
 		
 		try {
