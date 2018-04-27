@@ -4,38 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class CargarDataDesdeJSON {
+public class CargarDataDesdeJSON<Entidad> {
 	
 	private static CargarDataDesdeJSON cargarData;
-	private static TipoDato tipoDato;
 	
-	public static CargarDataDesdeJSON getInstance() {
-		if (cargarData == null) {
-			return new CargarDataDesdeJSON();
-		}
-		return cargarData;
-	}
-	
-	public void setTipoDato(TipoDato tipoDato) {
-		this.tipoDato = tipoDato;
-	}
-	
-	public void cargar(String nombreArchivo) {	
-		File archivoJson = new File("./data/" + nombreArchivo + ".json");
+	public List<Entidad> obtenerElementos(String ruta, Class<Entidad> tClass) {	
+		File archivoJson = new File(ruta);
 		ObjectMapper mapper = new ObjectMapper();
+		List<Entidad> elementos = new ArrayList<>();
 		
-		//hay alguna forma de pasar la clase por parametro?
-		/*List<Usuario> usuarios = mapper.readValue(archivoJson, new TypeReference<List<Usuario>>(){});
-		RepoUsuarios.getInstance().agregarUsuarios(usuarios);*/
-		
-		//se agregar para no propagar el throes IOException en los metodos que llamen a este
 		try {
-			tipoDato.cargarSegunTipo(archivoJson, mapper);
+			elementos = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, tClass));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,9 +28,7 @@ public class CargarDataDesdeJSON {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return elementos;
 	}
-}
-
-interface TipoDato{
-	public void cargarSegunTipo(File archivo, ObjectMapper mapper) throws JsonParseException, JsonMappingException, IOException;
 }

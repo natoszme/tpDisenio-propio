@@ -1,45 +1,27 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
-public class RepoUsuarios {
-	private static RepoUsuarios repoUsuarios;
-	private static List<Usuario> usuarios = new ArrayList<>();
+public class RepoUsuarios extends Repo<Usuario>{
+	private static RepoUsuarios instancia;
+	List<Usuario> usuarios = new ArrayList<Usuario>();
+	
+	public RepoUsuarios() {
+		ruta = "./data/usuarios.json";
+	}
 	
 	public static RepoUsuarios getInstance(){
-		if (repoUsuarios == null) {
-			repoUsuarios = new RepoUsuarios();
+		if (instancia == null) {
+			instancia = new RepoUsuarios();
 		}
-		return repoUsuarios;
-	}
-
-	public List<Usuario> obtenerTodos() {
-		return usuarios;
-	}
-
-	public void agregarUsuario(Usuario usuario) {
-		usuarios.add(usuario);
-	}
-
-	public void agregarUsuarios(List<Usuario> usuarios) {
-		this.usuarios.addAll(usuarios);
+		return instancia;
 	}
 	
-	public void cargarUsuarios() {
-		CargarDataDesdeJSON cargadorDeDatos = new CargarDataDesdeJSON().getInstance();
-		RepoCategorias.getInstance().cargarCategorias();
+	public void cargarElementos() {
+		RepoCategorias.getInstance().cargarElementos();
 		
-		cargadorDeDatos.setTipoDato(new CargarUsuarios());
-		
-		//estaria bueno que esto devuelva a los usuarios, pero tendriamos quilombo con los tipos que devuelve cargadorDeDatos
-		//habria que agregar una superclase que englobe a las 2 y se complejizaria mucho
-		//esto esta mal?
-		cargadorDeDatos.cargar("usuarios");
-		
-		//si se ejecutan en paralelo, podria no tener a todos los usuarios cargados...
-		//se solucionaria con que cargarDatos devuelva una lista?
-		this.usuarios.forEach(Usuario::recategorizar);
+		CargarDataDesdeJSON<Usuario> cargadorData = new CargarDataDesdeJSON<>();
+		List<Usuario> usuarios = cargadorData.obtenerElementos(ruta, Usuario.class);
+		usuarios.forEach(Usuario::recategorizar);
+		agregarElementos(usuarios);
 	}
 }

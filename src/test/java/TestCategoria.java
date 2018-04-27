@@ -1,16 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestCategoria {
-	
-	//ojo que se esta repitiendo con TestUsuario
-	Categoria r1 = new CategoriaSinMinimo("r1", 0, 150, 18.76, 0.644);
-	Categoria r2 = new Categoria("r2", 150, 325, 35.32, 0.644);
-	Categoria r3 = new Categoria("r3", 325, 400, 60.71, 0.681);
-	Categoria r4 = new Categoria("r4", 400, 450, 71.74, 0.738);
-	Categoria r8 = new Categoria("r8", 700, 1400, 545.96, 0.851);
-	//TODO: revisar este feo 0
-	Categoria r9 = new CategoriaSinMaximo("r9", 1400, 0, 887.19, 0.851);
+public class TestCategoria extends FixtureGlobal{
 	
 	@Test
 	public void aR1LeCorrespondeElConsumo100() {
@@ -22,10 +13,11 @@ public class TestCategoria {
 		Assert.assertTrue(r1.meCorrespondeElConsumo(150));
 	}
 	
-	@Test
+	//segun el nuevo criterio, esto esta ok
+	/*@Test
 	public void aR1LeCorrespondeElConsumo0() {
 		Assert.assertTrue(r1.meCorrespondeElConsumo(0));
-	}
+	}*/
 	
 	@Test
 	public void aR2NoLeCorrespondeElConsumo150() {

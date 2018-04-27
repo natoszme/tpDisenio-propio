@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepoCategorias {
+public class RepoCategorias extends Repo<Categoria>{
 	private static RepoCategorias repoCategorias;
 	private static List<Categoria> categorias = new ArrayList<>();
+	
+	public RepoCategorias() {
+		ruta = "./data/categorias.json";
+	}
 	
 	public static RepoCategorias getInstance(){
 		if (repoCategorias == null) {
@@ -13,24 +17,12 @@ public class RepoCategorias {
 	}
 	
 	public static Categoria obtenerCategoriaSegunConsumo(double consumo) {
-		return categorias.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(null);
+		Categoria r1 = new Categoria("r1", 0, 150, 18.76, 0.644);
+		return categorias.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(r1);
 	}
-
-	public static void agregarCategoria(Categoria categoria) {
-		categorias.add(categoria);		
-	}
-
-	public void agregarCategorias(List<Categoria> categorias) {
-		this.categorias.addAll(categorias);
-	}
-
-	public static void cargarCategorias() {
-		CargarDataDesdeJSON cargadorDeDatos = new CargarDataDesdeJSON().getInstance();
-		cargadorDeDatos.setTipoDato(new CargarCategorias());
-		cargadorDeDatos.cargar("categorias");		
-	}
-
-	public List<Categoria> obtenerTodas() {
-		return categorias;
+	
+	public void cargarElementos() {
+		CargarDataDesdeJSON<Categoria> cargadorData = new CargarDataDesdeJSON<>();
+		agregarElementos(cargadorData.obtenerElementos(ruta, Categoria.class));
 	}
 }

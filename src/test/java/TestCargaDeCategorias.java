@@ -10,8 +10,8 @@ public class TestCargaDeCategorias extends FixtureGlobal{
 	
 	@Before
 	public void fixture() {
-		RepoCategorias.getInstance().cargarCategorias();
-		categorias = RepoCategorias.getInstance().obtenerTodas();
+		RepoCategorias.getInstance().cargarElementos();
+		categorias = RepoCategorias.getInstance().obtenerTodos();
 	}
 	
 	@Test

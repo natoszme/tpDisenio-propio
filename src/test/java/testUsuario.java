@@ -9,7 +9,7 @@ public class TestUsuario extends FixtureGlobal{
 	
 	@Before
 	public void fixture() {
-		RepoCategorias.getInstance().agregarCategorias(new ArrayList<>(Arrays.asList(r1, r2, r3, r4)));
+		RepoCategorias.getInstance().agregarElementos(new ArrayList<>(Arrays.asList(r1, r2, r3, r4)));
 		pepe.agregarDispositivo(tv);
 		pepe.agregarDispositivo(aire);
 		

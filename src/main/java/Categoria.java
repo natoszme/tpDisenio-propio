@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 public class Categoria {
 	String nombre;
@@ -14,14 +13,6 @@ public class Categoria {
 		this.cargoFijo = cargoFijo;
 		this.cargoVariable = cargoVariable;
 	}
-	
-	//como evitar pasale un null al constructor de las subclases?
-	/*public Categoria(String nombre, double consumoMinimo, double cargoFijo, double cargoVariable) {
-		this.nombre = nombre;
-		this.consumoMinimo = consumoMinimo;
-		this.cargoFijo = cargoFijo;
-		this.cargoVariable = cargoVariable;
-	}*/
 	
 	//necesario para leer un JSON
 	public Categoria() {}

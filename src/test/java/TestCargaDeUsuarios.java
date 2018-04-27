@@ -12,7 +12,7 @@ public class TestCargaDeUsuarios extends FixtureGlobal{
 	
 	@Before
 	public void fixture() {
-		RepoUsuarios.getInstance().cargarUsuarios();
+		RepoUsuarios.getInstance().cargarElementos();
 		usuarios = RepoUsuarios.getInstance().obtenerTodos();
 	}
 	
@@ -49,8 +49,6 @@ public class TestCargaDeUsuarios extends FixtureGlobal{
 	/*@Test
 	public void unUsuarioSinDispositivos*/
 	
-	
-	//desde aca unificar el criterio (crear al usuario pepe y pedirle sus atributos, no hacerlo a mano)
 	@Test
 	public void elNombreDelSegundoUsuarioEsPepe() {
 		Assert.assertEquals(pepe.getNombre(), usuarios.get(1).getNombre());
@@ -58,7 +56,7 @@ public class TestCargaDeUsuarios extends FixtureGlobal{
 	
 	@Test
 	public void pepeConsumio0PorNoTenerDispositivos() {
-		Assert.assertEquals(0,  usuarios.get(1).consumoHastaElMomento(), 0);
+		Assert.assertEquals(0, usuarios.get(1).consumoHastaElMomento(), 0);
 	}
 	
 	@Test
