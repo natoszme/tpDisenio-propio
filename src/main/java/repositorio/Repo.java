@@ -28,9 +28,4 @@ public abstract class Repo<Entidad> {
 	public List<Entidad> obtenerTodas() {
 		return entidades;
 	}
-
-	public void importarJSON() {
-		JSONParser<Entidad> cargadorDeDatos = new JSONParser<Entidad>();
-		this.agregarEntidades(cargadorDeDatos.obtenerImportados(this.rutaArchivo));
-	}
 }

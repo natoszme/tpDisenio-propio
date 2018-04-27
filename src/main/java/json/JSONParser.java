@@ -13,13 +13,13 @@ public class JSONParser<Entidad> {
 	
 	private ObjectMapper mapper = new ObjectMapper(); 
 	
-	public List<Entidad> obtenerImportados(String rutaArchivo) {	
+	public List<Entidad> importar(String rutaArchivo, Class<Entidad> tipoEntidad) {	
 		
-		File archivo = new File(rutaArchivo + ".json");
+		File archivoJson = new File(rutaArchivo);
 		List<Entidad> importados = new ArrayList<>();
 		
 		try {
-			importados = mapper.readValue(archivo, new TypeReference<List<Entidad>>(){});
+			importados = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipoEntidad));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

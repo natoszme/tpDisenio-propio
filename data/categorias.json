@@ -58,7 +58,7 @@
 	{
     	"nombre": "R9",
     	"consumoMinimo" : 1400.0,
-    	"consumoMaximo" : "Double.MAX_VALUE",
+    	"consumoMaximo" : 100000000.0,
     	"cargoFijo" : 887.19,
     	"cargoVariable" : 0.851
 	}
