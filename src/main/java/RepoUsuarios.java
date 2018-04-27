@@ -3,7 +3,6 @@ import java.util.List;
 
 public class RepoUsuarios extends Repo<Usuario>{
 	private static RepoUsuarios instancia;
-	List<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public RepoUsuarios() {
 		ruta = "./data/usuarios.json";
