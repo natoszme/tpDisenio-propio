@@ -15,7 +15,7 @@ public abstract class Repo<Entidad> {
 		entidades.add(entidad);
 	}
 
-	public void agregarElementos(List<Entidad> entidad) {
-		this.entidades.addAll(entidad);
+	public void agregarElementos(List<Entidad> entidades) {
+		this.entidades.addAll(entidades);
 	}
 }
