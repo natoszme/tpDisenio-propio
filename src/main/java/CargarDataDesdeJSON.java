@@ -11,13 +11,13 @@ public class CargarDataDesdeJSON<Entidad> {
 	
 	private static CargarDataDesdeJSON cargarData;
 	
-	public List<Entidad> obtenerElementos(String ruta, Class<Entidad> tClass) {	
+	public List<Entidad> obtenerElementos(String ruta, Class<Entidad> entidad) {	
 		File archivoJson = new File(ruta);
 		ObjectMapper mapper = new ObjectMapper();
 		List<Entidad> elementos = new ArrayList<>();
 		
 		try {
-			elementos = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, tClass));
+			elementos = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, entidad));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
