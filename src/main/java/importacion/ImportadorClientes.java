@@ -20,7 +20,7 @@ public class ImportadorClientes {
 	public void importarJSON() {
 		ImportadorCategorias.getInstance().importarJSON();
 		JSONParser<Cliente> cargadorDeDatos = new JSONParser<Cliente>();
-		List<Cliente> clientes = cargadorDeDatos.importar(rutaArchivo);
+		List<Cliente> clientes = cargadorDeDatos.importar(rutaArchivo, Cliente.class);
 		clientes.forEach(Cliente::recategorizar);
 		RepoClientes.getInstance().agregarEntidades(clientes);
 	}

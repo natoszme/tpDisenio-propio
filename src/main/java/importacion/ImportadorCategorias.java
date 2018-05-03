@@ -18,6 +18,6 @@ public class ImportadorCategorias {
 	
 	public void importarJSON() {
 		JSONParser<Categoria> cargadorDeDatos = new JSONParser<Categoria>();
-		RepoCategorias.getInstance().agregarEntidades(cargadorDeDatos.importar(rutaArchivo));
+		RepoCategorias.getInstance().agregarEntidades(cargadorDeDatos.importar(rutaArchivo, Categoria.class));
 	}
 }

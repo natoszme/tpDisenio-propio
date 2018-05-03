@@ -15,7 +15,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 public class JSONParser<Entidad> {	
 	 
 	
-	public List<Entidad> importar(String rutaArchivo) {	
+	public List<Entidad> importar(String rutaArchivo, Class<Entidad> tipoEntidad) {	
 		
 		File archivoJson = new File(rutaArchivo);
 		ObjectMapper mapper = new ObjectMapper()
@@ -25,7 +25,7 @@ public class JSONParser<Entidad> {
 		List<Entidad> importados = new ArrayList<>();
 		
 		try {
-			importados = mapper.readValue(archivoJson, new TypeReference<ArrayList<Entidad>>(){});
+			importados = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipoEntidad));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
