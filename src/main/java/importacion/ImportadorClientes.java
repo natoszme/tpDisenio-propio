@@ -8,6 +8,7 @@ import repositorio.RepoClientes;
 
 public class ImportadorClientes {
 	private static ImportadorClientes instancia;
+	String rutaArchivo = "./data/clientes.json";;
 	
 	public static ImportadorClientes getInstance() {
 		if(instancia == null) {
@@ -16,7 +17,6 @@ public class ImportadorClientes {
 		return instancia;
 	}
 	
-	String rutaArchivo = "./data/clientes.json";;
 	public void importarJSON() {
 		ImportadorCategorias.getInstance().importarJSON();
 		JSONParser<Cliente> cargadorDeDatos = new JSONParser<Cliente>();
