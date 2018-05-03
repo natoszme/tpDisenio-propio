@@ -40,6 +40,14 @@ public class Fixture {
 		  nico = new Cliente("nico", "otamendi", TipoDocumento.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>());
 		  pepe = new Cliente("pepe", "argento", TipoDocumento.CI, 12549785, 40000001, "Manuel Rodriguez 1251", r1, new ArrayList<Dispositivo>());
 		  lio = new Cliente("lio", "messi", TipoDocumento.DNI, 40216458, 10101010, "Av. Catalunia 10", r2, new ArrayList<Dispositivo>());
-		  RepoCategorias.getInstance().setEntidades(Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9));
+		  RepoCategorias.getInstance().agregarEntidad(r1);
+		  RepoCategorias.getInstance().agregarEntidad(r2);
+		  RepoCategorias.getInstance().agregarEntidad(r3);
+		  RepoCategorias.getInstance().agregarEntidad(r4);
+		  RepoCategorias.getInstance().agregarEntidad(r5);
+		  RepoCategorias.getInstance().agregarEntidad(r6);
+		  RepoCategorias.getInstance().agregarEntidad(r7);
+		  RepoCategorias.getInstance().agregarEntidad(r8);
+		  RepoCategorias.getInstance().agregarEntidad(r9);
 	}	
 }

@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import importacion.ImportadorCategorias;
 import repositorio.RepoCategorias;
 
 public class TestJsonCategoria {
@@ -13,13 +14,12 @@ public class TestJsonCategoria {
 	
 	@Before
 	public void fixture() {
-		RepoCategorias.getInstance().importarJSON();
+		ImportadorCategorias.getInstance().importarJSON();
 		categorias = RepoCategorias.getInstance().obtenerTodas();
 	}
 	
 	@Test
 	public void laPrimerCategoriaEsR1() {
-		System.out.print(categorias.get(0).getNombre());
 		Assert.assertEquals("R1", categorias.get(0).getNombre());
 	}
 	

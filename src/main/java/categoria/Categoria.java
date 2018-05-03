@@ -36,14 +36,6 @@ public class Categoria {
 	}
 	
 	public boolean meCorrespondeElConsumo(double consumo) {
-		return consumoAcordeAMaximo(consumo) && consumoAcordeAMinimo(consumo);
-	}
-	
-	public boolean consumoAcordeAMaximo(double consumo) {
-		return consumo <= consumoMaximo;
-	}
-	
-	public boolean consumoAcordeAMinimo(double consumo) {
-		return consumo > consumoMinimo;
+		return consumo > consumoMinimo &&  consumo <= consumoMaximo;
 	}
 }

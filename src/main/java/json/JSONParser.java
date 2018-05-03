@@ -9,18 +9,17 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JSONParser<Entidad> {
-	
+public class JSONParser<Entidad> {	
 	 
 	
-	public List<Entidad> importar(String rutaArchivo, Class<Entidad> tipoEntidad) {	
+	public List<Entidad> importar(String rutaArchivo) {	
 		
 		File archivoJson = new File(rutaArchivo);
 		ObjectMapper mapper = new ObjectMapper();
 		List<Entidad> importados = new ArrayList<>();
 		
 		try {
-			importados = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipoEntidad));
+			importados = mapper.readValue(archivoJson, new TypeReference<List<Entidad>>(){});
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

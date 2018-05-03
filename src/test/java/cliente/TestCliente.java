@@ -44,7 +44,7 @@ public class TestCliente extends Fixture {
 		Categoria categoriaActual = alejandro.categoria();
 		alejandro.agregarDispositivo(microondas);
 		alejandro.recategorizar();
-		assertEquals(categoriaActual, alejandro.categoria());
+		assertEquals(categoriaActual.getNombre(), alejandro.categoria().getNombre());
 	}
 	@Test
 	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {

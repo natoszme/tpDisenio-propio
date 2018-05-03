@@ -16,9 +16,10 @@ public class TestCategoria extends Fixture {
 		Assert.assertTrue(r1.meCorrespondeElConsumo(0.01));
 	}
 	
+	//A r1 no le corresponde el consumo 0. Pero cuando se elija la categoria, si no consumio nada entra en r1
 	@Test
-	public void aR1LeCorrespondeElConsumo0() {
-		Assert.assertTrue(r1.meCorrespondeElConsumo(0));
+	public void aR1NoLeCorrespondeElConsumo0() {
+		Assert.assertFalse(r1.meCorrespondeElConsumo(0));
 	}
 	
 	@Test
