@@ -1,4 +1,5 @@
 package categoria;
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Assert;
@@ -27,4 +28,9 @@ public class TestJsonCategoria {
 	public void elConsumoMaximoDeLaPrimerCategoriaEs150() {
 		Assert.assertEquals(150, categorias.get(0).getConsumoMaximo(), 0);
 	}
+	
+	 @Test
+	 public void laCantidadDeCategoriasCargadasEs9() throws IOException{
+		 Assert.assertEquals(9, categorias.size());
+	 }
 }
