@@ -1,6 +1,7 @@
 package cliente;
 import java.util.List;   
 import java.io.IOException;
+import java.time.LocalDate;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -53,6 +54,11 @@ public class TestJsonCliente extends Fixture {
 	@Test
 	public void elDomicilionDeLioEsAvCatalunia() {
 		Assert.assertEquals("Av. Catalunia 10", clientes.get(0).getDomicilio());
+	}
+	
+	@Test
+	public void laFechaDeAltaDeMessiEs25042018() {
+		Assert.assertEquals(LocalDate.parse("2018-04-25"), clientes.get(0).getFechaAlta());
 	}
 
 	@Test
