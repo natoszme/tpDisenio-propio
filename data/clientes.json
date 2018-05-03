@@ -25,7 +25,8 @@
 			    "encendido" : true,
 			    "horasEncendido" : 1.0
 			}
-		]
+		],
+		"fechaAlta": "2018-04-25"
 	},
 	{
 	    "nombre" : "pepe",
@@ -34,7 +35,8 @@
 	    "nroDocumento" : 40513264,
 	    "telefono" : 411112061,
 	    "domicilio" : "Juan B. Justo 24",
-	    "dispositivos" : []
+	    "dispositivos" : [],
+	    "fechaAlta": "2018-04-25"
 	},
 	{
 	    "nombre" : "rodri",
@@ -43,6 +45,7 @@
 	    "nroDocumento": 40000000,
 	    "telefono" : 465219475,
 	    "domicilio" : "Rodriguez Peña 3051",
-	    "dispositivos" : []
+	    "dispositivos" : [],
+	    "fechaAlta": "2018-04-25"
 	}
 ]
