@@ -8,7 +8,7 @@ import repositorio.RepoClientes;
 
 public class ImportadorClientes {
 	private static ImportadorClientes instancia;
-	String rutaArchivo = "./data/clientes.json";;
+	private static String rutaArchivo = "./data/clientes.json";
 	
 	public static ImportadorClientes getInstance() {
 		if(instancia == null) {
@@ -23,5 +23,9 @@ public class ImportadorClientes {
 		List<Cliente> clientes = cargadorDeDatos.importar(rutaArchivo, Cliente.class);
 		clientes.forEach(Cliente::recategorizar);
 		RepoClientes.getInstance().agregarEntidades(clientes);
+	}
+	
+	public void setRutaArchivo(String rutaArchivo) {
+		ImportadorClientes.rutaArchivo = rutaArchivo;
 	}
 }

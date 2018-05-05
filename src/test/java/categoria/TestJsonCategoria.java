@@ -1,11 +1,14 @@
 package categoria;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import importacion.ImportadorCategorias;
+import json.NoSePudoImportarJSONException;
 import repositorio.RepoCategorias;
 
 public class TestJsonCategoria {
@@ -27,8 +30,19 @@ public class TestJsonCategoria {
 		Assert.assertEquals(150, categorias.get(0).getConsumoMaximo(), 0);
 	}
 	
-	 @Test
-	 public void laCantidadDeCategoriasCargadasEs9() {
-		 Assert.assertEquals(9, categorias.size());
-	 }
+	@Test
+	public void laCantidadDeCategoriasCargadasEs9() {
+		Assert.assertEquals(9, categorias.size());
+	}
+	 
+	@Test(expected = NoSePudoImportarJSONException.class)
+	public void siLaRutaNoExisteTiraException() {
+		ImportadorCategorias.getInstance().setRutaArchivo("./data/categories.json");
+		ImportadorCategorias.getInstance().importarJSON();
+	}
+	
+	@Before
+	public void before() {
+		ImportadorCategorias.getInstance().setRutaArchivo("./data/categorias.json");
+	}
 }

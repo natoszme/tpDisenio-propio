@@ -25,14 +25,11 @@ public class JSONParser<Entidad> {
 		try {
 			importados = mapper.readValue(archivoJson, mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipoEntidad));
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new NoSePudoImportarJSONException();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new NoSePudoImportarJSONException();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new NoSePudoImportarJSONException();
 		}
 		
 		return importados;
