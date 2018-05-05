@@ -1,7 +1,8 @@
 package fixture;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import org.junit.After;
 
 import categoria.Categoria;
 import cliente.Cliente;
@@ -49,5 +50,10 @@ public class Fixture {
 		  RepoCategorias.getInstance().agregarEntidad(r7);
 		  RepoCategorias.getInstance().agregarEntidad(r8);
 		  RepoCategorias.getInstance().agregarEntidad(r9);
-	}	
+	}
+	
+	@After
+	public void after() {
+		RepoCategorias.getInstance().limpiarEntidades();
+	}
 }

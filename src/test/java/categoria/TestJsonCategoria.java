@@ -1,20 +1,18 @@
 package categoria;
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import importacion.ImportadorCategorias;
 import repositorio.RepoCategorias;
 
 public class TestJsonCategoria {
+	static List<Categoria> categorias;
 	
-	List<Categoria> categorias;	
-	
-	@Before
-	public void fixture() {
+	@BeforeClass
+	public static void fixture() {
 		ImportadorCategorias.getInstance().importarJSON();
 		categorias = RepoCategorias.getInstance().obtenerTodas();
 	}
@@ -30,7 +28,7 @@ public class TestJsonCategoria {
 	}
 	
 	 @Test
-	 public void laCantidadDeCategoriasCargadasEs9() throws IOException{
+	 public void laCantidadDeCategoriasCargadasEs9() {
 		 Assert.assertEquals(9, categorias.size());
 	 }
 }

@@ -1,22 +1,21 @@
 package cliente;
-import java.util.List;   
+import java.util.List;
 import java.io.IOException;
 import java.time.LocalDate;
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fixture.Fixture;
 import importacion.ImportadorClientes;
 import repositorio.RepoClientes;
 
-public class TestJsonCliente extends Fixture {
+public class TestJsonCliente {
 	
-	List<Cliente> clientes;
+	static List<Cliente> clientes;
 	
-	@Before
-	public void fixture(){
+	@BeforeClass
+	public static void fixture(){
 		ImportadorClientes.getInstance().importarJSON();
 		clientes = RepoClientes.getInstance().obtenerTodos();
 	}
