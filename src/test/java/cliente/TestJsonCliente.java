@@ -7,9 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import importacion.ImportadorCategorias;
 import importacion.ImportadorClientes;
 import json.NoSePudoImportarJSONException;
 import repositorio.RepoClientes;
@@ -83,8 +81,8 @@ public class TestJsonCliente {
 	//mockito no permite testear metodos estaticos
 	@Test(expected = NoSePudoImportarJSONException.class)
 	public void siLaRutaNoExisteTiraException() {
-		ImportadorClientes mockImportador = Mockito.mock(ImportadorClientes.class);
-		/*mockImportador.getInstance().setRutaArchivo("./data/cliente.j");
+		/*ImportadorClientes mockImportador = Mockito.mock(ImportadorClientes.class);
+		mockImportador.getInstance().setRutaArchivo("./data/cliente.j");
 		mockImportador.getInstance().importarJSON();*/
 		
 		ImportadorClientes.getInstance().setRutaArchivo("./data/cliente.j");

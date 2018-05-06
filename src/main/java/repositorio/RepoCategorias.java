@@ -1,7 +1,6 @@
 package repositorio;
-import java.util.List;
-
 import categoria.Categoria;
+
 public class RepoCategorias extends Repo<Categoria> {
 	
 	private static RepoCategorias instancia;

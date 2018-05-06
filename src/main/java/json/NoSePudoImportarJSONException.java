@@ -1,5 +1,3 @@
 package json;
 
-public class NoSePudoImportarJSONException extends RuntimeException{
-
-}
+public class NoSePudoImportarJSONException extends RuntimeException{}
