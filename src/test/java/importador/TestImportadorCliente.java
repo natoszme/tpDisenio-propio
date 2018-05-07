@@ -1,18 +1,18 @@
-package cliente;
+package importador;
 import java.util.List;
 import java.io.IOException;
 import java.time.LocalDate;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cliente.Cliente;
+import cliente.TipoDocumento;
 import importacion.ImportadorClientes;
-import json.NoSePudoImportarJSONException;
 import repositorio.RepoClientes;
 
-public class TestJsonCliente {
+public class TestImportadorCliente {
 	
 	static List<Cliente> clientes;
 	
@@ -75,23 +75,5 @@ public class TestJsonCliente {
 	@Test
 	public void laCategoriaDeLioEsR3() {
 		Assert.assertEquals("R3", clientes.get(0).getCategoria().getNombre());
-	}
-	
-	//usar mocks para no tocar la ruta posta?
-	//mockito no permite testear metodos estaticos
-	@Test(expected = NoSePudoImportarJSONException.class)
-	public void siLaRutaNoExisteTiraException() {
-		/*ImportadorClientes mockImportador = Mockito.mock(ImportadorClientes.class);
-		mockImportador.getInstance().setRutaArchivo("./data/cliente.j");
-		mockImportador.getInstance().importarJSON();*/
-		
-		ImportadorClientes.getInstance().setRutaArchivo("./data/cliente.j");
-		ImportadorClientes.getInstance().importarJSON();
-	}
-	
-	//no se si esta muy bueno setear esto cada vez, pero funciona
-	@Before
-	public void before() {
-		ImportadorClientes.getInstance().setRutaArchivo("./data/clientes.json");
 	}
 }
