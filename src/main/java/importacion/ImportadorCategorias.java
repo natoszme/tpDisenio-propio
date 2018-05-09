@@ -1,6 +1,7 @@
 package importacion;
 
 import categoria.Categoria;
+import repositorio.RepoCategorias;
 
 public class ImportadorCategorias extends Importador<Categoria>{
 	
@@ -8,8 +9,14 @@ public class ImportadorCategorias extends Importador<Categoria>{
 	
 	public static ImportadorCategorias getInstance() {
 		if(instancia == null) {
-			return new ImportadorCategorias();
+			instancia = new ImportadorCategorias();
 		}
 		return instancia;
+	}
+	
+	public void configurar() {
+		rutaArchivo = "./data/categorias.json";
+		repo = RepoCategorias.getInstance();
+		entidad = Categoria.class;
 	}
 }

@@ -5,11 +5,10 @@ import repositorio.RepoClientes;
 
 public class ImportadorClientes extends Importador<Cliente>{
 	private static ImportadorClientes instancia;
-	private static String rutaArchivo = "./data/clientes.json";
 	
 	public static ImportadorClientes getInstance() {
 		if(instancia == null) {
-			return new ImportadorClientes();
+			instancia = new ImportadorClientes();
 		}
 		return instancia;
 	}
@@ -17,6 +16,13 @@ public class ImportadorClientes extends Importador<Cliente>{
 	public void importarJSON() {
 		ImportadorCategorias.getInstance().importarJSON();
 		super.importarJSON();
-		RepoClientes.getInstance().obtenerTodas().forEach(Cliente::recategorizar);;
+		repo.obtenerTodas().forEach(Cliente::recategorizar);;
 	}
+	
+	public void configurar() {
+		rutaArchivo = "./data/clientes.json";
+		repo = RepoClientes.getInstance();
+		entidad = Cliente.class;
+	}
+	 
 }

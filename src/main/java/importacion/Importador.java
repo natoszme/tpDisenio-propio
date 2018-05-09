@@ -1,18 +1,21 @@
 package importacion;
 
-import categoria.Categoria;
 import json.JSONParser;
 import repositorio.Repo;
-import repositorio.RepoCategorias;
 
-public class Importador<Entidad> {
+abstract public class Importador<Entidad> {
 	protected String rutaArchivo;
+	Repo<Entidad> repo;
+	protected Class<Entidad> entidad;
 	public void importarJSON() {
+		configurar();
 		JSONParser<Entidad> cargadorDeDatos = new JSONParser<Entidad>();
-		/*aca va el repo segun Entidad*/.getInstance().agregarEntidades(cargadorDeDatos.importar(rutaArchivo, Entidad));
+		repo.agregarEntidades(cargadorDeDatos.importar(rutaArchivo, entidad));
 	}
 	
 	public void setRutaArchivo(String rutaArchivo) {
 		this.rutaArchivo = rutaArchivo;		
 	}
+	
+	abstract public void configurar();
 }
