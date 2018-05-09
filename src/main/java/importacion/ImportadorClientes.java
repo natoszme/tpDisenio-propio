@@ -20,7 +20,7 @@ public class ImportadorClientes extends Importador<Cliente>{
 	}
 	
 	public void configurar() {
-		rutaArchivo = "./data/clientes.json";
+		rutaArchivo = "./resources/jsonData/clientes.json";
 		repo = RepoClientes.getInstance();
 		entidad = Cliente.class;
 	}

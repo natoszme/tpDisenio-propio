@@ -15,7 +15,7 @@ public class ImportadorCategorias extends Importador<Categoria>{
 	}
 	
 	public void configurar() {
-		rutaArchivo = "./data/categorias.json";
+		rutaArchivo = "./resources/jsonData/categorias.json";
 		repo = RepoCategorias.getInstance();
 		entidad = Categoria.class;
 	}

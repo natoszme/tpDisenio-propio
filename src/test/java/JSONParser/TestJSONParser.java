@@ -23,13 +23,13 @@ public class TestJSONParser {
 	
 	@Test
 	public void alPasarBienLaRutaDeClientesDevuelveBien() {
-		List<Cliente> clientesParseados = new JSONParser<Cliente>().importar("./data/clientes.json", Cliente.class);
+		List<Cliente> clientesParseados = new JSONParser<Cliente>().importar("./resources/jsonData/clientes.json", Cliente.class);
 		Assert.assertEquals("lio", clientesParseados.get(0).getNombre());
 	}
 	
 	@Test
 	public void alPasarBienLaRutaDeCategoriasDevuelveBien() {
-		List<Categoria> clientesParseados = new JSONParser<Categoria>().importar("./data/categorias.json", Categoria.class);
+		List<Categoria> clientesParseados = new JSONParser<Categoria>().importar("./resources/jsonData/categorias.json", Categoria.class);
 		Assert.assertEquals("R1", clientesParseados.get(0).getNombre());
 	}
 }
