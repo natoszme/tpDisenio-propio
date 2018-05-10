@@ -1,6 +1,7 @@
 package importacion;
 
 import cliente.Cliente;
+
 import repositorio.RepoClientes;
 
 public class ImportadorClientes extends Importador<Cliente>{
@@ -8,7 +9,7 @@ public class ImportadorClientes extends Importador<Cliente>{
 	
 	public static ImportadorClientes getInstance() {
 		if(instancia == null) {
-			instancia = new ImportadorClientes();
+			instancia = new ImportadorClientes("./resources/jsonData/clientes.json", RepoClientes.getInstance(), Cliente.class);
 		}
 		return instancia;
 	}
@@ -16,13 +17,11 @@ public class ImportadorClientes extends Importador<Cliente>{
 	public void importarJSON() {
 		ImportadorCategorias.getInstance().importarJSON();
 		super.importarJSON();
-		repo.obtenerTodas().forEach(Cliente::recategorizar);;
+		repo.obtenerTodas().forEach(Cliente::recategorizar);
 	}
 	
-	public void configurar() {
-		rutaArchivo = "./resources/jsonData/clientes.json";
-		repo = RepoClientes.getInstance();
-		entidad = Cliente.class;
+	private ImportadorClientes(String rutaArchivo, RepoClientes repo, Class<Cliente> entidad) {
+		super(rutaArchivo, repo, entidad);
 	}
 	 
 }

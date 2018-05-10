@@ -9,14 +9,12 @@ public class ImportadorCategorias extends Importador<Categoria>{
 	
 	public static ImportadorCategorias getInstance() {
 		if(instancia == null) {
-			instancia = new ImportadorCategorias();
+			instancia = new ImportadorCategorias("./resources/jsonData/categorias.json", RepoCategorias.getInstance(), Categoria.class);
 		}
 		return instancia;
 	}
 	
-	public void configurar() {
-		rutaArchivo = "./resources/jsonData/categorias.json";
-		repo = RepoCategorias.getInstance();
-		entidad = Categoria.class;
+	private ImportadorCategorias(String rutaArchivo, RepoCategorias repo, Class<Categoria> entidad) {
+		super(rutaArchivo, repo, entidad);
 	}
 }

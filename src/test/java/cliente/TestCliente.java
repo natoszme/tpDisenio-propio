@@ -1,5 +1,6 @@
 package cliente;
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import fixture.Fixture;
@@ -24,7 +25,7 @@ public class TestCliente extends Fixture {
 	@Test
 	public void con1DispositivoMasAlejandroTiene2() {
 		alejandro.agregarDispositivo(televisor);
-		assertEquals(2,alejandro.cantidadDispositivos());
+		assertEquals(2, alejandro.cantidadDispositivos());
 	}
 	
 	@Test
@@ -49,27 +50,27 @@ public class TestCliente extends Fixture {
 	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {
 		alejandro.agregarDispositivo(televisor);
 		alejandro.recategorizar();
-		assertEquals("R2",alejandro.categoria().getNombre());
+		assertEquals("R2" ,alejandro.categoria().getNombre());
 	}
 	
 	@Test
 	public void seAgregaEquipoDeMusicaAAlejandroYAlRecategorizarEsR3() {
 		alejandro.agregarDispositivo(equipoMusica);
 		alejandro.recategorizar();
-		assertEquals("R3",alejandro.categoria().getNombre());
+		assertEquals("R3", alejandro.categoria().getNombre());
 	}
 	
 	@Test
 	public void seAgregaDvdAAlejandroYAlRecategorizarEsR4() {
 		alejandro.agregarDispositivo(dvd);
 		alejandro.recategorizar();
-		assertEquals("R4",alejandro.categoria().getNombre());
+		assertEquals("R4", alejandro.categoria().getNombre());
 	}
 	
 	@Test
 	public void seAgregaPlay4AAlejandroYAlRecategorizarEsR9() {
 		alejandro.agregarDispositivo(play4);
 		alejandro.recategorizar();
-		assertEquals("R9",alejandro.categoria().getNombre());
+		assertEquals("R9", alejandro.categoria().getNombre());
 	}
 }
