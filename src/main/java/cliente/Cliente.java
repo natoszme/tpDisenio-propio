@@ -12,13 +12,14 @@ import categoria.Categoria;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoInteligente;
 import dispositivo.DispositivoEstandar;
+import dispositivo.EstadoDelDispositivo;
 import repositorio.RepoCategorias;
 
 
 public class Cliente {
 	String nombre;
 	String apellido;
-	TipoDocumento tipoDocumento;
+	tipoDocumento tipoDocumento;
 	long nroDocumento;
 	long telefono;
 	String domicilio;
@@ -29,7 +30,7 @@ public class Cliente {
 	
 	public Cliente() { /*Es para el Json*/ }
 	
-	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
+	public Cliente(String nombre, String apellido, tipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -100,7 +101,7 @@ public class Cliente {
 		return this.apellido;
 	}
 	
-	public TipoDocumento getTipoDocumento() {
+	public tipoDocumento getTipoDocumento() {
 		return this.tipoDocumento;
 	}
 	

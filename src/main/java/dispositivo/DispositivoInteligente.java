@@ -1,13 +1,14 @@
 package dispositivo;
+import dispositivo.EstadoDelDispositivo;
 
 public class DispositivoInteligente extends Dispositivo {
 	
-	boolean encendido;
+	EstadoDelDispositivo estado;
 
 //constructor	
-	public DispositivoInteligente(String nombre, double kwPorHora, boolean estado, double horasEncendido) {
+	public DispositivoInteligente(String nombre, double kwPorHora, EstadoDelDispositivo estado, double horasEncendido) {
 		super(nombre,kwPorHora,horasEncendido);
-		this.encendido = estado;
+		this.estado = estado;
 	}
 	
 //definicion de los metodos abstractos	
@@ -21,7 +22,7 @@ public class DispositivoInteligente extends Dispositivo {
 //------------------------------------------
 	 
 	public boolean estaEncendido() {
-		return encendido;
+		return estado.estaEncendido();
 	}
 	
 	//public boolean isEncendido() {

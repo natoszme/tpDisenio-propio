@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cliente.Cliente;
-import cliente.TipoDocumento;
+import cliente.tipoDocumento;
 import importacion.ImportadorClientes;
 import repositorio.RepoClientes;
 
@@ -39,7 +39,7 @@ public class TestImportadorCliente {
 		
 	@Test
 	public void elTipoDeDocumentoDeLioEsDNI() {
-		Assert.assertEquals(TipoDocumento.DNI, clientes.get(0).getTipoDocumento());
+		Assert.assertEquals(tipoDocumento.DNI, clientes.get(0).getTipoDocumento());
 	}
 		
 	@Test

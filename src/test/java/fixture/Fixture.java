@@ -1,16 +1,18 @@
 package fixture;
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.junit.After;
 
 import categoria.Categoria;
 import cliente.Cliente;
-import cliente.TipoDocumento;
+import cliente.tipoDocumento;
 import dispositivo.DispositivoInteligente;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoEstandar; // lo puse porq seguro vamos a agregar test que lo usen
+import dispositivo.EstadoDelDispositivo;
 import repositorio.RepoCategorias;
 
 public class Fixture {
@@ -30,20 +32,20 @@ public class Fixture {
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
 				
-		  candelabro = new DispositivoInteligente("Candelabro", 60.9, true, 2);	
-		  televisor = new DispositivoInteligente("Televisor", 67.5, true, 1);	  
-		  microondas = new DispositivoInteligente("Microondas", 1402.0, false, 0);
-		  equipoMusica = new DispositivoInteligente ("Equipo de musica", 270.0, true, 1);
-		  dvd = new DispositivoInteligente("DVD", 300.77, true, 1);
-		  play4 = new DispositivoInteligente("Play station 4", 1401.05, true, 1);
+		  candelabro = new DispositivoInteligente("Candelabro", 60.9, EstadoDelDispositivo.ENCENDIDO, 2);	
+		  televisor = new DispositivoInteligente("Televisor", 67.5, EstadoDelDispositivo.ENCENDIDO, 1);	  
+		  microondas = new DispositivoInteligente("Microondas", 1402.0, EstadoDelDispositivo.APAGADO, 0);
+		  equipoMusica = new DispositivoInteligente ("Equipo de musica", 270.0, EstadoDelDispositivo.ENCENDIDO, 1);
+		  dvd = new DispositivoInteligente("DVD", 300.77,EstadoDelDispositivo.ENCENDIDO, 1);
+		  play4 = new DispositivoInteligente("Play station 4", 1401.05, EstadoDelDispositivo.ENCENDIDO, 1);
 		
 		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
 		
-		  alejandro = new Cliente("Alejandro", "Saez", TipoDocumento.DNI, 3876675, 43543245, "Macos Sastre 324", r1, dispositivos);
-		  nico = new Cliente("nico", "otamendi", TipoDocumento.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>());
-		  pepe = new Cliente("pepe", "argento", TipoDocumento.CI, 12549785, 40000001, "Manuel Rodriguez 1251", r1, new ArrayList<Dispositivo>());
-		  lio = new Cliente("lio", "messi", TipoDocumento.DNI, 40216458, 10101010, "Av. Catalunia 10", r2, new ArrayList<Dispositivo>());
+		  alejandro = new Cliente("Alejandro", "Saez", tipoDocumento.DNI, 3876675, 43543245, "Macos Sastre 324", r1, dispositivos);
+		  nico = new Cliente("nico", "otamendi", tipoDocumento.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>());
+		  pepe = new Cliente("pepe", "argento", tipoDocumento.CI, 12549785, 40000001, "Manuel Rodriguez 1251", r1, new ArrayList<Dispositivo>());
+		  lio = new Cliente("lio", "messi", tipoDocumento.DNI, 40216458, 10101010, "Av. Catalunia 10", r2, new ArrayList<Dispositivo>());
 		  RepoCategorias.getInstance().agregarEntidad(r1);
 		  RepoCategorias.getInstance().agregarEntidad(r2);
 		  RepoCategorias.getInstance().agregarEntidad(r3);

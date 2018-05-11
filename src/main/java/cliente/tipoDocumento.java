@@ -1,5 +1,5 @@
 package cliente;
 
-public enum TipoDocumento {
+public enum tipoDocumento {
 	DNI, CI, LE, LC
 }
