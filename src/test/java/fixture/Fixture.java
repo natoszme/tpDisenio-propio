@@ -1,5 +1,6 @@
 package fixture;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.junit.After;
@@ -7,12 +8,14 @@ import org.junit.After;
 import categoria.Categoria;
 import cliente.Cliente;
 import cliente.TipoDocumento;
+import dispositivo.DispositivoInteligente;
 import dispositivo.Dispositivo;
+import dispositivo.DispositivoEstandar; // lo puse porq seguro vamos a agregar test que lo usen
 import repositorio.RepoCategorias;
 
 public class Fixture {
 	protected Categoria r1, r2, r3, r4, r5, r6, r7, r8, r9;
-	protected Dispositivo candelabro, televisor, microondas,equipoMusica ,dvd, play4;
+	protected DispositivoInteligente candelabro, televisor, microondas,equipoMusica ,dvd, play4;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
 	
@@ -27,12 +30,12 @@ public class Fixture {
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
 				
-		  candelabro = new Dispositivo("Candelabro", 60.9, true, 2);	
-		  televisor = new Dispositivo("Televisor", 67.5, true, 1);	  
-		  microondas = new Dispositivo("Microondas", 1402.0, false, 0);
-		  equipoMusica = new Dispositivo ("Equipo de musica", 270.0, true, 1);
-		  dvd = new Dispositivo("DVD", 300.77, true, 1);
-		  play4 = new Dispositivo("Play station 4", 1401.05, true, 1);
+		  candelabro = new DispositivoInteligente("Candelabro", 60.9, true, 2);	
+		  televisor = new DispositivoInteligente("Televisor", 67.5, true, 1);	  
+		  microondas = new DispositivoInteligente("Microondas", 1402.0, false, 0);
+		  equipoMusica = new DispositivoInteligente ("Equipo de musica", 270.0, true, 1);
+		  dvd = new DispositivoInteligente("DVD", 300.77, true, 1);
+		  play4 = new DispositivoInteligente("Play station 4", 1401.05, true, 1);
 		
 		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
