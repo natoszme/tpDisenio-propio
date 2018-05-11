@@ -1,40 +1,22 @@
 package dispositivo;
 
-
-
-
-public class DispositivoInteligente implements Dispositivo {
-	String nombre;
-	double kwPorHora;
+public class DispositivoInteligente extends Dispositivo {
+	
 	boolean encendido;
-	double horasEncendido;
-public DispositivoInteligente() {//json
-		
-	}
+
+//constructor	
 	public DispositivoInteligente(String nombre, double kwPorHora, boolean estado, double horasEncendido) {
-		this.nombre = nombre;
-		this.kwPorHora = kwPorHora;
+		super(nombre,kwPorHora,horasEncendido);
 		this.encendido = estado;
-		this.horasEncendido = horasEncendido;
-		
 	}
 	
-//metodos de la interfaz
+//definicion de los metodos abstractos	
 	
-	public String getNombre() {
-		return nombre;
-	}
-	public double getKwPorHora() {
-		return kwPorHora;
-	}
-	public double getHorasEncendido(){
-		return horasEncendido;
-	}
 	 public double consumo() {
 			return horasEncendido * kwPorHora;
 	}
 	 public boolean esInteligente() {
-		return false;
+		return true;
 	}
 //------------------------------------------
 	 
@@ -42,8 +24,8 @@ public DispositivoInteligente() {//json
 		return encendido;
 	}
 	
-	public boolean isEncendido() {
-		return encendido;
-	}
+	//public boolean isEncendido() {
+	//	return encendido;
+	//}
 
 } 
