@@ -1,12 +1,34 @@
 package dispositivo;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+
+import tipoDispositivo.DispositivoEstandar;
+import tipoDispositivo.DispositivoInteligente;
+import tipoDispositivo.TipoDispositivo;
+
 public class Dispositivo {
 	private String nombre;
 	private TipoDispositivo tipoDispositivo;
-	private boolean encendido;
+	
+	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo) {
+		this.nombre = nombre;
+		this.tipoDispositivo = tipoDispositivo;
+	}
+	
+	public Dispositivo() {} /* Es para el JSON */
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public TipoDispositivo getTipoDispositivo() {
+		return tipoDispositivo;
+	}
 	
 	public void convertirAInteligente() {
-		tipoDispositivo = new Inteligente();
+		tipoDispositivo.convertirAInteligente(this);
 	}
 	
 	public boolean esInteligente() {
@@ -17,20 +39,16 @@ public class Dispositivo {
 		return tipoDispositivo.estaEncendido();
 	}
 	
+	public boolean estaEnAhorroEnergia() {
+		return tipoDispositivo.estaEnAhorroEnergia();
+	}
+	
 	public double consumo() {
 		return tipoDispositivo.consumo();
 	}
 	
 	public double puntosPorRegistrar() {
 		return tipoDispositivo.puntosPorRegistrar();
-	}
-	
-	public void intentarApagar() {
-		tipoDispositivo.intentarApagar();
-	}
-	
-	public void intentarEncender() {
-		tipoDispositivo.intentarEncender();
 	}
 	
 	public void apagar() {
@@ -40,14 +58,9 @@ public class Dispositivo {
 	public void encender() {
 		tipoDispositivo.encender();
 	}
-	
-	//este metodo no deberia estar aca...
-	public void ponerEnAhorroDeEnergia() {
-		tipoDispositivo.ponerEnAhorroDeEnergia();
-	}
 
 	//si solo se va a usar para converitrEnInteligente, estaria bueno que se restrinja el tipo a Inteligente
-	public void cambiarTipo(TipoDispositivo tipoDispositivo) {
-		this.tipoDispositivo = tipoDispositivo;		
+	public void cambiarTipo(DispositivoInteligente dispositivoInteligente) {
+		tipoDispositivo = dispositivoInteligente;		
 	}
 }

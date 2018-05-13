@@ -7,16 +7,7 @@ import fixture.Fixture;
 import categoria.Categoria;
 
 public class TestCliente extends Fixture {
-
-	@Test
-	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
-		assertEquals(0, alejandro.cantidadDispositivosApagados());
-	}
 	
-	@Test
-	public void elClienteAlejandroTiene0DispositivosApagados() {
-		assertEquals(0, alejandro.cantidadDispositivosApagados());
-	}
 	@Test
 	public void elClienteAlejandroTiene1DispositivoInicialmente() {
 		assertEquals(1, alejandro.cantidadDispositivos());

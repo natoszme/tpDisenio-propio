@@ -8,8 +8,8 @@ import categoria.Categoria;
 import cliente.Cliente;
 import cliente.TipoDocumento;
 import dispositivo.Dispositivo;
-import dispositivo.Estandar;
 import repositorio.RepoCategorias;
+import tipoDispositivo.DispositivoEstandar;
 
 public class Fixture {
 	protected Categoria r1, r2, r3, r4, r5, r6, r7, r8, r9;
@@ -28,14 +28,15 @@ public class Fixture {
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
 				
-		  candelabro = new Dispositivo("Candelabro", 60.9, true, 2);
-		  televisor = new Dispositivo("Televisor", 67.5, true, 1);	  
-		  microondas = new Dispositivo("Microondas", 1402.0, false, 0);
-		  equipoMusica = new Dispositivo ("Equipo de musica", 270.0, true, 1);
-		  dvd = new Dispositivo("DVD", 300.77, true, 1);
-		  play4 = new Dispositivo("Play station 4", 1401.05, true, 1);
+		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9, true, 2));
+		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5, true, 1));	  
+		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(1402.0, false, 0));
+		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(270.0, true, 1));
+		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77, true, 1));
+		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(1401.05, true, 1));
 		
-		  dispositivos = new ArrayList<Estandar>();	
+		  //TODO revisar si se puede sacar esto, ya esta arriba!
+		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
 		
 		  alejandro = new Cliente("Alejandro", "Saez", TipoDocumento.DNI, 3876675, 43543245, "Macos Sastre 324", r1, dispositivos);

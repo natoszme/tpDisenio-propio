@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+
 import categoria.Categoria;
 import dispositivo.Dispositivo;
-import dispositivo.Estandar;
 import repositorio.RepoCategorias;
+import tipoDispositivo.DispositivoEstandar;
 
 public class Cliente {
 	String nombre;
@@ -42,12 +46,17 @@ public class Cliente {
 	public long cantidadDispositivosEncendidos() {
 		return dispositivos.stream().
 				filter(Dispositivo::esInteligente).
-				collect(Collectors.toList()).
-				filter(Estandar::estaEncendido).count();
+				filter(Dispositivo::estaEncendido).count();
+	}
+	
+	public long cantidadDispositivosEnAhorroEnergia() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).
+				filter(Dispositivo::estaEnAhorroEnergia).count();
 	}
 	
 	public long cantidadDispositivosApagados() {
-		return cantidadDispositivos() - cantidadDispositivosEncendidos();
+		return cantidadDispositivos() - cantidadDispositivosEncendidos() - cantidadDispositivosEnAhorroEnergia();
 	}
 	
 	public long cantidadDispositivos() {
