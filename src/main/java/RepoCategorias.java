@@ -3,7 +3,6 @@ import java.util.List;
 
 public class RepoCategorias extends Repo<Categoria>{
 	private static RepoCategorias repoCategorias;
-	private static List<Categoria> categorias = new ArrayList<>();
 	
 	public RepoCategorias() {
 		ruta = "./data/categorias.json";
@@ -16,9 +15,9 @@ public class RepoCategorias extends Repo<Categoria>{
 		return repoCategorias;
 	}
 	
-	public static Categoria obtenerCategoriaSegunConsumo(double consumo) {
+	public Categoria obtenerCategoriaSegunConsumo(double consumo) {
 		Categoria r1 = new Categoria("r1", 0, 150, 18.76, 0.644);
-		return categorias.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(r1);
+		return entidades.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(r1);
 	}
 	
 	public void cargarElementos() {

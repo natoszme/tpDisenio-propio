@@ -9,8 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CargarDataDesdeJSON<Entidad> {
 	
-	private static CargarDataDesdeJSON cargarData;
-	
 	public List<Entidad> obtenerElementos(String ruta, Class<Entidad> entidad) {	
 		File archivoJson = new File(ruta);
 		ObjectMapper mapper = new ObjectMapper();
