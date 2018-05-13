@@ -1,0 +1,48 @@
+[
+	{
+	    "nombre" : "lio",
+	    "apellido" : "messi",
+	    "tipoDocumento" : "DNI",
+	    "nroDocumento" : 40216458,
+	    "telefono" : 10101010,
+	    "domicilio" : "Av. Catalunia 10",
+	    "dispositivos" : [
+			{
+			    "nombre" : "tv",
+			    "kwPorHora" : 12.0,
+			    "horasEncendido" : 10.0
+			},
+			{
+			    "nombre" : "aire",
+			    "kwPorHora" : 80.0,
+			    "horasEncendido" : 2.0
+			},
+			{
+			    "nombre" : "home theater",
+			    "kwPorHora" : 100.0,
+			    "horasEncendido" : 1.0
+			}
+		],
+		"fechaAlta": "2018-04-25"
+	},
+	{
+	    "nombre" : "pepe",
+	    "apellido" : "sanchez",
+	    "tipoDocumento" : "DNI",
+	    "nroDocumento" : 40513264,
+	    "telefono" : 411112061,
+	    "domicilio" : "Juan B. Justo 24",
+	    "dispositivos" : [],
+	    "fechaAlta": "2018-04-25"
+	},
+	{
+	    "nombre" : "rodri",
+	    "apellido" : "alvarez",
+	    "tipoDocumento" : "DNI",
+	    "nroDocumento": 40000000,
+	    "telefono" : 465219475,
+	    "domicilio" : "Rodriguez Peña 3051",
+	    "dispositivos" : [],
+	    "fechaAlta": "2018-04-25"
+	}
+]

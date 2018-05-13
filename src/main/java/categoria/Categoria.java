@@ -1,4 +1,4 @@
-
+package categoria;
 public class Categoria {
 	String nombre;
 	double consumoMinimo;
@@ -6,6 +6,7 @@ public class Categoria {
 	double cargoFijo;
 	double cargoVariable;
 	
+	public Categoria() { /*es para el Json*/ }
 	public Categoria(String nombre, double consumoMinimo, double consumoMaximo, double cargoFijo, double cargoVariable) {
 		this.nombre = nombre;
 		this.consumoMinimo = consumoMinimo;
@@ -14,30 +15,27 @@ public class Categoria {
 		this.cargoVariable = cargoVariable;
 	}
 	
-	//necesario para leer un JSON
-	public Categoria() {}
-	
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
-
+	
 	public double getConsumoMinimo() {
-		return consumoMinimo;
+		return this.consumoMinimo;
 	}
-
+	
 	public double getConsumoMaximo() {
-		return consumoMaximo;
+		return this.consumoMaximo;
 	}
-
+	
 	public double getCargoFijo() {
-		return cargoFijo;
+		return this.cargoFijo;
 	}
-
+	
 	public double getCargoVariable() {
-		return cargoVariable;
+		return this.cargoVariable;
 	}
-
+	
 	public boolean meCorrespondeElConsumo(double consumo) {
-		return consumo <= consumoMaximo && consumo > consumoMinimo;
+		return consumo > consumoMinimo &&  consumo <= consumoMaximo;
 	}
 }

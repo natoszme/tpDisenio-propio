@@ -1,21 +1,24 @@
+package repositorio;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Repo<Entidad> {
-	
-	Entidad entidad;
 	protected List<Entidad> entidades = new ArrayList<>();
-	protected String ruta;
-
+	
 	public List<Entidad> obtenerTodos() {
 		return entidades;
 	}
 
-	public void agregarElemento(Entidad entidad) {
+	public void agregarEntidad(Entidad entidad) {
 		entidades.add(entidad);
 	}
 
-	public void agregarElementos(List<Entidad> entidades) {
+	public void agregarEntidades(List<Entidad> entidades) {
 		this.entidades.addAll(entidades);
+	}
+
+	public List<Entidad> obtenerTodas() {
+		return entidades;
 	}
 }
