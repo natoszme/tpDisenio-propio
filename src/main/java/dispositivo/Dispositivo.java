@@ -1,42 +1,66 @@
 package dispositivo;
 
-public abstract class Dispositivo {
-	String nombre;
-	double kwPorHora;
-	double horasEncendido;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+
+import tipoDispositivo.DispositivoEstandar;
+import tipoDispositivo.DispositivoInteligente;
+import tipoDispositivo.TipoDispositivo;
+
+public class Dispositivo {
+	private String nombre;
+	private TipoDispositivo tipoDispositivo;
 	
-//json
-	
-public Dispositivo() {
-		
-	}
-	
-//constructor	
-	
-	public Dispositivo(String nombre, double kwPorHora, double horasEncendido) {
+	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo) {
 		this.nombre = nombre;
-		this.kwPorHora = kwPorHora;
-		this.horasEncendido = horasEncendido;
+		this.tipoDispositivo = tipoDispositivo;
 	}
 	
-	 public String getNombre() {
+	public Dispositivo() {} /* Es para el JSON */
+	
+	public String getNombre() {
 		return nombre;
 	}
-	public double getKwPorHora() {
-		return kwPorHora;
-	}
-	public double getHorasEncendido(){
-		return horasEncendido;
+	
+	public TipoDispositivo getTipoDispositivo() {
+		return tipoDispositivo;
 	}
 	
-//metodos abstractos
+	public void convertirAInteligente() {
+		tipoDispositivo.convertirAInteligente(this);
+	}
 	
-	public abstract double consumo();
-	public abstract boolean esInteligente();
+	public boolean esInteligente() {
+		return tipoDispositivo.esInteligente();
+	}
 	
-	public abstract boolean estaEncendido();//este hay que sacarlo cuando podamos filtrar la lista de dispoditivosInteligentes y que sean de ese tipo
+	public boolean estaEncendido() {
+		return tipoDispositivo.estaEncendido();
+	}
 	
+	public boolean estaEnAhorroEnergia() {
+		return tipoDispositivo.estaEnAhorroEnergia();
+	}
 	
+	public double consumo() {
+		return tipoDispositivo.consumo();
+	}
+	
+	public double puntosPorRegistrar() {
+		return tipoDispositivo.puntosPorRegistrar();
+	}
+	
+	public void apagar() {
+		tipoDispositivo.apagar();
+	}
+	
+	public void encender() {
+		tipoDispositivo.encender();
+	}
+
+	//si solo se va a usar para converitrEnInteligente, estaria bueno que se restrinja el tipo a Inteligente
+	public void cambiarTipo(DispositivoInteligente dispositivoInteligente) {
+		tipoDispositivo = dispositivoInteligente;		
+	}
 }
-
-

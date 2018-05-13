@@ -1,36 +1,33 @@
 package cliente;
-import java.nio.file.DirectoryStream.Filter;
-
 import java.time.LocalDate;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 
 import categoria.Categoria;
 import dispositivo.Dispositivo;
-import dispositivo.DispositivoInteligente;
-import dispositivo.DispositivoEstandar;
-import dispositivo.EstadoDelDispositivo;
 import repositorio.RepoCategorias;
-
+import tipoDispositivo.DispositivoEstandar;
 
 public class Cliente {
 	String nombre;
 	String apellido;
-	tipoDocumento tipoDocumento;
+	TipoDocumento tipoDocumento;
 	long nroDocumento;
 	long telefono;
 	String domicilio;
 	LocalDate fechaAlta;
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
-	
+	private double puntos = 0;
 	
 	public Cliente() { /*Es para el Json*/ }
 	
-	public Cliente(String nombre, String apellido, tipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
+	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -40,33 +37,26 @@ public class Cliente {
 		this.categoria = categoria;
 		this.dispositivos = dispositivos;
 		this.fechaAlta = LocalDate.now();
-		
 	}
 	
 	public boolean algunDispositivoEncendido() {
 		return this.cantidadDispositivosEncendidos() > 0;
 	}
 	
-	public long cantidadDispositivosEncendidos() {	
-		return  dispositivos.stream().filter(Dispositivo::esInteligente).filter(Dispositivo::estaEncendido).count(); 
+	public long cantidadDispositivosEncendidos() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).
+				filter(Dispositivo::estaEncendido).count();
 	}
-	/*el filtro de esInteligente no me sirve porque me devuelve una lista de tipo Dispositvo, de la interfaz.Por lo tanto,
-	despues tengo que filtrar una lista de ese mismo tipo(tengo que poner en la interfaz el metodo estaEncendido, que en
-	realidad no deberia estar en los dispositivoEstandar)*/
 	
-	/*
-	 * public List<Dispositivo> misDispositivosInteligentes(){
-		return  dispositivos.stream().filter(Dispositivo::esInteligente);
-	}*/
-	
-	//habia intentado hacer hacer el primer filter en ese metodo pero me tiraba un error que no podia convertir un Stream en List 
-	
-	public long cantidadDispositivosInteligentes() {
-		return dispositivos.stream().filter(Dispositivo::esInteligente).count();
+	public long cantidadDispositivosEnAhorroEnergia() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).
+				filter(Dispositivo::estaEnAhorroEnergia).count();
 	}
 	
 	public long cantidadDispositivosApagados() {
-		return cantidadDispositivosInteligentes() - cantidadDispositivosEncendidos();
+		return cantidadDispositivos() - cantidadDispositivosEncendidos() - cantidadDispositivosEnAhorroEnergia();
 	}
 	
 	public long cantidadDispositivos() {
@@ -86,7 +76,8 @@ public class Cliente {
 	}
 
 	public void agregarDispositivo(Dispositivo dispositivo) {
-		dispositivos.add(dispositivo);		
+		dispositivos.add(dispositivo);
+		puntos += dispositivo.puntosPorRegistrar();
 	}
 
 	public Categoria categoria() {
@@ -101,7 +92,7 @@ public class Cliente {
 		return this.apellido;
 	}
 	
-	public tipoDocumento getTipoDocumento() {
+	public TipoDocumento getTipoDocumento() {
 		return this.tipoDocumento;
 	}
 	
@@ -127,5 +118,10 @@ public class Cliente {
 	
 	public int getCantidadDispositivos(){
 		return dispositivos.size();
+	}
+	
+	public void convertirAInteligente(Dispositivo dispositivo) {
+		dispositivo.convertirAInteligente();
+		puntos += 10;
 	}
 }

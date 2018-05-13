@@ -1,5 +1,6 @@
 package importador;
 import java.util.List;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -8,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cliente.Cliente;
-import cliente.tipoDocumento;
+import cliente.TipoDocumento;
 import importacion.ImportadorClientes;
 import repositorio.RepoClientes;
 
@@ -39,7 +40,7 @@ public class TestImportadorCliente {
 		
 	@Test
 	public void elTipoDeDocumentoDeLioEsDNI() {
-		Assert.assertEquals(tipoDocumento.DNI, clientes.get(0).getTipoDocumento());
+		Assert.assertEquals(TipoDocumento.DNI, clientes.get(0).getTipoDocumento());
 	}
 		
 	@Test
