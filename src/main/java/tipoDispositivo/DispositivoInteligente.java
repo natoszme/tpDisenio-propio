@@ -1,6 +1,6 @@
 package tipoDispositivo;
 
-import dispositivo.Dispositivo;
+import dispositivo.Dispositivo; 
 import estadoDispositivo.Estado;
 
 public class DispositivoInteligente implements TipoDispositivo{
@@ -29,7 +29,7 @@ public class DispositivoInteligente implements TipoDispositivo{
 		estado.encender(this);
 	}
 	
-	//TODO ask no se esta pasanod por el dispositivo para hacer este cambio
+	//TODO ask no se esta pasando por el dispositivo para hacer este cambio
 	public void ponerEnAhorroDeEnergia() {
 		estado.ponerEnAhorroDeEnergia(this);
 	}
