@@ -10,9 +10,10 @@ import dispositivo.Dispositivo;
 	    use = JsonTypeInfo.Id.NAME,
 	    include = JsonTypeInfo.As.PROPERTY,
 	    property = "type")
-	@JsonSubTypes({
-	    @Type(value = DispositivoEstandar.class, name = "dispositivoEstandar"),
-	    @Type(value = DispositivoInteligente.class, name = "dispositivoInteligente")})
+@JsonSubTypes({
+    @Type(value = DispositivoEstandar.class, name = "dispositivoEstandar"),
+    @Type(value = DispositivoInteligente.class, name = "dispositivoInteligente")})
+
 public interface TipoDispositivo {
 	public double puntosPorRegistrar();
 	public boolean esInteligente();
@@ -22,4 +23,5 @@ public interface TipoDispositivo {
 	public boolean estaEncendido();
 	public void convertirAInteligente(Dispositivo dispositivo);
 	public boolean estaEnAhorroEnergia();
+	public void ponerEnAhorroDeEnergia();
 }

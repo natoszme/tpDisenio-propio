@@ -1,10 +1,5 @@
 package dispositivo;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes; 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-
-import tipoDispositivo.DispositivoEstandar;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
 
@@ -58,8 +53,11 @@ public class Dispositivo {
 	public void encender() {
 		tipoDispositivo.encender();
 	}
-
-	//si solo se va a usar para converitrEnInteligente, estaria bueno que se restrinja el tipo a Inteligente
+	
+	public void ponerEnAhorroDeEnergia() {
+		tipoDispositivo.ponerEnAhorroDeEnergia();
+	}
+	
 	public void cambiarTipo(DispositivoInteligente dispositivoInteligente) {
 		tipoDispositivo = dispositivoInteligente;		
 	}
