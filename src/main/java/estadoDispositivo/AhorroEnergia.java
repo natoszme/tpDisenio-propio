@@ -24,7 +24,6 @@ public class AhorroEnergia implements Estado{
 		//no hace nada
 	}
 	
-	//TODO revisar si se puede evitar
 	public boolean estaEncendido() {
 		//TODO se asume
 		return true;

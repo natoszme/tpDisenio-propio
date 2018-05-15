@@ -38,6 +38,7 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 	
 	//TODO chequear que pasa con estos dos metodos, que no deberian estar aca
+	//encendido se agrega como atributo porque algo hay que devolver...
 	public boolean estaEncendido() {
 		return encendido;
 	}
@@ -46,14 +47,15 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return false;
 	}
 
-	//TODO estos metodos no deberian estar aca...
 	public void apagar() {
-		// TODO Auto-generated method stub
-		
+		encendido = false;		
 	}
 
 	public void encender() {
-		// TODO Auto-generated method stub
-		
+		encendido = true;
+	}
+	
+	public void ponerEnAhorroDeEnergia() {
+		//no hace nada
 	}
 } 

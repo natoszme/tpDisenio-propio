@@ -2,10 +2,13 @@ package tipoDispositivo;
 
 import dispositivo.Dispositivo;
 import estadoDispositivo.Estado;
+import fabricante.Fabricante;
 
 public class DispositivoInteligente implements TipoDispositivo{
 	private double consumoBase;
-	Estado estado;
+	private Estado estado;
+	private long identificadorDeFabrica;
+	private Fabricante fabricante;
 	
 	public DispositivoInteligente() {}
 	
@@ -21,23 +24,25 @@ public class DispositivoInteligente implements TipoDispositivo{
 		return consumoBase;
 	}
 	
+	public double consumoDuranteLasUltimas(int horas) {
+		return fabricante.consumoDuranteLasUltimas(identificadorDeFabrica, horas);
+	}
+	
 	public void apagar() {
 		estado.apagar(this);
+		fabricante.apagar(identificadorDeFabrica);
 	}
 	
 	public void encender() {
 		estado.encender(this);
+		fabricante.encender(identificadorDeFabrica);
 	}
-	
-	//TODO ask no se esta pasanod por el dispositivo para hacer este cambio
+
 	public void ponerEnAhorroDeEnergia() {
 		estado.ponerEnAhorroDeEnergia(this);
+		fabricante.ponerEnAhorroDeEnergia(identificadorDeFabrica);
 	}
-	
-	public void cambiarEstado(Estado nuevoEstado) {
-		//se podria hacer algo con lambdas para no repetir logica en el estado
-	}
-	
+
 	public void ponerEn(Estado estado) {
 		this.estado = estado;
 	}
@@ -50,7 +55,6 @@ public class DispositivoInteligente implements TipoDispositivo{
 		throw new NoSePuedeReConvertirAInteligenteException();
 	}
 
-	@Override
 	public boolean estaEnAhorroEnergia() {
 		return estado.estaEnAhorroDeEnergia();
 	}
