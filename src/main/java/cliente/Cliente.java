@@ -39,19 +39,20 @@ public class Cliente {
 	}
 	
 	public long cantidadDispositivosEncendidos() {
-		return dispositivos.stream().
-				filter(Dispositivo::esInteligente).
-				filter(Dispositivo::estaEncendido).count();
+		return dispositivos.stream().filter(Dispositivo::estaEncendido).count();
 	}
 	
 	public long cantidadDispositivosEnAhorroEnergia() {
-		return dispositivos.stream().
-				filter(Dispositivo::esInteligente).
-				filter(Dispositivo::estaEnAhorroEnergia).count();
+		return dispositivos.stream().filter(Dispositivo::estaEnAhorroEnergia).count();
 	}
 	
 	public long cantidadDispositivosApagados() {
-		return cantidadDispositivos() - cantidadDispositivosEncendidos() - cantidadDispositivosEnAhorroEnergia();
+		return cantidadDispositivosInteligentes() - cantidadDispositivosEncendidos() - cantidadDispositivosEnAhorroEnergia();
+	}
+
+	public long cantidadDispositivosInteligentes() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).count();
 	}
 	
 	public long cantidadDispositivos() {
