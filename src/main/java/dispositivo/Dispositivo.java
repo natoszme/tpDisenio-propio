@@ -1,5 +1,7 @@
 package dispositivo;
 
+import estadoDispositivo.Estado;
+import fabricante.Fabricante;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
 
@@ -22,8 +24,8 @@ public class Dispositivo {
 		return tipoDispositivo;
 	}
 	
-	public void convertirAInteligente() {
-		tipoDispositivo.convertirAInteligente(this);
+	public void convertirAInteligente(double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
+		tipoDispositivo.convertirAInteligente(this,consumoBase,estado,identificadorFabrica,fabricante);
 	}
 	
 	public boolean esInteligente() {

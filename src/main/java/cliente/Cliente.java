@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 
 import categoria.Categoria;
 import dispositivo.Dispositivo;
+import estadoDispositivo.Estado;
+import fabricante.Fabricante;
 import repositorio.RepoCategorias;
 import tipoDispositivo.DispositivoEstandar;
 
@@ -120,8 +122,8 @@ public class Cliente {
 		return dispositivos.size();
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo) {
-		dispositivo.convertirAInteligente();
+	public void convertirAInteligente(Dispositivo dispositivo, double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
+		dispositivo.convertirAInteligente(consumoBase,estado,identificadorFabrica,fabricante);
 		puntos += 10;
 	}
 }
