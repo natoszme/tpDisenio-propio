@@ -10,7 +10,7 @@ public class TestCliente extends Fixture {
 
 	@Test
 	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
-		assertEquals(0, alejandro.cantidadDispositivosApagados());
+		assertTrue(alejandro.cantidadDispositivosEncendidos()>0);
 	}
 	
 	@Test

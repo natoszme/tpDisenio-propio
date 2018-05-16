@@ -10,10 +10,15 @@ public class DispositivoInteligente implements TipoDispositivo{
 	private long identificadorDeFabrica;
 	private Fabricante fabricante;
 	
-	public DispositivoInteligente() {}
+	public DispositivoInteligente(double consumoBase,Estado estado,long identificadorDeFabrica,Fabricante fabricante) {
+		this.consumoBase = consumoBase;
+		this.estado = estado;
+		this.identificadorDeFabrica = identificadorDeFabrica;
+		this.fabricante = fabricante;
+	}
 	
 	public boolean esInteligente() {
-		return false;
+		return true;
 	}
 	
 	public double puntosPorRegistrar() {

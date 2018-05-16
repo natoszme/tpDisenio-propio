@@ -1,14 +1,16 @@
 package tipoDispositivo;
 import dispositivo.Dispositivo;
+import estadoDispositivo.Apagado;
+
+import fabricante.FabricanteBase;
 
 public class DispositivoEstandar implements TipoDispositivo{
 	private double kwPorHora;
-	private boolean encendido;
 	private double horasEncendido;
 	
 	public DispositivoEstandar() {}
 	
-	public DispositivoEstandar(double kwPorHora, boolean encendido, double horasEncendido) {
+	public DispositivoEstandar(double kwPorHora, double horasEncendido) {
 		this.kwPorHora = kwPorHora;
 		this.horasEncendido = horasEncendido;
 	}
@@ -34,13 +36,13 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 	
 	public void convertirAInteligente(Dispositivo dispositivo) {
-		dispositivo.cambiarTipo(new DispositivoInteligente());
+		dispositivo.cambiarTipo(new DispositivoInteligente(0,Apagado.getInstance(),1,new FabricanteBase()));
 	}
 	
 	//TODO chequear que pasa con estos dos metodos, que no deberian estar aca
 	//encendido se agrega como atributo porque algo hay que devolver...
 	public boolean estaEncendido() {
-		return encendido;
+		return false;
 	}
 	
 	public boolean estaEnAhorroEnergia() {
@@ -48,11 +50,11 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 
 	public void apagar() {
-		encendido = false;		
+			
 	}
 
 	public void encender() {
-		encendido = true;
+		
 	}
 	
 	public void ponerEnAhorroDeEnergia() {
