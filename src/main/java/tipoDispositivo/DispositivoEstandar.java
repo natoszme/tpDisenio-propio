@@ -38,11 +38,11 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 	
 	public boolean estaApagado() {
-		return false;
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar();
 	}
 	
 	public boolean estaEnAhorroEnergia() {
-		return false;
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar();
 	}
 
 	public void apagar() {

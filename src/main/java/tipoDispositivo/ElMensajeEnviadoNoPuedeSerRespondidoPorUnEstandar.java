@@ -1,0 +1,3 @@
+package tipoDispositivo;
+
+public class ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar extends RuntimeException {}
