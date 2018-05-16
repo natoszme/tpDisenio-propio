@@ -28,12 +28,12 @@ public class Fixture {
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
 				
-		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9, true, 2));
-		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5, true, 1));	  
-		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(1402.0, false, 0));
-		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(270.0, true, 1));
-		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77, true, 1));
-		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(1401.05, true, 1));
+		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9, 2));
+		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5, 1));	  
+		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(1402.0, 0));
+		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(270.0, 1));
+		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77, 1));
+		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(1401.05, 1));
 		
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	
