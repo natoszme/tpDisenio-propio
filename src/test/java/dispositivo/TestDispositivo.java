@@ -13,6 +13,8 @@ import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 
 public class TestDispositivo extends Fixture {	
+
+//test entrega 1
 	
 	@Test
 	public void candelabroNoEsInteligente() {

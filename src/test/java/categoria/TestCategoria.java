@@ -7,6 +7,7 @@ import fixture.Fixture;
 public
 class TestCategoria extends Fixture {
 	
+	
 	//testeo en el extremo superior del intervalo
 	@Test
 	public void aR1LeCorrespondeElConsumo150() {
