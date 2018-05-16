@@ -1,9 +1,6 @@
 package cliente;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
-import org.junit.After;
 import org.junit.Test;
 
 import fixture.Fixture;
@@ -11,7 +8,7 @@ import categoria.Categoria;
 
 public class TestCliente extends Fixture {	
 	
-//test entrega 0	
+	// Test entrega 0
 	@Test
 	public void elClienteAlejandroTiene1DispositivoEstandarInicialmente() {
 		assertEquals(1, alejandro.cantidadDispositivos());
@@ -68,5 +65,4 @@ public class TestCliente extends Fixture {
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R8", alejandro.categoria().getNombre());
 	}
-
 }

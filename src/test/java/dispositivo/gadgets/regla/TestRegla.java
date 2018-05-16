@@ -18,6 +18,11 @@ public class TestRegla  extends Fixture {
     	mockRegla.evaluarPara(televisor);
     }
     
+    /* 
+     * Como se deberia simular el comportamiento de los fabricantes (estariamos realmente testeando en ese caso)
+     * Spy, PowerMock ?
+     */
+    
     @Test
     public void unDispositivoInteligenteSeApagaAlEvaluarloConUnActuadorQueApaga() {
 

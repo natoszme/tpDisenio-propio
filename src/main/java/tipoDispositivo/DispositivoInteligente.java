@@ -7,7 +7,7 @@ public class DispositivoInteligente implements TipoDispositivo{
 	private long identificadorDeFabrica;
 	private Fabricante fabricante;
 	
-	public DispositivoInteligente(long identificadorDeFabrica,Fabricante fabricante) {
+	public DispositivoInteligente(long identificadorDeFabrica, Fabricante fabricante) {
 		this.identificadorDeFabrica = identificadorDeFabrica;
 		this.fabricante = fabricante;
 	}
