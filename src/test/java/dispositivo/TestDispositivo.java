@@ -3,7 +3,6 @@ package dispositivo;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
@@ -14,16 +13,12 @@ import tipoDispositivo.DispositivoInteligente;
 
 public class TestDispositivo extends Fixture {	
 
-//test entrega 1
+	// Test entrega 1
 	
 	@Test
 	public void candelabroNoEsInteligente() {
 		Assert.assertFalse(candelabro.esInteligente());
 	}
-	
-	//TODO intentar pasar esto al fixture, habia un error con las annotations
-	@Mock
-	Fabricante mockFabricante; 
 
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
@@ -31,9 +26,7 @@ public class TestDispositivo extends Fixture {
 	public void smartTvEsInteligente() {
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
 		Assert.assertTrue(televisorSmart.esInteligente());
-	}
-	
-	
+	}	
 
 	@Test
 	public void consumoDeSmartTVEn1HoraSegunFabricanteQueRetorna20DeConsumoEs20() {
@@ -41,8 +34,5 @@ public class TestDispositivo extends Fixture {
 		when(mockFabricanteRetorna20.consumoDuranteLasUltimas(1,123456)).thenReturn(20.0);
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna20));
 		Assert.assertTrue(20.0== televisorSmart.consumoEnLasUltimas(1));
-	}
-	
-	
-	
+	}	
 }
