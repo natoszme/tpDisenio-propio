@@ -3,11 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
+import actuador.Actuador;
 import categoria.Categoria;
 import cliente.Cliente;
 import cliente.TipoDocumento;
 import dispositivo.Dispositivo;
+import fabricante.Fabricante;
+import regla.Regla;
 import repositorio.RepoCategorias;
 import tipoDispositivo.DispositivoEstandar;
 public class Fixture {
@@ -15,6 +20,9 @@ public class Fixture {
 	protected Dispositivo candelabro, televisor, microondas,equipoMusica ,dvd, play4, televisorSmart;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
+	protected Fabricante mockFabricante;
+	protected Regla mockRegla;
+	protected Actuador actuador;
 	
 	public Fixture() {
 		  r1 = new Categoria("R1", 0, 150, 18.76, 0.644);			
@@ -50,7 +58,10 @@ public class Fixture {
 		  RepoCategorias.getInstance().agregarEntidad(r6);
 		  RepoCategorias.getInstance().agregarEntidad(r7);
 		  RepoCategorias.getInstance().agregarEntidad(r8);
-		  RepoCategorias.getInstance().agregarEntidad(r9);		  
+		  RepoCategorias.getInstance().agregarEntidad(r9);
+		  
+		  mockFabricante = Mockito.mock(Fabricante.class);
+		  mockRegla = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
 	}
 	
 	@After
