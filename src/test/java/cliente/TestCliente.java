@@ -9,12 +9,7 @@ import org.junit.Test;
 import fixture.Fixture;
 import categoria.Categoria;
 
-public class TestCliente extends Fixture {
-	@Test
-	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
-		assertEquals(0, alejandro.cantidadDispositivosEncendidos());
-	}
-	
+public class TestCliente extends Fixture {	
 	@Test
 	public void elClienteAlejandroTiene1DispositivoApagado() {
 		assertEquals(1, alejandro.cantidadDispositivosApagados());
