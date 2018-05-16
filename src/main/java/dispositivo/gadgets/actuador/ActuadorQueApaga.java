@@ -1,4 +1,4 @@
-package actuador;
+package dispositivo.gadgets.actuador;
 
 import dispositivo.Dispositivo;
 

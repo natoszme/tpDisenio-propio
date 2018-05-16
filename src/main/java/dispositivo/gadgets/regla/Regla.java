@@ -1,11 +1,11 @@
-package regla;
+package dispositivo.gadgets.regla;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import actuador.Actuador;
 import dispositivo.Dispositivo;
-import sensor.Sensor;
+import dispositivo.gadgets.actuador.Actuador;
+import dispositivo.gadgets.sensor.Sensor;
 
 public abstract class Regla {
 	protected List<Sensor> sensores = new ArrayList<>();

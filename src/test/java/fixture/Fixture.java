@@ -3,16 +3,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import actuador.Actuador;
 import categoria.Categoria;
 import cliente.Cliente;
 import cliente.TipoDocumento;
 import dispositivo.Dispositivo;
+import dispositivo.gadgets.actuador.Actuador;
+import dispositivo.gadgets.regla.Regla;
 import fabricante.Fabricante;
-import regla.Regla;
 import repositorio.RepoCategorias;
 import tipoDispositivo.DispositivoEstandar;
 public class Fixture {
