@@ -1,31 +1,22 @@
 package tipoDispositivo;
 import dispositivo.Dispositivo;
-import estadoDispositivo.Apagado;
-import estadoDispositivo.Estado;
 import fabricante.Fabricante;
-
 
 public class DispositivoEstandar implements TipoDispositivo{
 	private double kwPorHora;
-	private double horasEncendido;
 	
 	public DispositivoEstandar() {}
 	
-	public DispositivoEstandar(double kwPorHora, double horasEncendido) {
+	public DispositivoEstandar(double kwPorHora) {
 		this.kwPorHora = kwPorHora;
-		this.horasEncendido = horasEncendido;
 	}
 	
-	public double consumo() {
-		return horasEncendido * kwPorHora;
+	public double consumoEnLasUltimas(int horas) {
+		return horas * kwPorHora;
 	}
 	
 	public double getKwPorHora() {
 		return kwPorHora;
-	}
-	
-	public double getHorasEncendido(){
-		return horasEncendido;
 	}
 	
 	public boolean esInteligente() {
@@ -36,8 +27,8 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return 0;
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo, double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
-		dispositivo.cambiarTipo(new DispositivoInteligente(consumoBase,estado,identificadorFabrica,fabricante));
+	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, Fabricante fabricante) {
+		dispositivo.cambiarTipo(new DispositivoInteligente(identificadorFabrica, fabricante));
 	}
 	
 	//TODO chequear que pasa con estos dos metodos, que no deberian estar aca

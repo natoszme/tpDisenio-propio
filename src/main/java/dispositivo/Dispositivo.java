@@ -1,6 +1,4 @@
 package dispositivo;
-
-import estadoDispositivo.Estado;
 import fabricante.Fabricante;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
@@ -24,8 +22,8 @@ public class Dispositivo {
 		return tipoDispositivo;
 	}
 	
-	public void convertirAInteligente(double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
-		tipoDispositivo.convertirAInteligente(this,consumoBase,estado,identificadorFabrica,fabricante);
+	public void convertirAInteligente(long identificadorFabrica, Fabricante fabricante) {
+		tipoDispositivo.convertirAInteligente(this, identificadorFabrica, fabricante);
 	}
 	
 	public boolean esInteligente() {
@@ -40,8 +38,8 @@ public class Dispositivo {
 		return tipoDispositivo.estaEnAhorroEnergia();
 	}
 	
-	public double consumo() {
-		return tipoDispositivo.consumo();
+	public double consumoEnLasUltimas(int horas) {
+		return tipoDispositivo.consumoEnLasUltimas(horas);
 	}
 	
 	public double puntosPorRegistrar() {

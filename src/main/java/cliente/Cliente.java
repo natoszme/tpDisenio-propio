@@ -1,19 +1,12 @@
 package cliente;
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-
 import categoria.Categoria;
 import dispositivo.Dispositivo;
-import estadoDispositivo.Estado;
 import fabricante.Fabricante;
 import repositorio.RepoCategorias;
-import tipoDispositivo.DispositivoEstandar;
 
 public class Cliente {
 	String nombre;
@@ -65,16 +58,16 @@ public class Cliente {
 		return dispositivos.stream().count();
 	}
 	
-	public void recategorizar() {
-		categoria = obtenerNuevaCategoria(consumoHastaElMomento());
+	public void recategorizarSegunUso(int horasDeUso) {
+		categoria = obtenerNuevaCategoria(consumoEnLasUltimas(horasDeUso));
 	}
 	
 	private Categoria obtenerNuevaCategoria(double consumo) {
 		return RepoCategorias.getInstance().obtenerCategoriaSegunConsumo(consumo);
 	}
 	
-	public double consumoHastaElMomento() {
-		return dispositivos.stream().mapToDouble(Dispositivo::consumo).sum();
+	public double consumoEnLasUltimas(int horas) {
+		return dispositivos.stream().mapToDouble(dispositivo -> dispositivo.consumoEnLasUltimas(horas)).sum();
 	}
 
 	public void agregarDispositivo(Dispositivo dispositivo) {
@@ -122,8 +115,8 @@ public class Cliente {
 		return dispositivos.size();
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo, double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
-		dispositivo.convertirAInteligente(consumoBase,estado,identificadorFabrica,fabricante);
+	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, Fabricante fabricante) {
+		dispositivo.convertirAInteligente(identificadorFabrica, fabricante);
 		puntos += 10;
 	}
 }

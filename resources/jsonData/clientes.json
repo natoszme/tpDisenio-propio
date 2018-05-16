@@ -11,24 +11,21 @@
 			    "nombre" : "tv",
 			    "tipoDispositivo" : {
 			    	"type" : "dispositivoEstandar",
-				    "kwPorHora" : 12.0,
-				    "horasEncendido" : 10.0
+				    "kwPorHora" : 12.0
 				}
 			},
 			{
 			    "nombre" : "aire",
 			    "tipoDispositivo" : {
 			    	"type" : "dispositivoEstandar",
-				    "kwPorHora" : 80.0,
-				    "horasEncendido" : 2.0
+				    "kwPorHora" : 80.0
 				}
 			},
 			{
 			    "nombre" : "home theater",
 			    "tipoDispositivo" : {
 			    	"type" : "dispositivoEstandar",
-				    "kwPorHora" : 100.0,
-				    "horasEncendido" : 1.0
+				    "kwPorHora" : 100.0
 				}
 			}
 		],

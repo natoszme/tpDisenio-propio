@@ -1,9 +1,11 @@
 package fabricante;
 
-public abstract class Fabricante {
+public interface Fabricante {
 	
-	public abstract void encender(long identificadorDeFabrica);	
-	public abstract void apagar(long identificadorDeFabrica);	
-	public abstract void ponerEnAhorroDeEnergia(long identificadorDeFabrica);
-	public abstract double consumoDuranteLasUltimas(long identificadorDeFabrica, int horas);
+	public void encender(long identificadorDeFabrica);	
+	public void apagar(long identificadorDeFabrica);	
+	public void ponerEnAhorroDeEnergia(long identificadorDeFabrica);
+	public double consumoDuranteLasUltimas(int horas, long identificadorDeFabrica);
+	public boolean estaEncendido(long identificadorDeFabrica);
+	public boolean estaEnAhorroEnergia(long identificadorDeFabrica);
 }

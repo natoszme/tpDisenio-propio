@@ -70,11 +70,11 @@ public class TestImportadorCliente {
 		
 	@Test
 	public void pepeConsumio0PorNoTenerDispositivos() {
-		Assert.assertEquals(0,  clientes.get(1).consumoHastaElMomento(), 0);
+		Assert.assertEquals(0, clientes.get(1).consumoEnLasUltimas(5), 0);
 	}		
 
 	@Test
-	public void laCategoriaDeLioEsR3() {
-		Assert.assertEquals("R3", clientes.get(0).getCategoria().getNombre());
+	public void laCategoriaDeLioEsR2() {
+		Assert.assertEquals("R2", clientes.get(0).getCategoria().getNombre());
 	}
 }
