@@ -10,17 +10,15 @@ import fixture.Fixture;
 import categoria.Categoria;
 
 public class TestCliente extends Fixture {	
+	
+//test entrega 0	
 	@Test
-	public void elClienteAlejandroTiene1DispositivoApagado() {
-		assertEquals(1, alejandro.cantidadDispositivosApagados());
-	}
-	@Test
-	public void elClienteAlejandroTiene1DispositivoInicialmente() {
+	public void elClienteAlejandroTiene1DispositivoEstandarInicialmente() {
 		assertEquals(1, alejandro.cantidadDispositivos());
 	}
 		
 	@Test
-	public void con1DispositivoMasAlejandroTiene2() {
+	public void con1DispositivoEstandarMasAlejandroTiene2() {
 		alejandro.agregarDispositivo(televisor);
 		assertEquals(2, alejandro.cantidadDispositivos());
 	}
@@ -31,28 +29,28 @@ public class TestCliente extends Fixture {
 	}	
 
 	@Test
-	public void alAgregarleAAlejandroUnDispositivoConMuchoConsumoPasaAR8() {
+	public void alAgregarleAAlejandroUnDispositivoEstandarConMuchoConsumoPasaAR8() {
 		alejandro.agregarDispositivo(microondas);
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R8", alejandro.categoria().getNombre());
 	}
 	@Test
-	public void alAgregarleAAlejandroUnDispositivoSuCategoriaCambia() {
+	public void alAgregarleAAlejandroUnDispositivoEstandarSuCategoriaCambia() {
 		Categoria categoriaActual = alejandro.categoria();
 		alejandro.agregarDispositivo(microondas);
 		alejandro.recategorizarSegunUso(2);
 		assertFalse(alejandro.categoria().getNombre() == categoriaActual.getNombre());
 	}
 	@Test
-	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {
-		alejandro.agregarDispositivo(televisor);
+	public void alAgregarleTelevisorAAleandroEsCategoriarR2() {
+		alejandro.agregarDispositivo(televisor); 
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R2" ,alejandro.categoria().getNombre());
 	}
 	
 	@Test
 	public void seAgregaEquipoDeMusicaAAlejandroYAlRecategorizarEsR3() {
-		alejandro.agregarDispositivo(equipoMusica);
+		alejandro.agregarDispositivo(equipoMusica); 
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R3", alejandro.categoria().getNombre());
 	}
@@ -70,4 +68,5 @@ public class TestCliente extends Fixture {
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R8", alejandro.categoria().getNombre());
 	}
+
 }
