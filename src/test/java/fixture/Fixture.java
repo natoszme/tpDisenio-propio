@@ -14,9 +14,10 @@ import dispositivo.gadgets.regla.Regla;
 import fabricante.Fabricante;
 import repositorio.RepoCategorias;
 import tipoDispositivo.DispositivoEstandar;
+import tipoDispositivo.DispositivoInteligente;
 public class Fixture {
 	protected Categoria r1, r2, r3, r4, r5, r6, r7, r8, r9;
-	protected Dispositivo candelabro, televisor, microondas,equipoMusica ,dvd, play4, televisorSmart;
+	protected Dispositivo candelabro, televisor, microondas,equipoMusica ,dvd, play4, televisorSmart, pc;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
 	protected Fabricante mockFabricante;
@@ -40,7 +41,7 @@ public class Fixture {
 		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(170.0));
 		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77));
 		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(600.05));  
-		  
+		  pc = new Dispositivo("PC", new DispositivoInteligente(101010, mockFabricante));
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
