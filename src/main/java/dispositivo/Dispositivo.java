@@ -38,6 +38,10 @@ public class Dispositivo {
 		return tipoDispositivo.estaEnAhorroEnergia();
 	}
 	
+	public boolean estaApagado() {
+		return tipoDispositivo.estaApagado();
+	}
+	
 	public double consumoEnLasUltimas(int horas) {
 		return tipoDispositivo.consumoEnLasUltimas(horas);
 	}

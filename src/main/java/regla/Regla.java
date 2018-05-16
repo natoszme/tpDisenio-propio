@@ -17,12 +17,16 @@ public abstract class Regla {
 	
 	public abstract boolean seCumpleCondicion();
 	
-	private void validarDispositivoEsInteligente(Dispositivo dispositivo) {
+	public void setActuador(Actuador actuador) {
+		this.actuador = actuador;		
+	}
+	
+	private void validarDispositivoInteligente(Dispositivo dispositivo) {
 		if(!dispositivo.esInteligente()) throw new NoSePuedeEvaluarReglaADispositivoNoInteligenteException();
 	}
 	
 	public void evaluarPara(Dispositivo dispositivo) {
-		validarDispositivoEsInteligente(dispositivo);
+		validarDispositivoInteligente(dispositivo);
 		if(this.seCumpleCondicion()) {
 			actuador.actuarSobre(dispositivo);
 		}

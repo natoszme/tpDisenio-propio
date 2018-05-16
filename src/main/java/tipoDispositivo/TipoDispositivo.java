@@ -22,6 +22,7 @@ public interface TipoDispositivo {
 	public void apagar();
 	public void encender();
 	public boolean estaEncendido();
+	public boolean estaApagado();
 	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, Fabricante fabricante);
 	public boolean estaEnAhorroEnergia();
 	public void ponerEnAhorroDeEnergia();

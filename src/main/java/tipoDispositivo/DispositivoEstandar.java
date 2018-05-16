@@ -37,6 +37,10 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return false;
 	}
 	
+	public boolean estaApagado() {
+		return false;
+	}
+	
 	public boolean estaEnAhorroEnergia() {
 		return false;
 	}
