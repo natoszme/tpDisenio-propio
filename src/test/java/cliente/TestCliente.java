@@ -8,6 +8,8 @@ import categoria.Categoria;
 
 public class TestCliente extends Fixture {
 
+
+	
 	@Test
 	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
 		assertTrue(alejandro.cantidadDispositivosEncendidos()>0);

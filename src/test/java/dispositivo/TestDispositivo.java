@@ -6,6 +6,9 @@ import org.junit.Test;
 import fixture.Fixture;
 
 public class TestDispositivo extends Fixture {
+	
+
+	
 	@Test
 	public void candelabroNoEsInteligente() {
 		Assert.assertFalse(candelabro.esInteligente());
@@ -14,4 +17,5 @@ public class TestDispositivo extends Fixture {
 	public void smartTvEsInteligente() {
 		Assert.assertTrue(televisorSmart.esInteligente());
 	}
+	
 }

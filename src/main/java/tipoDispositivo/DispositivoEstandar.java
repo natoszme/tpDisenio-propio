@@ -1,8 +1,9 @@
 package tipoDispositivo;
 import dispositivo.Dispositivo;
 import estadoDispositivo.Apagado;
+import estadoDispositivo.Estado;
+import fabricante.Fabricante;
 
-import fabricante.FabricanteBase;
 
 public class DispositivoEstandar implements TipoDispositivo{
 	private double kwPorHora;
@@ -35,8 +36,8 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return 0;
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo) {
-		dispositivo.cambiarTipo(new DispositivoInteligente(0,Apagado.getInstance(),1,new FabricanteBase()));
+	public void convertirAInteligente(Dispositivo dispositivo, double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
+		dispositivo.cambiarTipo(new DispositivoInteligente(consumoBase,estado,identificadorFabrica,fabricante));
 	}
 	
 	//TODO chequear que pasa con estos dos metodos, que no deberian estar aca

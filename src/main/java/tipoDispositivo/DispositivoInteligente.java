@@ -56,7 +56,7 @@ public class DispositivoInteligente implements TipoDispositivo{
 		return estado.estaEncendido();
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo) {
+	public void convertirAInteligente(Dispositivo dispositivo, double consumoBase, Estado estado, long identificadorFabrica, Fabricante fabricante) {
 		throw new NoSePuedeReConvertirAInteligenteException();
 	}
 
