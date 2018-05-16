@@ -29,10 +29,10 @@ public class Fixture {
 				
 		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9));
 		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5));	  
-		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(1402.0));
-		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(270.0));
+		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(402.0));
+		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(170.0));
 		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77));
-		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(1401.05));  
+		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(600.05));  
 		  
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	

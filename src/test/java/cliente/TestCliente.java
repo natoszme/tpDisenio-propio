@@ -1,20 +1,23 @@
 package cliente;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+import org.junit.After;
 import org.junit.Test;
 
 import fixture.Fixture;
 import categoria.Categoria;
 
-public class TestCliente extends Fixture {	
+public class TestCliente extends Fixture {
 	@Test
 	public void elClienteAlejandroTieneAlgunDispositivoEncendido() {
-		assertTrue(alejandro.cantidadDispositivosEncendidos()>0);
+		assertEquals(0, alejandro.cantidadDispositivosEncendidos());
 	}
 	
 	@Test
-	public void elClienteAlejandroTiene0DispositivosApagados() {
-		assertEquals(0, alejandro.cantidadDispositivosApagados());
+	public void elClienteAlejandroTiene1DispositivoApagado() {
+		assertEquals(1, alejandro.cantidadDispositivosApagados());
 	}
 	@Test
 	public void elClienteAlejandroTiene1DispositivoInicialmente() {
@@ -33,17 +36,17 @@ public class TestCliente extends Fixture {
 	}	
 
 	@Test
-	public void alAgregarleAAlejandroUnDispositivoSinHorasPrendidoSuConsumoNoCambia() {
-		double consumoActual = alejandro.consumoEnLasUltimas(2);
+	public void alAgregarleAAlejandroUnDispositivoConMuchoConsumoPasaAR8() {
 		alejandro.agregarDispositivo(microondas);
-		assertEquals(consumoActual, alejandro.consumoEnLasUltimas(2), 0);
+		alejandro.recategorizarSegunUso(2);
+		assertEquals("R8", alejandro.categoria().getNombre());
 	}
 	@Test
-	public void alAgregarleAAlejandroUnDispositivoSinHorasPrendidoSuCategoriaNoCambia() {
+	public void alAgregarleAAlejandroUnDispositivoSuCategoriaCambia() {
 		Categoria categoriaActual = alejandro.categoria();
 		alejandro.agregarDispositivo(microondas);
 		alejandro.recategorizarSegunUso(2);
-		assertEquals(categoriaActual.getNombre(), alejandro.categoria().getNombre());
+		assertFalse(alejandro.categoria().getNombre() == categoriaActual.getNombre());
 	}
 	@Test
 	public void alAgregarseTelevisorAAleandroEsCategoriarR2() {
@@ -60,16 +63,16 @@ public class TestCliente extends Fixture {
 	}
 	
 	@Test
-	public void seAgregaDvdAAlejandroYAlRecategorizarEsR4() {
+	public void seAgregaDvdAAlejandroYAlRecategorizarEsR7() {
 		alejandro.agregarDispositivo(dvd);
 		alejandro.recategorizarSegunUso(2);
-		assertEquals("R4", alejandro.categoria().getNombre());
+		assertEquals("R7", alejandro.categoria().getNombre());
 	}
 	
 	@Test
-	public void seAgregaPlay4AAlejandroYAlRecategorizarEsR9() {
+	public void seAgregaPlay4AAlejandroYAlRecategorizarEsR8() {
 		alejandro.agregarDispositivo(play4);
 		alejandro.recategorizarSegunUso(2);
-		assertEquals("R9", alejandro.categoria().getNombre());
+		assertEquals("R8", alejandro.categoria().getNombre());
 	}
 }
