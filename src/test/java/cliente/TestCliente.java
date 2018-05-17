@@ -10,7 +10,7 @@ public class TestCliente extends Fixture {
 	
 	// Test entrega 0
 	@Test
-	public void elClienteAlejandroTiene1DispositivoEstandarInicialmente() {
+	public void elClienteAlejandroTiene1DispositivoInicialmente() {
 		assertEquals(1, alejandro.cantidadDispositivos());
 	}
 		

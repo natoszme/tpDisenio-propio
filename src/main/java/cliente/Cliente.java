@@ -34,25 +34,28 @@ public class Cliente {
 		this.fechaAlta = LocalDate.now();
 	}
 	
-	public boolean algunDispositivoEncendido() {
-		return this.cantidadDispositivosEncendidos() > 0;
+	public boolean algunInteligenteEncendido() {
+		return this.cantidadInteligentesEncendidos() > 0;
 	}
 	
-	public long cantidadDispositivosEncendidos() {
-		return dispositivos.stream().filter(Dispositivo::estaEncendido).count();
+	public long cantidadInteligentesEncendidos() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).
+				filter(Dispositivo::estaEncendido).count();
 	}
 	
-	public long cantidadDispositivosEnAhorroEnergia() {
-		return dispositivos.stream().filter(Dispositivo::estaEnAhorroEnergia).count();
+	public long cantidadInteligentesEnAhorroEnergia() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).
+				filter(Dispositivo::estaEnAhorroEnergia).count();
 	}
 	
 	public long cantidadDispositivosApagados() {
-		return cantidadDispositivosInteligentes() - cantidadDispositivosEncendidos() - cantidadDispositivosEnAhorroEnergia();
+		return cantidadDispositivosInteligentes() - cantidadInteligentesEncendidos() - cantidadInteligentesEnAhorroEnergia();
 	}
 
 	public long cantidadDispositivosInteligentes() {
-		return dispositivos.stream().
-				filter(Dispositivo::esInteligente).count();
+		return dispositivos.stream().filter(Dispositivo::esInteligente).count();
 	}
 	
 	public long cantidadDispositivos() {
@@ -74,6 +77,11 @@ public class Cliente {
 	public void agregarDispositivo(Dispositivo dispositivo) {
 		dispositivos.add(dispositivo);
 		puntos += dispositivo.puntosPorRegistrar();
+	}
+	
+	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, Fabricante fabricante) {
+		dispositivo.convertirAInteligente(identificadorFabrica, fabricante);
+		puntos += 10;
 	}
 
 	public Categoria categoria() {
@@ -114,10 +122,5 @@ public class Cliente {
 	
 	public int getCantidadDispositivos(){
 		return dispositivos.size();
-	}
-	
-	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, Fabricante fabricante) {
-		dispositivo.convertirAInteligente(identificadorFabrica, fabricante);
-		puntos += 10;
 	}
 }

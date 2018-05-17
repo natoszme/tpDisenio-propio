@@ -31,10 +31,8 @@ public class DispositivoEstandar implements TipoDispositivo{
 		dispositivo.cambiarTipo(new DispositivoInteligente(identificadorFabrica, fabricante));
 	}
 	
-	//TODO chequear que pasa con estos dos metodos, que no deberian estar aca
-	//encendido se agrega como atributo porque algo hay que devolver...
 	public boolean estaEncendido() {
-		return false;
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar();
 	}
 	
 	public boolean estaApagado() {
@@ -46,11 +44,11 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 
 	public void apagar() {
-			
+		//no hace nada
 	}
 
 	public void encender() {
-		
+		//no hace nada
 	}
 	
 	public void ponerEnAhorroDeEnergia() {

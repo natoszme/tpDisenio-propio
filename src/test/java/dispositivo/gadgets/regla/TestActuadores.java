@@ -1,15 +1,11 @@
 package dispositivo.gadgets.regla;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import fixture.Fixture;
-import tipoDispositivo.DispositivoInteligente;
-import dispositivo.Dispositivo;
 import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.actuador.ActuadorQueEnciende;
-
 
 public class TestActuadores extends Fixture{
     
