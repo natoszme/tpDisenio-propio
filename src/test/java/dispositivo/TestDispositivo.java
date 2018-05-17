@@ -10,22 +10,51 @@ import org.mockito.junit.MockitoRule;
 import fabricante.Fabricante;
 import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
+import tipoDispositivo.ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar;
+import tipoDispositivo.NoSePuedeReConvertirAInteligenteException;
 
 public class TestDispositivo extends Fixture {	
 
-	// Test entrega 1
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
+	@Test
+	public void candelabroEsInteligenteDespuesDeConvertirseAInteligente() {
+		candelabro.convertirAInteligente(123, mockFabricante);
+		Assert.assertTrue(candelabro.esInteligente());
+	}
+	
+	@Test
+	public void elConsumoDelCandelabroEn1HoraEs9() {
+		Assert.assertTrue(9.0 == candelabro.consumoEnLasUltimas(1));
+	}
 	
 	@Test
 	public void candelabroNoEsInteligente() {
 		Assert.assertFalse(candelabro.esInteligente());
 	}
 
-	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	@Test(expected=ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar.class)
+	public void candelabroNoPuedeEstarEnAModoAhorro() {
+		candelabro.estaEnAhorroEnergia();
+	}
+	
+	@Test
+	public void alApagarSmartTVFabricanteRecibeMensajeApagar() {
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		televisorSmart.apagar();	
+		verify(mockFabricante,times(1)).apagar(123456);
+	}	
 	
 	@Test
 	public void smartTvEsInteligente() {
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
 		Assert.assertTrue(televisorSmart.esInteligente());
+	}	
+	
+	@Test(expected=NoSePuedeReConvertirAInteligenteException.class)
+	public void smartTvNoSePuedeConvertirAInteligente() {
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		televisorSmart.convertirAInteligente(123, mockFabricante);
 	}	
 
 	@Test
