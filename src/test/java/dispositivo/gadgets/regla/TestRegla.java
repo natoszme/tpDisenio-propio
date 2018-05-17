@@ -1,4 +1,5 @@
 package dispositivo.gadgets.regla;
+import org.junit.Before;
 import org.junit.Test;
 
 import fixture.Fixture;
@@ -9,6 +10,12 @@ import dispositivo.gadgets.regla.NoSePuedeEvaluarReglaADispositivoNoInteligenteE
 import static org.mockito.Mockito.*;
 
 public class TestRegla  extends Fixture {
+	
+	@Before
+	public void initialize() {
+    	when(mockRegla.seCumpleCondicion()).thenReturn(true);
+    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+	}
 
     @Test(expected = NoSePuedeEvaluarReglaADispositivoNoInteligenteException.class)
     public void alEvaluarUnDispositivoEstandarTiraExcepcion() {
@@ -16,10 +23,7 @@ public class TestRegla  extends Fixture {
     }
     
     @Test
-    public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialApagado() {
-    	when(mockRegla.seCumpleCondicion()).thenReturn(true);
-    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
-		
+    public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialApagado() {		
 		mockRegla.setActuador(actuadorQueApaga);
     	mockRegla.evaluarPara(televisorSmart);
     	
@@ -27,10 +31,7 @@ public class TestRegla  extends Fixture {
     }
     
     @Test
-    public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialEncendido() {
-    	when(mockRegla.seCumpleCondicion()).thenReturn(true);
-    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
-		
+    public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialEncendido() {		
 		mockRegla.setActuador(actuadorQueEnciende);
     	mockRegla.evaluarPara(televisorSmart);
     	

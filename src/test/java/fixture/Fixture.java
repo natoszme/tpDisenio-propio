@@ -37,6 +37,9 @@ public class Fixture {
 		  r7 = new Categoria("R7", 600, 700, 443.59, 0.851);			
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
+		  
+		  mockFabricante = Mockito.mock(Fabricante.class);
+		  mockRegla = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
 				
 		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9));
 		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5));	  
@@ -62,9 +65,6 @@ public class Fixture {
 		  RepoCategorias.getInstance().agregarEntidad(r7);
 		  RepoCategorias.getInstance().agregarEntidad(r8);
 		  RepoCategorias.getInstance().agregarEntidad(r9);
-		  
-		  mockFabricante = Mockito.mock(Fabricante.class);
-		  mockRegla = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
 	}
 	
 	@After
