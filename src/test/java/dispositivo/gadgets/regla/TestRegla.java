@@ -14,6 +14,7 @@ public class TestRegla  extends Fixture {
 	@Before
 	public void initialize() {
     	when(mockRegla.seCumpleCondicion()).thenReturn(true);
+    	when(mockReglaNoCumplida.seCumpleCondicion()).thenReturn(false);
     	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
 	}
 
@@ -36,5 +37,21 @@ public class TestRegla  extends Fixture {
     	mockRegla.evaluarPara(televisorSmart);
     	
     	verify(mockFabricante, times(1)).encender(123456);
+    }
+    
+    @Test
+    public void alEvaluarUnInteligenteQueNoCumple_NoSeEnviaSenialDEncendido() {		
+		mockReglaNoCumplida.setActuador(actuadorQueEnciende);
+    	mockReglaNoCumplida.evaluarPara(televisorSmart);
+    	
+    	verify(mockFabricante, times(0)).encender(123456);
+    }
+    
+    @Test
+    public void alEvaluarUnInteligenteQueNoCumple_NoSeEnviaNingunaSenial() {		
+		mockReglaNoCumplida.setActuador(actuadorQueApaga);
+    	mockReglaNoCumplida.evaluarPara(televisorSmart);
+    	
+    	verify(mockFabricante, times(0)).apagar(123456);
     }
 }
