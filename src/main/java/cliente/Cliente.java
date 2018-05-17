@@ -80,10 +80,16 @@ public class Cliente {
 	}
 	
 	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, Fabricante fabricante) {
+		this.seEncuentraEntreLosDispostivos(dispositivo);
 		dispositivo.convertirAInteligente(identificadorFabrica, fabricante);
-		puntos += 10;
+		puntos += 10;		
 	}
 
+	public void seEncuentraEntreLosDispostivos(Dispositivo dispositivo) {
+		if (!dispositivos.stream().anyMatch(dispositiv -> dispositiv == dispositivo)) {
+			throw new NoPuedeAfectarAUnDispositivoQueNoLePertenece();
+		}
+	}
 	public Categoria categoria() {
 		return this.categoria;
 	}

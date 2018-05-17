@@ -9,6 +9,7 @@ import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 import categoria.Categoria;
 import dispositivo.Dispositivo;
+import dispositivo.gadgets.regla.NoSePuedeEvaluarReglaADispositivoNoInteligenteException;
 import fabricante.Fabricante;
 
 public class TestCliente extends Fixture {	
@@ -71,6 +72,8 @@ public class TestCliente extends Fixture {
 		assertEquals("R8", alejandro.categoria().getNombre());
 	}
 	
+//test entrega 1
+	
 	@Test
 	public void seAgregaTVSmartAAlejandroConFabricanteQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
 		Fabricante mockFabricanteRetorna180 = mock(Fabricante.class);
@@ -103,4 +106,8 @@ public class TestCliente extends Fixture {
 		assertEquals(1,alejandro.cantidadDispositivosInteligentes());
 	}
 	
+	 @Test(expected = NoPuedeAfectarAUnDispositivoQueNoLePertenece.class)
+	 public void alejandroNoPuedeConvertirAInteligenteElTelevisor() {
+		 alejandro.convertirAInteligente(televisor,111,mockFabricante);
+	  }
 }
