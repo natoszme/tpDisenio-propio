@@ -1,10 +1,15 @@
 package cliente;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
 import fixture.Fixture;
+import tipoDispositivo.DispositivoInteligente;
 import categoria.Categoria;
+import dispositivo.Dispositivo;
+import fabricante.Fabricante;
 
 public class TestCliente extends Fixture {	
 	
@@ -64,5 +69,29 @@ public class TestCliente extends Fixture {
 		alejandro.agregarDispositivo(play4);
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R8", alejandro.categoria().getNombre());
+	}
+	
+	@Test
+	public void seAgregaTVSmartAAlejandroConFabricanteQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
+		Fabricante mockFabricanteRetorna180 = mock(Fabricante.class);
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna180));
+		when(mockFabricanteRetorna180.consumoDuranteLasUltimas(2,123456)).thenReturn(180.0);
+		alejandro.agregarDispositivo(televisorSmart);
+		alejandro.recategorizarSegunUso(2);
+		assertEquals("R2", alejandro.categoria().getNombre());
+	}
+	@Test
+	public void seAgregaSmartTVAAlejandroYTiene15Puntos() {
+	
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		alejandro.agregarDispositivo(televisorSmart);
+	
+		assertTrue(15.0== alejandro.getPuntos());
+	}
+	@Test
+	public void seConvierteElCandelabroAInteligenteYAlejandroTiene10Puntos() {
+	
+		alejandro.convertirAInteligente(candelabro,123,mockFabricante);
+		assertTrue(10.0== alejandro.getPuntos());
 	}
 }

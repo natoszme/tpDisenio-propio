@@ -88,6 +88,10 @@ public class Cliente {
 		return this.categoria;
 	}
 	
+	public double getPuntos(){
+		return this.puntos;
+	}
+	
 	public String getNombre(){
 		return this.nombre;
 	}
