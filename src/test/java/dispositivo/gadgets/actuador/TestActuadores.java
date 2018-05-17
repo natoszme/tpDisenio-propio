@@ -20,13 +20,7 @@ public class TestActuadores extends Fixture {
     public void elActuadorQueEnciendeDejaElDispositivoEncendido() {
 		actuadorQueEnciende.actuarSobre(pc);    	
 		verify(mockFabricante, times(1)).encender(101010);
-    }
-    
-    @Test(expected = ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar.class)
-    public void elActuadorSuponeQueApagaUnEstandarPeroEsteNoPuedeDevolverSuEstado() {
-		actuadorQueEnciende.actuarSobre(candelabro);
-		candelabro.estaApagado();
-    }    
+    }   
 }
 
 
