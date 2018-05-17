@@ -10,6 +10,8 @@ import cliente.Cliente;
 import cliente.TipoDocumento;
 import dispositivo.Dispositivo;
 import dispositivo.gadgets.actuador.Actuador;
+import dispositivo.gadgets.actuador.ActuadorQueApaga;
+import dispositivo.gadgets.actuador.ActuadorQueEnciende;
 import dispositivo.gadgets.regla.Regla;
 import fabricante.Fabricante;
 import repositorio.RepoCategorias;
@@ -22,7 +24,8 @@ public class Fixture {
 	protected Cliente alejandro, lio, pepe, nico;
 	protected Fabricante mockFabricante;
 	protected Regla mockRegla;
-	protected Actuador actuador;
+	protected Actuador actuadorQueApaga = new ActuadorQueApaga();
+	protected Actuador actuadorQueEnciende = new ActuadorQueEnciende();
 	
 	public Fixture() {
 		  r1 = new Categoria("R1", 0, 150, 18.76, 0.644);			

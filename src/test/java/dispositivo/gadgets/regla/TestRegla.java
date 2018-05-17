@@ -1,12 +1,9 @@
 package dispositivo.gadgets.regla;
-
-import org.junit.Assert;
 import org.junit.Test;
 
 import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.regla.NoSePuedeEvaluarReglaADispositivoNoInteligenteException;
 
 import static org.mockito.Mockito.*;
@@ -18,22 +15,25 @@ public class TestRegla  extends Fixture {
     	mockRegla.evaluarPara(televisor);
     }
     
-    /* 
-     * Como se deberia simular el comportamiento de los fabricantes (estariamos realmente testeando en ese caso)
-     * Spy, PowerMock ?
-     */
-    
     @Test
-    public void unDispositivoInteligenteSeApagaAlEvaluarloConUnActuadorQueApaga() {
-
+    public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialApagado() {
     	when(mockRegla.seCumpleCondicion()).thenReturn(true);
-
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
-		actuador = new ActuadorQueApaga();
+    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
 		
-    	mockRegla.setActuador(actuador);
+		mockRegla.setActuador(actuadorQueApaga);
     	mockRegla.evaluarPara(televisorSmart);
     	
-    	Assert.assertTrue(televisorSmart.estaApagado());
+    	verify(mockFabricante, times(1)).apagar(123456);
+    }
+    
+    @Test
+    public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialEncendido() {
+    	when(mockRegla.seCumpleCondicion()).thenReturn(true);
+    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		
+		mockRegla.setActuador(actuadorQueEnciende);
+    	mockRegla.evaluarPara(televisorSmart);
+    	
+    	verify(mockFabricante, times(1)).encender(123456);
     }
 }
