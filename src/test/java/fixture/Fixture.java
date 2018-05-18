@@ -23,7 +23,7 @@ public class Fixture {
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
 	protected Fabricante mockFabricante;
-	protected Regla mockRegla, mockReglaNoCumplida;
+	protected Regla mockReglaCumplida, mockReglaNoCumplida;
 	protected Actuador actuadorQueApaga = new ActuadorQueApaga();
 	protected Actuador actuadorQueEnciende = new ActuadorQueEnciende();
 	
@@ -39,7 +39,7 @@ public class Fixture {
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
 		  
 		  mockFabricante = Mockito.mock(Fabricante.class);
-		  mockRegla = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
+		  mockReglaCumplida = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
 		  mockReglaNoCumplida = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
 				
 		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9));
