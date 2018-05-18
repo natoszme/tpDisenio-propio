@@ -23,6 +23,16 @@ public abstract class Regla {
 		this.condiciones = condiciones;		
 	}
 	
+	public void agregarCondicion(CondicionSobreSensor condicion) {
+		condiciones.add(condicion);
+	}
+	
+	public void eliminarCondicion(CondicionSobreSensor condicion) {
+		if(condiciones.contains(condicion)) {
+			condiciones.remove(condicion);
+		}
+	}
+	
 	private void validarDispositivoInteligente(Dispositivo dispositivo) {
 		if(!dispositivo.esInteligente()) throw new NoSePuedeEvaluarReglaADispositivoNoInteligenteException();
 	}
