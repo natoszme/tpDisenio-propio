@@ -89,13 +89,13 @@ public class TestCliente extends Fixture {
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
 		alejandro.agregarDispositivo(televisorSmart);
 	
-		assertTrue(15.0== alejandro.getPuntos());
+		assertEquals(15.0, alejandro.getPuntos(), 0);
 	}
 	@Test
 	public void seConvierteElCandelabroAInteligenteYAlejandroTiene10Puntos() {
 	
 		alejandro.convertirAInteligente(candelabro,123,mockFabricante);
-		assertTrue(10.0== alejandro.getPuntos());
+		assertEquals(10.0, alejandro.getPuntos(), 0);
 	}
 	@Test
 	public void seAgregaSmartTVAAlejandroYTiene1DispositivoInteligente() {

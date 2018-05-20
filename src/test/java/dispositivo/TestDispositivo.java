@@ -13,9 +13,7 @@ import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar;
 import tipoDispositivo.NoSePuedeReConvertirAInteligenteException;
 
-public class TestDispositivo extends Fixture {	
-
-	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+public class TestDispositivo extends Fixture {
 	
 	@Test
 	public void candelabroEsInteligenteDespuesDeConvertirseAInteligente() {
@@ -25,7 +23,7 @@ public class TestDispositivo extends Fixture {
 	
 	@Test
 	public void elConsumoDelCandelabroEn1HoraEs9() {
-		Assert.assertTrue(9.0 == candelabro.consumoEnLasUltimas(1));
+		Assert.assertEquals(9.0, candelabro.consumoEnLasUltimas(1), 0);
 	}
 	
 	@Test
@@ -33,7 +31,7 @@ public class TestDispositivo extends Fixture {
 		Assert.assertFalse(candelabro.esInteligente());
 	}
 
-	@Test(expected=ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar.class)
+	@Test(expected = ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar.class)
 	public void candelabroNoPuedeEstarEnAModoAhorro() {
 		candelabro.estaEnAhorroEnergia();
 	}
@@ -51,7 +49,7 @@ public class TestDispositivo extends Fixture {
 		Assert.assertTrue(televisorSmart.esInteligente());
 	}	
 	
-	@Test(expected=NoSePuedeReConvertirAInteligenteException.class)
+	@Test(expected = NoSePuedeReConvertirAInteligenteException.class)
 	public void smartTvNoSePuedeConvertirAInteligente() {
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
 		televisorSmart.convertirAInteligente(123, mockFabricante);
@@ -62,6 +60,6 @@ public class TestDispositivo extends Fixture {
 		Fabricante mockFabricanteRetorna20 = mock(Fabricante.class);
 		when(mockFabricanteRetorna20.consumoDuranteLasUltimas(1,123456)).thenReturn(20.0);
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna20));
-		Assert.assertTrue(20.0== televisorSmart.consumoEnLasUltimas(1));
+		Assert.assertEquals(20.0, televisorSmart.consumoEnLasUltimas(1), 0);
 	}	
 }

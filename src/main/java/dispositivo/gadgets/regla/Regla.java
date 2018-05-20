@@ -2,6 +2,9 @@ package dispositivo.gadgets.regla;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import dispositivo.Dispositivo;
 import dispositivo.gadgets.actuador.Actuador;
@@ -58,8 +61,13 @@ public abstract class Regla {
 	public void evaluarAlgunaSobre(Dispositivo dispositivo) {
 		evaluarSiSeCumpleSegunCriterio(dispositivo, seCumpleAlguna());
 	}
+
+	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion());?
 	
-	//se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion());?
+	/*private <Condicion> boolean seCumpleQue(Stream<Condicion> stream, zPredicate<? super Condicion> predicate) {
+		return stream.allMatch(predicate);
+	}*/
+	
 	public boolean seCumplenTodas() {
 		return condiciones.stream().allMatch(condicion -> condicion.seCumpleCondicion());
 	}

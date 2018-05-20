@@ -6,7 +6,6 @@ import static org.mockito.Mockito.verify;
 import org.junit.Test;
 
 import fixture.Fixture;
-import tipoDispositivo.ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar;
 
 public class TestActuadores extends Fixture {
     
