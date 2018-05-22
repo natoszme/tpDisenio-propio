@@ -1,4 +1,6 @@
 package tipoDispositivo;
+import java.time.LocalDateTime;
+
 import dispositivo.Dispositivo;
 import fabricante.Fabricante;
 
@@ -52,6 +54,10 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 	
 	public void ponerEnAhorroDeEnergia() {
+		//no hace nada
+	}
+	
+	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo) {
 		//no hace nada
 	}
 } 

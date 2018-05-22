@@ -1,5 +1,7 @@
 package tipoDispositivo;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -26,4 +28,5 @@ public interface TipoDispositivo {
 	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, Fabricante fabricante);
 	public boolean estaEnAhorroEnergia();
 	public void ponerEnAhorroDeEnergia();
+	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo);
 }

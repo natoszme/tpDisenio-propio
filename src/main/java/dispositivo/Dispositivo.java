@@ -1,4 +1,6 @@
 package dispositivo;
+import java.time.LocalDateTime;
+
 import fabricante.Fabricante;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
@@ -64,5 +66,9 @@ public class Dispositivo {
 	
 	public void cambiarTipo(DispositivoInteligente dispositivoInteligente) {
 		tipoDispositivo = dispositivoInteligente;		
+	}
+	
+	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo) {
+		tipoDispositivo.guardarConsumoDeFecha(fecha, consumo);
 	}
 }
