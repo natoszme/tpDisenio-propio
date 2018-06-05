@@ -4,7 +4,6 @@ import categoria.Categoria;
 public class RepoCategorias extends Repo<Categoria> {
 	
 	private static RepoCategorias instancia;
-	private static Categoria r1 =  new Categoria("R1", 0, 150, 18.76, 0.644);
 	
 	public static RepoCategorias getInstance() {
 		if (instancia == null) {
@@ -14,10 +13,14 @@ public class RepoCategorias extends Repo<Categoria> {
 	}
 	
 	public Categoria obtenerCategoriaSegunConsumo(double consumo) {
-		return entidades.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(r1);
+		return entidades.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(dameR1());
 	}
 
 	public void limpiarEntidades() {
 		entidades.clear();
+	}
+	
+	private Categoria dameR1() {
+		return entidades.stream().filter(categoria -> categoria.getNombre() == "R1").findFirst().orElse(null);
 	}
 }
