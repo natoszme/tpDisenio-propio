@@ -3,14 +3,15 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
+
 import org.junit.Test;
 
 import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 import categoria.Categoria;
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.regla.NoSePuedeEvaluarReglaADispositivoNoInteligenteException;
-import fabricante.Fabricante;
+import dispositivo.DispositivoConcreto;
 
 public class TestCliente extends Fixture {	
 	
@@ -76,7 +77,7 @@ public class TestCliente extends Fixture {
 	
 	@Test
 	public void seAgregaTVSmartAAlejandroConFabricanteQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
-		Fabricante mockFabricanteRetorna180 = mock(Fabricante.class);
+		DispositivoConcreto mockFabricanteRetorna180 = mock(DispositivoConcreto.class);
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna180));
 		when(mockFabricanteRetorna180.consumoDuranteLasUltimas(2,123456)).thenReturn(180.0);
 		alejandro.agregarDispositivo(televisorSmart);
@@ -86,7 +87,7 @@ public class TestCliente extends Fixture {
 	@Test
 	public void seAgregaSmartTVAAlejandroYTiene15Puntos() {
 	
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
 		alejandro.agregarDispositivo(televisorSmart);
 	
 		assertEquals(15.0, alejandro.getPuntos(), 0);
@@ -94,13 +95,13 @@ public class TestCliente extends Fixture {
 	@Test
 	public void seConvierteElCandelabroAInteligenteYAlejandroTiene10Puntos() {
 	
-		alejandro.convertirAInteligente(candelabro,123,mockFabricante);
+		alejandro.convertirAInteligente(candelabro, 123, mockCandelabroConcreto);
 		assertEquals(10.0, alejandro.getPuntos(), 0);
 	}
 	@Test
 	public void seAgregaSmartTVAAlejandroYTiene1DispositivoInteligente() {
 	
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
 		alejandro.agregarDispositivo(televisorSmart);
 	
 		assertEquals(1,alejandro.cantidadDispositivosInteligentes());
@@ -108,6 +109,11 @@ public class TestCliente extends Fixture {
 	
 	 @Test(expected = NoPuedeAfectarAUnDispositivoQueNoLePertenece.class)
 	 public void alejandroNoPuedeConvertirAInteligenteElTelevisor() {
-		 alejandro.convertirAInteligente(televisor,111,mockFabricante);
-	  }
+		 alejandro.convertirAInteligente(televisor, 111, mockTelevisorSmartConcreto);
+	 }
+	 
+	 @Test
+	 public void alCrearUnClienteSuFechaDeCreacionEsLaDeHoy() {
+		 assertEquals(LocalDate.now(), alejandro.getFechaAlta());
+	 }
 }

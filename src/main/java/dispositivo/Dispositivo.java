@@ -1,7 +1,6 @@
 package dispositivo;
 import java.time.LocalDateTime;
 
-import fabricante.Fabricante;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
 
@@ -24,7 +23,7 @@ public class Dispositivo {
 		return tipoDispositivo;
 	}
 	
-	public void convertirAInteligente(long identificadorFabrica, Fabricante fabricante) {
+	public void convertirAInteligente(long identificadorFabrica, DispositivoConcreto fabricante) {
 		tipoDispositivo.convertirAInteligente(this, identificadorFabrica, fabricante);
 	}
 	

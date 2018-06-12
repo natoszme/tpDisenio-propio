@@ -9,23 +9,27 @@ import categoria.Categoria;
 import cliente.Cliente;
 import cliente.TipoDocumento;
 import dispositivo.Dispositivo;
+import dispositivo.DispositivoConcreto;
 import dispositivo.gadgets.actuador.Actuador;
 import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.actuador.ActuadorQueEnciende;
+import dispositivo.gadgets.regla.CondicionSobreSensor;
 import dispositivo.gadgets.regla.Regla;
-import fabricante.Fabricante;
+import dispositivo.gadgets.regla.ReglaEstricta;
+import dispositivo.gadgets.regla.ReglaPermisiva;
 import repositorio.RepoCategorias;
 import tipoDispositivo.DispositivoEstandar;
 import tipoDispositivo.DispositivoInteligente;
 public class Fixture {
 	protected Categoria r1, r2, r3, r4, r5, r6, r7, r8, r9;
-	protected Dispositivo candelabro, televisor, microondas,equipoMusica ,dvd, play4, televisorSmart, pc;
+	protected Dispositivo candelabro, televisor, microondas, equipoMusica, dvd, play4, televisorSmart, pc, aireAcondicionado;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
-	protected Fabricante mockFabricante;
-	protected Regla mockReglaCumplida, mockReglaNoCumplida;
-	protected Actuador actuadorQueApaga = new ActuadorQueApaga();
-	protected Actuador actuadorQueEnciende = new ActuadorQueEnciende();
+	protected DispositivoConcreto mockPcConcreta, mockAireConcreto, mockTelevisorSmartConcreto, mockCandelabroConcreto;
+	protected Regla reglaEstricta, reglaPermisiva;
+	protected Actuador actuadorQueApagaPc, actuadorQueEnciendeAire, actuadorQueApagaSmartTv, actuadorQueEnciendeSmartTv;
+	protected CondicionSobreSensor mockCondicionSobreSensorQueCumple, mockCondicionSobreSensorQueNoCumple;
+	protected List<CondicionSobreSensor> condicionesSobreSensorQueNoCumplen = new ArrayList<>(), condicionesSobreSensorQueCumplen = new ArrayList<>();
 	
 	public Fixture() {
 		  r1 = new Categoria("R1", 0, 150, 18.76, 0.644);			
@@ -38,9 +42,10 @@ public class Fixture {
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
 		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
 		  
-		  mockFabricante = Mockito.mock(Fabricante.class);
-		  mockReglaCumplida = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
-		  mockReglaNoCumplida = Mockito.mock(Regla.class, Mockito.CALLS_REAL_METHODS);
+		  mockPcConcreta = Mockito.mock(DispositivoConcreto.class);
+		  mockAireConcreto = Mockito.mock(DispositivoConcreto.class);
+		  mockTelevisorSmartConcreto = Mockito.mock(DispositivoConcreto.class);
+		  mockCandelabroConcreto = Mockito.mock(DispositivoConcreto.class);
 				
 		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9));
 		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5));	  
@@ -48,10 +53,23 @@ public class Fixture {
 		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(170.0));
 		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77));
 		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(600.05));  
-		  pc = new Dispositivo("PC", new DispositivoInteligente(101010, mockFabricante));
+		  pc = new Dispositivo("PC", new DispositivoInteligente(101010, mockPcConcreta));
+		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(210154, mockAireConcreto));
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
+		  
+		  actuadorQueApagaPc = new ActuadorQueApaga(pc);
+		  actuadorQueEnciendeAire = new ActuadorQueEnciende(aireAcondicionado);
+		  
+		  reglaEstricta = new ReglaEstricta(actuadorQueApagaPc, new ArrayList<>(), pc);
+		  reglaPermisiva = new ReglaPermisiva(actuadorQueEnciendeAire, new ArrayList<>(), aireAcondicionado);
+		  
+		  mockCondicionSobreSensorQueCumple = Mockito.mock(CondicionSobreSensor.class);
+		  mockCondicionSobreSensorQueNoCumple = Mockito.mock(CondicionSobreSensor.class);
+		  
+		  condicionesSobreSensorQueCumplen.add(mockCondicionSobreSensorQueCumple);
+		  condicionesSobreSensorQueNoCumplen.add(mockCondicionSobreSensorQueNoCumple);
 		
 		  alejandro = new Cliente("Alejandro", "Saez", TipoDocumento.DNI, 3876675, 43543245, "Macos Sastre 324", r1, dispositivos);
 		  nico = new Cliente("nico", "otamendi", TipoDocumento.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>());

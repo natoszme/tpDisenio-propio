@@ -6,17 +6,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import dispositivo.Dispositivo;
-import fabricante.Fabricante;
+import dispositivo.DispositivoConcreto;
 
 public class DispositivoInteligente implements TipoDispositivo{
 	private long identificadorDeFabrica;
-	private Fabricante fabricante;
+	private DispositivoConcreto dispositivoReal;
 	private Map<LocalDateTime, Double> consumosHastaElMomento = new LinkedHashMap<>();
 	int duracionPlazoCronConsumo = 6;
 	
-	public DispositivoInteligente(long identificadorDeFabrica, Fabricante fabricante) {
+	public DispositivoInteligente(long identificadorDeFabrica, DispositivoConcreto fabricante) {
 		this.identificadorDeFabrica = identificadorDeFabrica;
-		this.fabricante = fabricante;
+		this.dispositivoReal = fabricante;
 	}
 	
 	public boolean esInteligente() {
@@ -27,12 +27,12 @@ public class DispositivoInteligente implements TipoDispositivo{
 		return 15;
 	}
 	
-	public double consumoEnLasUltimas(int horas) {
+	public double consumoEnLasUltimas(int horas) {		
 		if (horas <= duracionPlazoCronConsumo) {
-			return fabricante.consumoDuranteLasUltimas(horas, identificadorDeFabrica);
+			return dispositivoReal.consumoDuranteLasUltimas(horas, identificadorDeFabrica);
 		}
 		//solo permite horas divisibles por duracionPlazoCronConsumo
-		return fabricante.consumoDuranteLasUltimas(duracionPlazoCronConsumo, identificadorDeFabrica) + consumoAlmacenadoEn(horas);
+		return dispositivoReal.consumoDuranteLasUltimas(duracionPlazoCronConsumo, identificadorDeFabrica) + consumoAlmacenadoEn(horas);
 	}
 
 	public double consumoAlmacenadoEn(int horas) {
@@ -52,30 +52,30 @@ public class DispositivoInteligente implements TipoDispositivo{
 	}
 	
 	public void apagar() {
-		fabricante.apagar(identificadorDeFabrica);
+		dispositivoReal.apagar(identificadorDeFabrica);
 	}
 	
 	public void encender() {
-		fabricante.encender(identificadorDeFabrica);
+		dispositivoReal.encender(identificadorDeFabrica);
 	}
 
 	public void ponerEnAhorroDeEnergia() {
-		fabricante.ponerEnAhorroDeEnergia(identificadorDeFabrica);
+		dispositivoReal.ponerEnAhorroDeEnergia(identificadorDeFabrica);
 	}
 	
 	public boolean estaEncendido() {
-		return fabricante.estaEncendido(identificadorDeFabrica);
+		return dispositivoReal.estaEncendido(identificadorDeFabrica);
 	}
 	
 	public boolean estaApagado() {
-		return fabricante.estaApagado(identificadorDeFabrica);
+		return dispositivoReal.estaApagado(identificadorDeFabrica);
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, Fabricante fabricante) {
+	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto fabricante) {
 		throw new NoSePuedeReConvertirAInteligenteException();
 	}
 
 	public boolean estaEnAhorroEnergia() {
-		return fabricante.estaEnAhorroEnergia(identificadorDeFabrica);
+		return dispositivoReal.estaEnAhorroEnergia(identificadorDeFabrica);
 	}
 }

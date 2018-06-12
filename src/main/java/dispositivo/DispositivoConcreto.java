@@ -1,6 +1,6 @@
-package fabricante;
+package dispositivo;
 
-public interface Fabricante {
+public interface DispositivoConcreto {
 	
 	public void encender(long identificadorDeFabrica);	
 	public void apagar(long identificadorDeFabrica);	

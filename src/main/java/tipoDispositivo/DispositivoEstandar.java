@@ -2,7 +2,7 @@ package tipoDispositivo;
 import java.time.LocalDateTime;
 
 import dispositivo.Dispositivo;
-import fabricante.Fabricante;
+import dispositivo.DispositivoConcreto;
 
 public class DispositivoEstandar implements TipoDispositivo{
 	private double kwPorHora;
@@ -29,7 +29,7 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return 0;
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, Fabricante fabricante) {
+	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto fabricante) {
 		dispositivo.cambiarTipo(new DispositivoInteligente(identificadorFabrica, fabricante));
 	}
 	

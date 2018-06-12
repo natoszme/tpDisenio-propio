@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import categoria.Categoria;
 import dispositivo.Dispositivo;
-import fabricante.Fabricante;
+import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
 
 public class Cliente {
@@ -79,7 +79,7 @@ public class Cliente {
 		puntos += dispositivo.puntosPorRegistrar();
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, Fabricante fabricante) {
+	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, DispositivoConcreto fabricante) {
 		this.seEncuentraEntreLosDispostivos(dispositivo);
 		dispositivo.convertirAInteligente(identificadorFabrica, fabricante);
 		puntos += 10;		

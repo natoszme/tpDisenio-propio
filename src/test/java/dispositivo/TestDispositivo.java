@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
 
-import fabricante.Fabricante;
 import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar;
@@ -16,7 +15,7 @@ public class TestDispositivo extends Fixture {
 	
 	@Test
 	public void candelabroEsInteligenteDespuesDeConvertirseAInteligente() {
-		candelabro.convertirAInteligente(123, mockFabricante);
+		candelabro.convertirAInteligente(123, mockCandelabroConcreto);
 		Assert.assertTrue(candelabro.esInteligente());
 	}
 	
@@ -37,26 +36,26 @@ public class TestDispositivo extends Fixture {
 	
 	@Test
 	public void alApagarSmartTVFabricanteRecibeMensajeApagar() {
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
 		televisorSmart.apagar();	
-		verify(mockFabricante,times(1)).apagar(123456);
+		verify(mockTelevisorSmartConcreto, times(1)).apagar(123456);
 	}	
 	
 	@Test
 	public void smartTvEsInteligente() {
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
 		Assert.assertTrue(televisorSmart.esInteligente());
 	}	
 	
 	@Test(expected = NoSePuedeReConvertirAInteligenteException.class)
 	public void smartTvNoSePuedeConvertirAInteligente() {
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
-		televisorSmart.convertirAInteligente(123, mockFabricante);
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
+		televisorSmart.convertirAInteligente(123, mockTelevisorSmartConcreto);
 	}	
 
 	@Test
 	public void consumoDeSmartTVEn1HoraSegunFabricanteQueRetorna20DeConsumoEs20() {
-		Fabricante mockFabricanteRetorna20 = mock(Fabricante.class);
+		DispositivoConcreto mockFabricanteRetorna20 = mock(DispositivoConcreto.class);
 		when(mockFabricanteRetorna20.consumoDuranteLasUltimas(1, 123456)).thenReturn(20.0);
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna20));
 		Assert.assertEquals(20.0, televisorSmart.consumoEnLasUltimas(1), 0);
@@ -72,7 +71,7 @@ public class TestDispositivo extends Fixture {
 	
 	@Test
 	public void elConsumoDesdeLasUltimas12HorasEsMayorAlDadoPorElFabricante() {
-		Fabricante mockFabricanteRetorna20 = mock(Fabricante.class);
+		DispositivoConcreto mockFabricanteRetorna20 = mock(DispositivoConcreto.class);
 		when(mockFabricanteRetorna20.consumoDuranteLasUltimas(6, 123456)).thenReturn(20.0);
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna20));
 		televisorSmart.guardarConsumoDeFecha(LocalDateTime.now().minusHours(6), 30);

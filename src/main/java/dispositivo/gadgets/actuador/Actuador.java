@@ -1,9 +1,7 @@
 package dispositivo.gadgets.actuador;
 
-import dispositivo.Dispositivo;
+public interface Actuador{
 
-public interface Actuador {
-
-	public void actuarSobre(Dispositivo dispositivo);
+	public void actuar();
 
 }

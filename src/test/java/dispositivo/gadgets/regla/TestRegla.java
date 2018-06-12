@@ -5,58 +5,50 @@ import org.junit.Test;
 import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.regla.NoSePuedeEvaluarReglaADispositivoNoInteligenteException;
+import dispositivo.gadgets.actuador.ActuadorQueApaga;
+import dispositivo.gadgets.actuador.ActuadorQueEnciende;
+import dispositivo.gadgets.regla.NoSePuedeUsarGadgetSobreDispositivoNoInteligenteException;
 
 import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
 
 public class TestRegla extends Fixture {
 	
 	@Before
 	public void initialize() {
-		//TODO estos metodos estan aca porque se llaman a los metodos posta (segun el fixture)
-		mockReglaCumplida.setCondiciones(new ArrayList<>());
-		mockReglaNoCumplida.setCondiciones(new ArrayList<>());
-    	when(mockReglaCumplida.seCumplenTodas()).thenReturn(true);
-    	when(mockReglaNoCumplida.seCumpleAlguna()).thenReturn(false);
-    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricante));
+    	televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
+    	actuadorQueApagaSmartTv = new ActuadorQueApaga(televisorSmart);
+    	actuadorQueEnciendeSmartTv = new ActuadorQueEnciende(televisorSmart);
+    	
+    	when(mockCondicionSobreSensorQueCumple.seCumpleCondicion()).thenReturn(true);
+    	when(mockCondicionSobreSensorQueNoCumple.seCumpleCondicion()).thenReturn(false);
 	}
 
-    @Test(expected = NoSePuedeEvaluarReglaADispositivoNoInteligenteException.class)
-    public void alEvaluarUnDispositivoEstandarTiraExcepcion() {
-    	mockReglaCumplida.evaluarTodasSobre(televisor);
+    @Test(expected = NoSePuedeUsarGadgetSobreDispositivoNoInteligenteException.class)
+    public void alCrearReglaConDispositivoEstandarTiraExcepcion() {
+    	reglaEstricta = new ReglaEstricta(null, condicionesSobreSensorQueCumplen, equipoMusica);
     }
     
     @Test
     public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialApagado() {		
-		mockReglaCumplida.setActuador(actuadorQueApaga);
-    	mockReglaCumplida.evaluarTodasSobre(televisorSmart);
+		reglaEstricta = new ReglaEstricta(actuadorQueApagaSmartTv, condicionesSobreSensorQueCumplen, televisorSmart);
+    	reglaEstricta.aplicarSiCumpleCriterio();
     	
-    	verify(mockFabricante, times(1)).apagar(123456);
+    	verify(mockTelevisorSmartConcreto, times(1)).apagar(123456);
     }
     
     @Test
     public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialEncendido() {		
-		mockReglaCumplida.setActuador(actuadorQueEnciende);
-    	mockReglaCumplida.evaluarTodasSobre(televisorSmart);
+    	reglaEstricta = new ReglaEstricta(actuadorQueEnciendeSmartTv, condicionesSobreSensorQueCumplen, televisorSmart);
+    	reglaEstricta.aplicarSiCumpleCriterio();
     	
-    	verify(mockFabricante, times(1)).encender(123456);
+    	verify(mockTelevisorSmartConcreto, times(1)).encender(123456);
     }
     
     @Test
-    public void alEvaluarUnInteligenteQueNoCumple_NoSeEnviaSenialDEncendido() {		
-		mockReglaNoCumplida.setActuador(actuadorQueEnciende);
-    	mockReglaNoCumplida.evaluarAlgunaSobre(televisorSmart);
+    public void alEvaluarUnInteligenteQueNoCumpleNoSeEnviaSenialDEncendido() {		
+		reglaPermisiva = new ReglaEstricta(actuadorQueApagaSmartTv, condicionesSobreSensorQueNoCumplen, televisorSmart);
+    	reglaPermisiva.aplicarSiCumpleCriterio();
     	
-    	verify(mockFabricante, times(0)).encender(123456);
-    }
-    
-    @Test
-    public void alEvaluarUnInteligenteQueNoCumple_NoSeEnviaNingunaSenial() {		
-		mockReglaNoCumplida.setActuador(actuadorQueApaga);
-    	mockReglaNoCumplida.evaluarAlgunaSobre(televisorSmart);
-    	
-    	verify(mockFabricante, times(0)).apagar(123456);
+    	verify(mockTelevisorSmartConcreto, times(0)).apagar(123456);
     }
 }

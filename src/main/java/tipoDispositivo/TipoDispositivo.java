@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import dispositivo.Dispositivo;
-import fabricante.Fabricante;
+import dispositivo.DispositivoConcreto;
 
 @JsonTypeInfo(
 	    use = JsonTypeInfo.Id.NAME,
@@ -25,7 +25,7 @@ public interface TipoDispositivo {
 	public void encender();
 	public boolean estaEncendido();
 	public boolean estaApagado();
-	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, Fabricante fabricante);
+	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto fabricante);
 	public boolean estaEnAhorroEnergia();
 	public void ponerEnAhorroDeEnergia();
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo);
