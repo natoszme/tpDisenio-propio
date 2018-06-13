@@ -1,9 +1,8 @@
 package dispositivo.gadgets.actuador;
 
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.Gadget;
 
-public class ActuadorQueEnciende extends Gadget implements Actuador{
+public class ActuadorQueEnciende extends Actuador{
 
 	public ActuadorQueEnciende(Dispositivo dispositivo) {
 		super(dispositivo);

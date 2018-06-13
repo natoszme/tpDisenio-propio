@@ -1,9 +1,8 @@
 package dispositivo.gadgets.actuador;
 
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.Gadget;
 
-public class ActuadorQueApaga extends Gadget implements Actuador {
+public class ActuadorQueApaga extends Actuador {
 	public ActuadorQueApaga(Dispositivo dispositivo) {
 		super(dispositivo);
 		// TODO Auto-generated constructor stub

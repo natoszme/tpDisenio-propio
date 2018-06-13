@@ -1,7 +1,15 @@
 package dispositivo.gadgets.actuador;
 
-public interface Actuador{
+import dispositivo.Dispositivo;
+import dispositivo.gadgets.Gadget;
 
-	public void actuar();
+public abstract class Actuador extends Gadget {
+
+	public Actuador(Dispositivo dispositivo) {
+		super(dispositivo);
+		// TODO Auto-generated constructor stub
+	}
+
+	public abstract void actuar();
 
 }
