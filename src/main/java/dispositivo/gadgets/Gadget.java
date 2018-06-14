@@ -14,4 +14,8 @@ public abstract class Gadget {
 	private void validarDispositivoInteligente(Dispositivo dispositivo) {
 		if(!dispositivo.esInteligente()) throw new NoSePuedeUsarGadgetSobreDispositivoNoInteligenteException();
 	}
+	
+	public boolean esParaDispositivo(Dispositivo dispositivo) {
+		return this.dispositivo.equals(dispositivo);
+	}
 }

@@ -1,5 +1,13 @@
 package dispositivo.gadgets.sensor;
 
-public interface Sensor {
-	public double medir();
+import dispositivo.Dispositivo;
+import dispositivo.gadgets.Gadget;
+
+public abstract class Sensor extends Gadget{
+	public Sensor(Dispositivo dispositivo) {
+		super(dispositivo);
+		// TODO Auto-generated constructor stub
+	}
+
+	public abstract double medir();
 }

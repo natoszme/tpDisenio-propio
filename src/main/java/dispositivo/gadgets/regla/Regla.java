@@ -10,12 +10,12 @@ import dispositivo.gadgets.actuador.Actuador;
 public abstract class Regla extends Gadget{
 	protected List<CondicionSobreSensor> condiciones = new ArrayList<>();
 	private Actuador actuador;
-	Dispositivo dispositivo;
 	
 	public Regla(Actuador actuador, List<CondicionSobreSensor> condiciones, Dispositivo dispositivo) {
 		super(dispositivo);
 		this.actuador = actuador;
 		this.condiciones = condiciones;
+		validarMismoDispositivoEnGadgets();
 	}
 	
 	public void aplicarSiCumpleCriterio() {
@@ -25,6 +25,12 @@ public abstract class Regla extends Gadget{
 	}
 	
 	protected abstract boolean seCumpleCriterio();
+	
+	private void validarMismoDispositivoEnGadgets(){
+		if (!condiciones.stream().allMatch(condicion -> condicion.getSensor().esParaDispositivo(dispositivo)) || !actuador.esParaDispositivo(dispositivo)) {
+			throw new NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException(dispositivo);
+		}
+	}
 
 	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion()); ? (de las subclases)
 	

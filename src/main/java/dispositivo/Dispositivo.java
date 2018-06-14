@@ -70,4 +70,9 @@ public class Dispositivo {
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo) {
 		tipoDispositivo.guardarConsumoDeFecha(fecha, consumo);
 	}
+	
+	//TODO es posible que haya que retocar este metodo, depende de como se traten a los conjuntos de dispositivos (ej: todas las tv's)
+	public boolean equals(Dispositivo otroDispositivo) {
+		return this.nombre == otroDispositivo.nombre;
+	}
 }
