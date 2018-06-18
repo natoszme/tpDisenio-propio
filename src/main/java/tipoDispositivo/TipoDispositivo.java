@@ -25,7 +25,7 @@ public interface TipoDispositivo {
 	public void encender();
 	public boolean estaEncendido();
 	public boolean estaApagado();
-	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto fabricante);
+	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto dispositivoConcreto);
 	public boolean estaEnAhorroEnergia();
 	public void ponerEnAhorroDeEnergia();
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo);

@@ -31,14 +31,14 @@ public class TestRegla extends Fixture {
 
     @Test(expected = NoSePuedeUsarReglaSobreDispositivoNoInteligenteException.class)
     public void alCrearReglaConDispositivoEstandarTiraExcepcion() {
-    	reglaEstricta = new ReglaEstricta(null, condicionesSobreSensorQueCumplen, equipoMusica);
+    	unaReglaEstricta = new ReglaEstricta(null, condicionesSobreSensorQueCumplen, equipoMusica);
     }
     
     @Test
     public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialApagado() {
     	actuadores.add(actuadorQueApagaSmartTv);
-		reglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
-    	reglaEstricta.aplicarSiCumpleCriterio();
+		unaReglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
+    	unaReglaEstricta.aplicarSiCumpleCriterio();
     	
     	verify(mockTelevisorSmartConcreto, times(1)).apagar(123456);
     }
@@ -46,8 +46,8 @@ public class TestRegla extends Fixture {
     @Test
     public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialEncendido() {
     	actuadores.add(actuadorQueEnciendeSmartTv);
-    	reglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
-    	reglaEstricta.aplicarSiCumpleCriterio();
+    	unaReglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
+    	unaReglaEstricta.aplicarSiCumpleCriterio();
     	
     	verify(mockTelevisorSmartConcreto, times(1)).encender(123456);
     }
@@ -55,9 +55,14 @@ public class TestRegla extends Fixture {
     @Test
     public void alEvaluarUnInteligenteQueNoCumpleNoSeEnviaSenialDEncendido() {
     	actuadores.add(actuadorQueApagaSmartTv);
-		reglaPermisiva = new ReglaEstricta(actuadores, condicionesSobreSensorQueNoCumplen, televisorSmart);
-    	reglaPermisiva.aplicarSiCumpleCriterio();
+		unaReglaPermisiva = new ReglaEstricta(actuadores, condicionesSobreSensorQueNoCumplen, televisorSmart);
+    	unaReglaPermisiva.aplicarSiCumpleCriterio();
     	
     	verify(mockTelevisorSmartConcreto, times(0)).apagar(123456);
+    }
+    
+    @Test
+    public void alCrearUnaReglaConGadgetsParaDistintosDispositivosTiraError() {
+    	//ReglaPermisiva reglaPermisiva
     }
 }

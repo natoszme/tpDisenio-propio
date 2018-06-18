@@ -76,7 +76,7 @@ public class TestCliente extends Fixture {
 //test entrega 1
 	
 	@Test
-	public void seAgregaTVSmartAAlejandroConFabricanteQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
+	public void seAgregaTVSmartAAlejandroConDispositivoConcretoQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
 		DispositivoConcreto mockDispositivoeRetorna180 = mock(DispositivoConcreto.class);
 		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockDispositivoeRetorna180), 90);
 		when(mockDispositivoeRetorna180.consumoDuranteLasUltimas(2,123456)).thenReturn(180.0);

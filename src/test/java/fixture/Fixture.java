@@ -26,7 +26,7 @@ public class Fixture {
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
 	protected DispositivoConcreto mockPcConcreta, mockAireConcreto, mockTelevisorSmartConcreto, mockCandelabroConcreto;
-	protected Regla reglaEstricta, reglaPermisiva;
+	protected Regla unaReglaEstricta, unaReglaPermisiva;
 	protected Actuador actuadorQueApagaPc, actuadorQueEnciendeAire, actuadorQueApagaSmartTv, actuadorQueEnciendeSmartTv;
 	protected CondicionSobreSensor mockCondicionSobreSensorQueCumple, mockCondicionSobreSensorQueNoCumple;
 	protected List<CondicionSobreSensor> condicionesSobreSensorQueNoCumplen = new ArrayList<>(), condicionesSobreSensorQueCumplen = new ArrayList<>();
@@ -67,8 +67,8 @@ public class Fixture {
 		  actuadoresParaPc.add(actuadorQueApagaPc);
 		  actuadoresParaAire.add(actuadorQueEnciendeAire);
 		  
-		  reglaEstricta = new ReglaEstricta(actuadoresParaPc, new ArrayList<>(), pc);
-		  reglaPermisiva = new ReglaPermisiva(actuadoresParaAire, new ArrayList<>(), aireAcondicionado);
+		  unaReglaEstricta = new ReglaEstricta(actuadoresParaPc, new ArrayList<>(), pc);
+		  unaReglaPermisiva = new ReglaPermisiva(actuadoresParaAire, new ArrayList<>(), aireAcondicionado);
 		  
 		  mockCondicionSobreSensorQueCumple = Mockito.mock(CondicionSobreSensor.class);
 		  mockCondicionSobreSensorQueNoCumple = Mockito.mock(CondicionSobreSensor.class);
