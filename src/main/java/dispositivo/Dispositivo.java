@@ -7,10 +7,12 @@ import tipoDispositivo.TipoDispositivo;
 public class Dispositivo {
 	private String nombre;
 	private TipoDispositivo tipoDispositivo;
+	private double kwPorHora;
 	
-	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo) {
+	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo, double kwPorHora) {
 		this.nombre = nombre;
 		this.tipoDispositivo = tipoDispositivo;
+		this.kwPorHora = kwPorHora;
 	}
 	
 	public Dispositivo() {} /* Es para el JSON */
@@ -21,6 +23,10 @@ public class Dispositivo {
 	
 	public TipoDispositivo getTipoDispositivo() {
 		return tipoDispositivo;
+	}
+	
+	public double getKwPorHora() {
+		return kwPorHora;
 	}
 	
 	public void convertirAInteligente(long identificadorFabrica, DispositivoConcreto fabricante) {
@@ -43,8 +49,12 @@ public class Dispositivo {
 		return tipoDispositivo.estaApagado();
 	}
 	
-	public double consumoEnLasUltimas(int horas) {
-		return tipoDispositivo.consumoEnLasUltimas(horas);
+	public double consumoEnLasUltimas(int horas, Dispositivo dispositivo) {
+		return tipoDispositivo.consumoEnLasUltimas(horas, dispositivo);
+	}
+	
+	public double estimacionDeConsumoEn(int horas) {
+		return horas * kwPorHora;
 	}
 	
 	public double puntosPorRegistrar() {

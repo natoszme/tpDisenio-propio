@@ -71,7 +71,7 @@ public class Cliente {
 	}
 	
 	public double consumoEnLasUltimas(int horas) {
-		return dispositivos.stream().mapToDouble(dispositivo -> dispositivo.consumoEnLasUltimas(horas)).sum();
+		return dispositivos.stream().mapToDouble(dispositivo -> dispositivo.consumoEnLasUltimas(horas, dispositivo)).sum();
 	}
 
 	public void agregarDispositivo(Dispositivo dispositivo) {

@@ -1,21 +1,8 @@
 package dispositivo.gadgets;
 
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.regla.NoSePuedeUsarGadgetSobreDispositivoNoInteligenteException;
 
-public abstract class Gadget {
-	protected Dispositivo dispositivo;
+public interface Gadget {
 	
-	public Gadget(Dispositivo dispositivo) {
-		validarDispositivoInteligente(dispositivo);
-		this.dispositivo = dispositivo;
-	}
-	
-	private void validarDispositivoInteligente(Dispositivo dispositivo) {
-		if(!dispositivo.esInteligente()) throw new NoSePuedeUsarGadgetSobreDispositivoNoInteligenteException();
-	}
-	
-	public boolean esParaDispositivo(Dispositivo dispositivo) {
-		return this.dispositivo.equals(dispositivo);
-	}
+	public Dispositivo getDispositivo();
 }

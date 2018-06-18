@@ -7,29 +7,44 @@ import dispositivo.Dispositivo;
 import dispositivo.gadgets.Gadget;
 import dispositivo.gadgets.actuador.Actuador;
 
-public abstract class Regla extends Gadget{
+public abstract class Regla {
+	protected Dispositivo dispositivo;	
 	protected List<CondicionSobreSensor> condiciones = new ArrayList<>();
-	private Actuador actuador;
+	protected List<Actuador> actuadores;
 	
-	public Regla(Actuador actuador, List<CondicionSobreSensor> condiciones, Dispositivo dispositivo) {
-		super(dispositivo);
-		this.actuador = actuador;
+	public Regla(List<Actuador> actuadores, List<CondicionSobreSensor> condiciones, Dispositivo dispositivo) {
+		validarDispositivoInteligente(dispositivo);
+		this.dispositivo = dispositivo;
+		this.actuadores = actuadores;
 		this.condiciones = condiciones;
 		validarMismoDispositivoEnGadgets();
 	}
 	
+	private void validarDispositivoInteligente(Dispositivo dispositivo) {
+		if(!dispositivo.esInteligente()) throw new NoSePuedeUsarReglaSobreDispositivoNoInteligenteException();
+	}
+	
 	public void aplicarSiCumpleCriterio() {
 		if(seCumpleCriterio()) {
-			actuador.actuar();
+			actuadores.stream().forEach(Actuador::actuar);
 		}
 	}
 	
 	protected abstract boolean seCumpleCriterio();
 	
-	private void validarMismoDispositivoEnGadgets(){
-		if (!condiciones.stream().allMatch(condicion -> condicion.getSensor().esParaDispositivo(dispositivo)) || !actuador.esParaDispositivo(dispositivo)) {
+	//TODO revisar esto
+	private boolean gadgetsSonParaEsteDispositivo(List<? extends Gadget> gadgets) {
+		return gadgets.stream().allMatch(gadget -> gadget.getDispositivo().equals(dispositivo));
+	}
+	
+	private void validarMismoDispositivoEnGadgets(){		
+		if (!gadgetsSonParaEsteDispositivo(condiciones) || !gadgetsSonParaEsteDispositivo(actuadores)) {
 			throw new NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException(dispositivo);
 		}
+		
+		/*if (!condiciones.stream().allMatch(condicion -> condicion.getSensor().esParaDispositivo(dispositivo)) || !actuador.esParaDispositivo(dispositivo)) {
+			throw new NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException(dispositivo);
+		}*/
 	}
 
 	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion()); ? (de las subclases)

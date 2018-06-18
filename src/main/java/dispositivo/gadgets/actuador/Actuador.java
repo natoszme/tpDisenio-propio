@@ -3,13 +3,16 @@ package dispositivo.gadgets.actuador;
 import dispositivo.Dispositivo;
 import dispositivo.gadgets.Gadget;
 
-public abstract class Actuador extends Gadget {
-
+public abstract class Actuador implements Gadget {
+	
+	protected Dispositivo dispositivo;
+	
 	public Actuador(Dispositivo dispositivo) {
-		super(dispositivo);
-		// TODO Auto-generated constructor stub
+		this.dispositivo = dispositivo;
 	}
 
 	public abstract void actuar();
-
+	public Dispositivo getDispositivo() {
+		return this.dispositivo;
+	}
 }

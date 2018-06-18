@@ -30,6 +30,7 @@ public class Fixture {
 	protected Actuador actuadorQueApagaPc, actuadorQueEnciendeAire, actuadorQueApagaSmartTv, actuadorQueEnciendeSmartTv;
 	protected CondicionSobreSensor mockCondicionSobreSensorQueCumple, mockCondicionSobreSensorQueNoCumple;
 	protected List<CondicionSobreSensor> condicionesSobreSensorQueNoCumplen = new ArrayList<>(), condicionesSobreSensorQueCumplen = new ArrayList<>();
+	protected List<Actuador> actuadoresParaAire = new ArrayList<>(), actuadoresParaPc = new ArrayList<>();
 	
 	public Fixture() {
 		  r1 = new Categoria("R1", 0, 150, 18.76, 0.644);			
@@ -47,23 +48,27 @@ public class Fixture {
 		  mockTelevisorSmartConcreto = Mockito.mock(DispositivoConcreto.class);
 		  mockCandelabroConcreto = Mockito.mock(DispositivoConcreto.class);
 				
-		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(9));
-		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(67.5));	  
-		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(402.0));
-		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(170.0));
-		  dvd = new Dispositivo("DVD", new DispositivoEstandar(300.77));
-		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(600.05));  
-		  pc = new Dispositivo("PC", new DispositivoInteligente(101010, mockPcConcreta));
-		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(210154, mockAireConcreto));
+		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(), 9);
+		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(), 67.5);	  
+		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(), 402.0);
+		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(), 170.0);
+		  dvd = new Dispositivo("DVD", new DispositivoEstandar(), 300.77);
+		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(), 600.05);  
+		  pc = new Dispositivo("PC", new DispositivoInteligente(101010, mockPcConcreta), 100);
+		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(210154, mockAireConcreto), 120);
+		  televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto), 90);
+		  
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
 		  
 		  actuadorQueApagaPc = new ActuadorQueApaga(pc);
 		  actuadorQueEnciendeAire = new ActuadorQueEnciende(aireAcondicionado);
+		  actuadoresParaPc.add(actuadorQueApagaPc);
+		  actuadoresParaAire.add(actuadorQueEnciendeAire);
 		  
-		  reglaEstricta = new ReglaEstricta(actuadorQueApagaPc, new ArrayList<>(), pc);
-		  reglaPermisiva = new ReglaPermisiva(actuadorQueEnciendeAire, new ArrayList<>(), aireAcondicionado);
+		  reglaEstricta = new ReglaEstricta(actuadoresParaPc, new ArrayList<>(), pc);
+		  reglaPermisiva = new ReglaPermisiva(actuadoresParaAire, new ArrayList<>(), aireAcondicionado);
 		  
 		  mockCondicionSobreSensorQueCumple = Mockito.mock(CondicionSobreSensor.class);
 		  mockCondicionSobreSensorQueNoCumple = Mockito.mock(CondicionSobreSensor.class);

@@ -20,7 +20,7 @@ import dispositivo.DispositivoConcreto;
 public interface TipoDispositivo {
 	public double puntosPorRegistrar();
 	public boolean esInteligente();
-	public double consumoEnLasUltimas(int horas);
+	public double consumoEnLasUltimas(int horas, Dispositivo dispositivo);
 	public void apagar();
 	public void encender();
 	public boolean estaEncendido();

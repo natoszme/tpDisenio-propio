@@ -6,8 +6,8 @@ import dispositivo.Dispositivo;
 import dispositivo.gadgets.actuador.Actuador;
 
 public class ReglaEstricta extends Regla{
-	public ReglaEstricta(Actuador actuador, List<CondicionSobreSensor> condiciones, Dispositivo dispositivo) {
-		super(actuador, condiciones, dispositivo);
+	public ReglaEstricta(List<Actuador> actuadores, List<CondicionSobreSensor> condiciones, Dispositivo dispositivo) {
+		super(actuadores, condiciones, dispositivo);
 		// TODO Auto-generated constructor stub
 	}
 

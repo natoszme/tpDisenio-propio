@@ -77,17 +77,15 @@ public class TestCliente extends Fixture {
 	
 	@Test
 	public void seAgregaTVSmartAAlejandroConFabricanteQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
-		DispositivoConcreto mockFabricanteRetorna180 = mock(DispositivoConcreto.class);
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockFabricanteRetorna180));
-		when(mockFabricanteRetorna180.consumoDuranteLasUltimas(2,123456)).thenReturn(180.0);
+		DispositivoConcreto mockDispositivoeRetorna180 = mock(DispositivoConcreto.class);
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockDispositivoeRetorna180), 90);
+		when(mockDispositivoeRetorna180.consumoDuranteLasUltimas(2,123456)).thenReturn(180.0);
 		alejandro.agregarDispositivo(televisorSmart);
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R2", alejandro.categoria().getNombre());
 	}
 	@Test
 	public void seAgregaSmartTVAAlejandroYTiene15Puntos() {
-	
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
 		alejandro.agregarDispositivo(televisorSmart);
 	
 		assertEquals(15.0, alejandro.getPuntos(), 0);
@@ -100,8 +98,6 @@ public class TestCliente extends Fixture {
 	}
 	@Test
 	public void seAgregaSmartTVAAlejandroYTiene1DispositivoInteligente() {
-	
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto));
 		alejandro.agregarDispositivo(televisorSmart);
 	
 		assertEquals(1,alejandro.cantidadDispositivosInteligentes());

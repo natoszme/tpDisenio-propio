@@ -5,21 +5,8 @@ import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 
 public class DispositivoEstandar implements TipoDispositivo{
-	private double kwPorHora;
 	
 	public DispositivoEstandar() {}
-	
-	public DispositivoEstandar(double kwPorHora) {
-		this.kwPorHora = kwPorHora;
-	}
-	
-	public double consumoEnLasUltimas(int horas) {
-		return horas * kwPorHora;
-	}
-	
-	public double getKwPorHora() {
-		return kwPorHora;
-	}
 	
 	public boolean esInteligente() {
 		return false;
@@ -29,20 +16,20 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return 0;
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto fabricante) {
-		dispositivo.cambiarTipo(new DispositivoInteligente(identificadorFabrica, fabricante));
+	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto dispositivoConcreto) {
+		dispositivo.cambiarTipo(new DispositivoInteligente(identificadorFabrica, dispositivoConcreto));
 	}
 	
 	public boolean estaEncendido() {
-		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar();
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 	
 	public boolean estaApagado() {
-		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar();
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 	
 	public boolean estaEnAhorroEnergia() {
-		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandar();
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 
 	public void apagar() {
@@ -59,5 +46,9 @@ public class DispositivoEstandar implements TipoDispositivo{
 	
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo) {
 		//no hace nada
+	}
+
+	public double consumoEnLasUltimas(int horas, Dispositivo dispositivo) {
+		return dispositivo.estimacionDeConsumoEn(horas);
 	}
 } 
