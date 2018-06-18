@@ -61,8 +61,8 @@ public class TestRegla extends Fixture {
     	verify(mockTelevisorSmartConcreto, times(0)).apagar(123456);
     }
     
-    @Test
+    @Test(expected = NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException.class)
     public void alCrearUnaReglaConGadgetsParaDistintosDispositivosTiraError() {
-    	//ReglaPermisiva reglaPermisiva
+    	ReglaPermisiva reglaPermisiva = new ReglaPermisiva(actuadoresParaPc, condicionesSobreSensorQueNoCumplen, televisorSmart);
     }
 }
