@@ -1,12 +1,18 @@
 package dispositivo;
 
-public interface DispositivoConcreto {
+public abstract class DispositivoConcreto {
 	
-	public void encender(long identificadorDeFabrica);	
-	public void apagar(long identificadorDeFabrica);	
-	public void ponerEnAhorroDeEnergia(long identificadorDeFabrica);
-	public double consumoDuranteLasUltimas(int horas, long identificadorDeFabrica);
-	public boolean estaEncendido(long identificadorDeFabrica);
-	public boolean estaApagado(long identificadorDeFabrica);
-	public boolean estaEnAhorroEnergia(long identificadorDeFabrica);
+	protected long identificadorDeFabrica;
+	
+	public DispositivoConcreto(long identificadorDeFabrica) {
+		this.identificadorDeFabrica = identificadorDeFabrica;
+	}
+	
+	public abstract void encender();	
+	public abstract void apagar();	
+	public abstract void ponerEnAhorroDeEnergia();
+	public abstract double consumoDuranteLasUltimas(int horas);
+	public abstract boolean estaEncendido();
+	public abstract boolean estaApagado();
+	public abstract boolean estaEnAhorroEnergia();
 }

@@ -1,9 +1,8 @@
 package dispositivo.gadgets.actuador;
 
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.Gadget;
 
-public abstract class Actuador implements Gadget {
+public abstract class Actuador {
 	
 	protected Dispositivo dispositivo;
 	

@@ -29,8 +29,8 @@ public class Dispositivo {
 		return kwPorHora;
 	}
 	
-	public void convertirAInteligente(long identificadorFabrica, DispositivoConcreto dispositivoConcreto) {
-		tipoDispositivo.convertirAInteligente(this, identificadorFabrica, dispositivoConcreto);
+	public void convertirAInteligente(DispositivoConcreto dispositivoConcreto) {
+		tipoDispositivo.convertirAInteligente(this, dispositivoConcreto);
 	}
 	
 	public boolean esInteligente() {

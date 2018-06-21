@@ -12,13 +12,13 @@ public class TestActuadores extends Fixture {
     @Test
     public void elActuadorQueApagaHaceQueSeEnvieLaSeñalDeApagado() {
 		actuadorQueApagaPc.actuar();
-		verify(mockPcConcreta, times(1)).apagar(101010);
+		verify(mockPcConcreta, times(1)).apagar();
     }
     
     @Test
     public void elActuadorQueEnciendeUnAireHaceQueSeEnvieLaSeñalDeApagado() {
 		actuadorQueEnciendeAire.actuar();    	
-		verify(mockAireConcreto, times(1)).encender(210154);
+		verify(mockAireConcreto, times(1)).encender();
     }   
 }
 

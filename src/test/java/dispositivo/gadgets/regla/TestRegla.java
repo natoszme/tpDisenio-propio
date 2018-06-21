@@ -24,9 +24,6 @@ public class TestRegla extends Fixture {
     	
     	when(mockCondicionSobreSensorQueCumple.seCumpleCondicion()).thenReturn(true);
     	when(mockCondicionSobreSensorQueNoCumple.seCumpleCondicion()).thenReturn(false);
-    	
-    	when(mockCondicionSobreSensorQueCumple.getDispositivo()).thenReturn(televisorSmart);
-    	when(mockCondicionSobreSensorQueNoCumple.getDispositivo()).thenReturn(televisorSmart);
 	}
 
     @Test(expected = NoSePuedeUsarReglaSobreDispositivoNoInteligenteException.class)
@@ -40,7 +37,7 @@ public class TestRegla extends Fixture {
 		unaReglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
     	unaReglaEstricta.aplicarSiCumpleCriterio();
     	
-    	verify(mockTelevisorSmartConcreto, times(1)).apagar(123456);
+    	verify(mockTelevisorSmartConcreto, times(1)).apagar();
     }
     
     @Test
@@ -49,7 +46,7 @@ public class TestRegla extends Fixture {
     	unaReglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
     	unaReglaEstricta.aplicarSiCumpleCriterio();
     	
-    	verify(mockTelevisorSmartConcreto, times(1)).encender(123456);
+    	verify(mockTelevisorSmartConcreto, times(1)).encender();
     }
     
     @Test
@@ -58,11 +55,6 @@ public class TestRegla extends Fixture {
 		unaReglaPermisiva = new ReglaEstricta(actuadores, condicionesSobreSensorQueNoCumplen, televisorSmart);
     	unaReglaPermisiva.aplicarSiCumpleCriterio();
     	
-    	verify(mockTelevisorSmartConcreto, times(0)).apagar(123456);
-    }
-    
-    @Test(expected = NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException.class)
-    public void alCrearUnaReglaConGadgetsParaDistintosDispositivosTiraError() {
-    	ReglaPermisiva reglaPermisiva = new ReglaPermisiva(actuadoresParaPc, condicionesSobreSensorQueNoCumplen, televisorSmart);
+    	verify(mockTelevisorSmartConcreto, times(0)).apagar();
     }
 }

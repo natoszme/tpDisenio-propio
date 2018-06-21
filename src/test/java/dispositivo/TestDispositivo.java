@@ -15,7 +15,7 @@ public class TestDispositivo extends Fixture {
 	
 	@Test
 	public void candelabroEsInteligenteDespuesDeConvertirseAInteligente() {
-		candelabro.convertirAInteligente(123, mockCandelabroConcreto);
+		candelabro.convertirAInteligente(mockCandelabroConcreto);
 		Assert.assertTrue(candelabro.esInteligente());
 	}
 	
@@ -37,7 +37,7 @@ public class TestDispositivo extends Fixture {
 	@Test
 	public void alApagarSmartTVDispositivoConcretoRecibeMensajeApagar() {
 		televisorSmart.apagar();	
-		verify(mockTelevisorSmartConcreto, times(1)).apagar(123456);
+		verify(mockTelevisorSmartConcreto, times(1)).apagar();
 	}	
 	
 	@Test
@@ -47,20 +47,20 @@ public class TestDispositivo extends Fixture {
 	
 	@Test(expected = NoSePuedeReConvertirAInteligenteException.class)
 	public void smartTvNoSePuedeConvertirAInteligente() {
-		televisorSmart.convertirAInteligente(123, mockTelevisorSmartConcreto);
+		televisorSmart.convertirAInteligente(mockTelevisorSmartConcreto);
 	}	
 
 	@Test
 	public void consumoDeSmartTVEn1HoraSegunConcretoQueRetorna20DeConsumoEnLaUltimaHoraEs20EnEseLapso() {
 		DispositivoConcreto mockDispositivoConcretoRetorna20 = mock(DispositivoConcreto.class);
-		when(mockDispositivoConcretoRetorna20.consumoDuranteLasUltimas(1, 123456)).thenReturn(20.0);
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockDispositivoConcretoRetorna20), 90);
+		when(mockDispositivoConcretoRetorna20.consumoDuranteLasUltimas(1)).thenReturn(20.0);
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockDispositivoConcretoRetorna20), 90);
 		Assert.assertEquals(20.0, televisorSmart.consumoEnLasUltimas(1, null), 0);
 	}
 	
 	@Test
 	public void plazoMayorAlDelCronDevuelveBienElConsumoGuardado() {
-		DispositivoInteligente smartTvAdapter = new DispositivoInteligente(123456, null);
+		DispositivoInteligente smartTvAdapter = new DispositivoInteligente(null);
 		televisorSmart = new Dispositivo("Televisor Smart", smartTvAdapter, 90);
 		televisorSmart.guardarConsumoDeFecha(LocalDateTime.now().minusHours(6), 30);
 		Assert.assertEquals(30, smartTvAdapter.consumoAlmacenadoEn(12), 0);
@@ -69,8 +69,8 @@ public class TestDispositivo extends Fixture {
 	@Test
 	public void elConsumoDesdeLasUltimas12HorasAbarcaAlDelConcretoYElGuardado() {
 		DispositivoConcreto mockDispositivoConcretoRetorna20 = mock(DispositivoConcreto.class);
-		when(mockDispositivoConcretoRetorna20.consumoDuranteLasUltimas(6, 123456)).thenReturn(20.0);
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockDispositivoConcretoRetorna20), 90);
+		when(mockDispositivoConcretoRetorna20.consumoDuranteLasUltimas(6)).thenReturn(20.0);
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockDispositivoConcretoRetorna20), 90);
 		televisorSmart.guardarConsumoDeFecha(LocalDateTime.now().minusHours(6), 30);
 		Assert.assertEquals(50.0, televisorSmart.consumoEnLasUltimas(12, null), 0);
 	}

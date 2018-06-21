@@ -78,8 +78,8 @@ public class TestCliente extends Fixture {
 	@Test
 	public void seAgregaTVSmartAAlejandroConDispositivoConcretoQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
 		DispositivoConcreto mockDispositivoeRetorna180 = mock(DispositivoConcreto.class);
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockDispositivoeRetorna180), 90);
-		when(mockDispositivoeRetorna180.consumoDuranteLasUltimas(2,123456)).thenReturn(180.0);
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockDispositivoeRetorna180), 90);
+		when(mockDispositivoeRetorna180.consumoDuranteLasUltimas(2)).thenReturn(180.0);
 		alejandro.agregarDispositivo(televisorSmart);
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R2", alejandro.categoria().getNombre());
@@ -93,7 +93,7 @@ public class TestCliente extends Fixture {
 	@Test
 	public void seConvierteElCandelabroAInteligenteYAlejandroTiene10Puntos() {
 	
-		alejandro.convertirAInteligente(candelabro, 123, mockCandelabroConcreto);
+		alejandro.convertirAInteligente(candelabro, mockCandelabroConcreto);
 		assertEquals(10.0, alejandro.getPuntos(), 0);
 	}
 	@Test
@@ -105,7 +105,7 @@ public class TestCliente extends Fixture {
 	
 	 @Test(expected = NoPuedeAfectarAUnDispositivoQueNoLePertenece.class)
 	 public void alejandroNoPuedeConvertirAInteligenteElTelevisor() {
-		 alejandro.convertirAInteligente(televisor, 111, mockTelevisorSmartConcreto);
+		 alejandro.convertirAInteligente(televisor, mockTelevisorSmartConcreto);
 	 }
 	 
 	 @Test

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dispositivo.Dispositivo;
-import dispositivo.gadgets.Gadget;
 import dispositivo.gadgets.actuador.Actuador;
 
 public abstract class Regla {
@@ -17,7 +16,6 @@ public abstract class Regla {
 		this.dispositivo = dispositivo;
 		this.actuadores = actuadores;
 		this.condiciones = condiciones;
-		validarMismoDispositivoEnGadgets();
 	}
 	
 	private void validarDispositivoInteligente(Dispositivo dispositivo) {
@@ -31,21 +29,6 @@ public abstract class Regla {
 	}
 	
 	protected abstract boolean seCumpleCriterio();
-	
-	//TODO revisar esto
-	private boolean gadgetsSonParaEsteDispositivo(List<? extends Gadget> gadgets) {
-		return gadgets.stream().allMatch(gadget -> gadget.getDispositivo().equals(dispositivo));
-	}
-	
-	private void validarMismoDispositivoEnGadgets(){		
-		if (!gadgetsSonParaEsteDispositivo(condiciones) || !gadgetsSonParaEsteDispositivo(actuadores)) {
-			throw new NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException(dispositivo);
-		}
-		
-		/*if (!condiciones.stream().allMatch(condicion -> condicion.getSensor().esParaDispositivo(dispositivo)) || !actuador.esParaDispositivo(dispositivo)) {
-			throw new NoSePuedeAplicarReglaSobreDispositivoQueNoSeaException(dispositivo);
-		}*/
-	}
 
 	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion()); ? (de las subclases)
 	

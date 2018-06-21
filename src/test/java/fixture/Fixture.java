@@ -54,9 +54,9 @@ public class Fixture {
 		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(), 170.0);
 		  dvd = new Dispositivo("DVD", new DispositivoEstandar(), 300.77);
 		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(), 600.05);  
-		  pc = new Dispositivo("PC", new DispositivoInteligente(101010, mockPcConcreta), 100);
-		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(210154, mockAireConcreto), 120);
-		  televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(123456, mockTelevisorSmartConcreto), 90);
+		  pc = new Dispositivo("PC", new DispositivoInteligente(mockPcConcreta), 100);
+		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(mockAireConcreto), 120);
+		  televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockTelevisorSmartConcreto), 90);
 		  
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	

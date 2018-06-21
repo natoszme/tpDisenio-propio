@@ -16,8 +16,8 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return 0;
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo, long identificadorFabrica, DispositivoConcreto dispositivoConcreto) {
-		dispositivo.cambiarTipo(new DispositivoInteligente(identificadorFabrica, dispositivoConcreto));
+	public void convertirAInteligente(Dispositivo dispositivo, DispositivoConcreto dispositivoConcreto) {
+		dispositivo.cambiarTipo(new DispositivoInteligente(dispositivoConcreto));
 	}
 	
 	public boolean estaEncendido() {

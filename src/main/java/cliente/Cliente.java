@@ -79,9 +79,9 @@ public class Cliente {
 		puntos += dispositivo.puntosPorRegistrar();
 	}
 	
-	public void convertirAInteligente(Dispositivo dispositivo,  long identificadorFabrica, DispositivoConcreto dispositivoConcreto) {
+	public void convertirAInteligente(Dispositivo dispositivo, DispositivoConcreto dispositivoConcreto) {
 		this.seEncuentraEntreLosDispostivos(dispositivo);
-		dispositivo.convertirAInteligente(identificadorFabrica, dispositivoConcreto);
+		dispositivo.convertirAInteligente(dispositivoConcreto);
 		puntos += 10;		
 	}
 
