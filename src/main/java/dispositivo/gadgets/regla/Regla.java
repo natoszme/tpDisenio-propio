@@ -24,7 +24,7 @@ public abstract class Regla {
 	
 	public void aplicarSiCumpleCriterio() {
 		if(seCumpleCriterio()) {
-			actuadores.stream().forEach(Actuador::actuar);
+			actuadores.stream().forEach(actuador -> actuador.actuarSobre(dispositivo));
 		}
 	}
 	

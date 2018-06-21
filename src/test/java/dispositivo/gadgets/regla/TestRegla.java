@@ -19,8 +19,8 @@ public class TestRegla extends Fixture {
 	
 	@Before
 	public void initialize() {
-    	actuadorQueApagaSmartTv = new ActuadorQueApaga(televisorSmart);
-    	actuadorQueEnciendeSmartTv = new ActuadorQueEnciende(televisorSmart);
+    	actuadorQueApaga = new ActuadorQueApaga();
+    	actuadorQueEnciende = new ActuadorQueEnciende();
     	
     	when(mockCondicionSobreSensorQueCumple.seCumpleCondicion()).thenReturn(true);
     	when(mockCondicionSobreSensorQueNoCumple.seCumpleCondicion()).thenReturn(false);
@@ -33,7 +33,7 @@ public class TestRegla extends Fixture {
     
     @Test
     public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialApagado() {
-    	actuadores.add(actuadorQueApagaSmartTv);
+    	actuadores.add(actuadorQueApaga);
 		unaReglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
     	unaReglaEstricta.aplicarSiCumpleCriterio();
     	
@@ -42,7 +42,7 @@ public class TestRegla extends Fixture {
     
     @Test
     public void alEvaluarUnInteligenteQueCumpleSeEnviaSenialEncendido() {
-    	actuadores.add(actuadorQueEnciendeSmartTv);
+    	actuadores.add(actuadorQueEnciende);
     	unaReglaEstricta = new ReglaEstricta(actuadores, condicionesSobreSensorQueCumplen, televisorSmart);
     	unaReglaEstricta.aplicarSiCumpleCriterio();
     	
@@ -51,7 +51,7 @@ public class TestRegla extends Fixture {
     
     @Test
     public void alEvaluarUnInteligenteQueNoCumpleNoSeEnviaSenialDEncendido() {
-    	actuadores.add(actuadorQueApagaSmartTv);
+    	actuadores.add(actuadorQueApaga);
 		unaReglaPermisiva = new ReglaEstricta(actuadores, condicionesSobreSensorQueNoCumplen, televisorSmart);
     	unaReglaPermisiva.aplicarSiCumpleCriterio();
     	

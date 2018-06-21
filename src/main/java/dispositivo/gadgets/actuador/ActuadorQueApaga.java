@@ -4,12 +4,7 @@ import dispositivo.Dispositivo;
 
 public class ActuadorQueApaga extends Actuador {
 
-	public ActuadorQueApaga(Dispositivo dispositivo) {
-		super(dispositivo);
-		// TODO Auto-generated constructor stub
-	}
-
-	public void actuar() {
+	public void actuarSobre(Dispositivo dispositivo) {
 		dispositivo.apagar();
 	}
 }

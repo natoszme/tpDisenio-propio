@@ -27,10 +27,10 @@ public class Fixture {
 	protected Cliente alejandro, lio, pepe, nico;
 	protected DispositivoConcreto mockPcConcreta, mockAireConcreto, mockTelevisorSmartConcreto, mockCandelabroConcreto;
 	protected Regla unaReglaEstricta, unaReglaPermisiva;
-	protected Actuador actuadorQueApagaPc, actuadorQueEnciendeAire, actuadorQueApagaSmartTv, actuadorQueEnciendeSmartTv;
+	protected Actuador actuadorQueApaga, actuadorQueEnciende;
 	protected CondicionSobreSensor mockCondicionSobreSensorQueCumple, mockCondicionSobreSensorQueNoCumple;
 	protected List<CondicionSobreSensor> condicionesSobreSensorQueNoCumplen = new ArrayList<>(), condicionesSobreSensorQueCumplen = new ArrayList<>();
-	protected List<Actuador> actuadoresParaAire = new ArrayList<>(), actuadoresParaPc = new ArrayList<>();
+	protected List<Actuador> actuadores = new ArrayList<>();
 	
 	public Fixture() {
 		  r1 = new Categoria("R1", 0, 150, 18.76, 0.644);			
@@ -62,13 +62,13 @@ public class Fixture {
 		  dispositivos = new ArrayList<Dispositivo>();	
 		  dispositivos.add(candelabro);
 		  
-		  actuadorQueApagaPc = new ActuadorQueApaga(pc);
-		  actuadorQueEnciendeAire = new ActuadorQueEnciende(aireAcondicionado);
-		  actuadoresParaPc.add(actuadorQueApagaPc);
-		  actuadoresParaAire.add(actuadorQueEnciendeAire);
+		  actuadorQueApaga = new ActuadorQueApaga();
+		  actuadorQueEnciende = new ActuadorQueEnciende();
+		  actuadores.add(actuadorQueApaga);
+		  actuadores.add(actuadorQueEnciende);
 		  
-		  unaReglaEstricta = new ReglaEstricta(actuadoresParaPc, new ArrayList<>(), pc);
-		  unaReglaPermisiva = new ReglaPermisiva(actuadoresParaAire, new ArrayList<>(), aireAcondicionado);
+		  unaReglaEstricta = new ReglaEstricta(actuadores, new ArrayList<>(), pc);
+		  unaReglaPermisiva = new ReglaPermisiva(actuadores, new ArrayList<>(), aireAcondicionado);
 		  
 		  mockCondicionSobreSensorQueCumple = Mockito.mock(CondicionSobreSensor.class);
 		  mockCondicionSobreSensorQueNoCumple = Mockito.mock(CondicionSobreSensor.class);
