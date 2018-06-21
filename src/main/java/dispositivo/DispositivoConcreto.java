@@ -15,4 +15,6 @@ public abstract class DispositivoConcreto {
 	public abstract boolean estaEncendido();
 	public abstract boolean estaApagado();
 	public abstract boolean estaEnAhorroEnergia();
+
+	public abstract double horasEncendidoEn(double horasDeMesActual);
 }

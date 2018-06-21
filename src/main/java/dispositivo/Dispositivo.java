@@ -85,4 +85,8 @@ public class Dispositivo {
 	public boolean equals(Dispositivo otroDispositivo) {
 		return this.nombre == otroDispositivo.nombre;
 	}
+
+	public double horasPrendidoEnMesActual() {
+		return tipoDispositivo.horasPrendidoEnMesActual();
+	}
 }

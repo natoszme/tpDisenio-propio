@@ -51,4 +51,9 @@ public class DispositivoEstandar implements TipoDispositivo{
 	public double consumoEnLasUltimas(int horas, Dispositivo dispositivo) {
 		return dispositivo.estimacionDeConsumoEn(horas);
 	}
+
+	@Override
+	public double horasPrendidoEnMesActual() {
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
+	}
 } 

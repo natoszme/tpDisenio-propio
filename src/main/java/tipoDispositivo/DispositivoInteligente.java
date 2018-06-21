@@ -76,4 +76,13 @@ public class DispositivoInteligente implements TipoDispositivo{
 	public boolean estaEnAhorroEnergia() {
 		return dispositivoConcreto.estaEnAhorroEnergia();
 	}
+
+	public double horasPrendidoEnMesActual() {
+		return dispositivoConcreto.horasEncendidoEn(horasDeMesActual());
+	}
+
+	private double horasDeMesActual() {
+		//TODO implementar!
+		return 0;
+	}
 }
