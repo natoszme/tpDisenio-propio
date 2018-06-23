@@ -3,6 +3,9 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.math3.optim.linear.SimplexSolver;
+
 import categoria.Categoria;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
@@ -133,4 +136,5 @@ public class Cliente {
 	public int getCantidadDispositivos(){
 		return dispositivos.size();
 	}
+	
 }
