@@ -64,33 +64,33 @@ public class AdaptadorSimplexCliente {
 	
 	public double[] getCoeficientesSimples(int posicionValida) { 
 		
-		double[] listaDeConsumos = new double[(int) this.cliente.cantidadDispositivos()];
+		double[] listaDeCoeficientes = new double[(int) this.cliente.cantidadDispositivos()];
 		int posicion = 0;
 		
 		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
 			
 			if(posicion == posicionValida)
-				listaDeConsumos[posicion] = 1;
+				listaDeCoeficientes[posicion] = 1;
 			else
-				listaDeConsumos[posicion] = 0;
+				listaDeCoeficientes[posicion] = 0;
 			
 			posicion++;
 		}
 		
-		return listaDeConsumos;
+		return listaDeCoeficientes;
 	}
 	
 	public double[] getCoeficientesFuncionEconomica() {
 		
-		double[] listaDeConsumos = new double[(int) this.cliente.cantidadDispositivos()];
+		double[] listaDeCoeficientes = new double[(int) this.cliente.cantidadDispositivos()];
 		int posicion = 0;
 		
 		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
-			listaDeConsumos[posicion] = 1;
+			listaDeCoeficientes[posicion] = 1;
 			posicion++;
 		}
 		
-		return listaDeConsumos;
+		return listaDeCoeficientes;
 	}
 	
 }
