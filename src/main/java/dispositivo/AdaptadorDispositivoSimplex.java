@@ -1,7 +1,13 @@
 package dispositivo;
 
 public class AdaptadorDispositivoSimplex {
-	Dispositivo dispositivo;
+	
 	double usoMensualMinimo;
 	double usoMensualMaximo;
+	
+	public AdaptadorDispositivoSimplex(double usoMensualMinimo, double usoMensualMaximo) {
+		
+		this.usoMensualMinimo = usoMensualMaximo;
+		this.usoMensualMaximo = usoMensualMaximo;
+	}
 }

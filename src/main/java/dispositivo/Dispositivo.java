@@ -1,5 +1,5 @@
 package dispositivo;
-import java.time.LocalDateTime;
+import java.time.LocalDateTime; 
 
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
@@ -8,17 +8,31 @@ public class Dispositivo {
 	private String nombre;
 	private TipoDispositivo tipoDispositivo;
 	private double kwPorHora;
+	private AdaptadorDispositivoSimplex restriccionesSimplex;
 	
-	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo, double kwPorHora) {
+	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo, double kwPorHora, AdaptadorDispositivoSimplex restriccionesSimplex) {
 		this.nombre = nombre;
 		this.tipoDispositivo = tipoDispositivo;
 		this.kwPorHora = kwPorHora;
+		this.restriccionesSimplex = restriccionesSimplex; 
 	}
 	
 	public Dispositivo() {} /* Es para el JSON */
 	
 	public String getNombre() {
 		return nombre;
+	}
+	
+	public AdaptadorDispositivoSimplex getRestriccionesSimplex() {
+		return restriccionesSimplex;
+	}
+	
+	public double getRestriccionMinima() {
+		return restriccionesSimplex.usoMensualMinimo;
+	}
+	
+	public double getRestriccionMaxima() {
+		return restriccionesSimplex.usoMensualMaximo;
 	}
 	
 	public TipoDispositivo getTipoDispositivo() {

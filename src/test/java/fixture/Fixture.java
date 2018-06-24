@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import categoria.Categoria;
 import cliente.Cliente;
 import cliente.TipoDocumento;
+import dispositivo.AdaptadorDispositivoSimplex;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 import dispositivo.gadgets.actuador.Actuador;
@@ -48,15 +49,15 @@ public class Fixture {
 		  mockTelevisorSmartConcreto = Mockito.mock(DispositivoConcreto.class);
 		  mockCandelabroConcreto = Mockito.mock(DispositivoConcreto.class);
 				
-		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(), 9);
-		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(), 67.5);	  
-		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(), 402.0);
-		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(), 170.0);
-		  dvd = new Dispositivo("DVD", new DispositivoEstandar(), 300.77);
-		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(), 600.05);  
-		  pc = new Dispositivo("PC", new DispositivoInteligente(mockPcConcreta), 100);
-		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(mockAireConcreto), 120);
-		  televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockTelevisorSmartConcreto), 90);
+		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(), 9, new AdaptadorDispositivoSimplex(90, 360));
+		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(), 67.5, new AdaptadorDispositivoSimplex(90, 360));	  
+		  microondas = new Dispositivo("Microondas", new DispositivoEstandar(), 402.0, new AdaptadorDispositivoSimplex(90, 360));
+		  equipoMusica = new Dispositivo ("Equipo de musica", new DispositivoEstandar(), 170.0, new AdaptadorDispositivoSimplex(90, 360));
+		  dvd = new Dispositivo("DVD", new DispositivoEstandar(), 300.77, new AdaptadorDispositivoSimplex(90, 360));
+		  play4 = new Dispositivo("Play station 4", new DispositivoEstandar(), 600.05, new AdaptadorDispositivoSimplex(90, 360));  
+		  pc = new Dispositivo("PC", new DispositivoInteligente(mockPcConcreta), 100, new AdaptadorDispositivoSimplex(90, 360));
+		  aireAcondicionado = new Dispositivo("Aire acondicionado", new DispositivoInteligente(mockAireConcreto), 120, new AdaptadorDispositivoSimplex(90, 360));
+		  televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockTelevisorSmartConcreto), 90, new AdaptadorDispositivoSimplex(90, 360));
 		  
 		  //TODO revisar si se puede sacar esto, ya esta arriba!
 		  dispositivos = new ArrayList<Dispositivo>();	

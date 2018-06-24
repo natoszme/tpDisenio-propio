@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.math3.optim.linear.SimplexSolver;
+import org.apache.commons.math3.optim.PointValuePair;
 
 import categoria.Categoria;
 import dispositivo.Dispositivo;
@@ -22,6 +22,7 @@ public class Cliente {
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
+	AdaptadorSimplexCliente adaptadorSimplex = new AdaptadorSimplexCliente(this);
 	
 	public Cliente() { /*Es para el Json*/ }
 	
@@ -137,4 +138,25 @@ public class Cliente {
 		return dispositivos.size();
 	}
 	
+	public double[] getTodosLosConsumos() {
+		
+		double[] listaDeConsumos = new double[(int) this.cantidadDispositivos()];
+		
+		int posicion = 0;
+		
+		for(Dispositivo dispositivo : dispositivos) {
+			
+			listaDeConsumos[posicion] = dispositivo.getKwPorHora();
+			posicion++;
+		}
+		
+		return listaDeConsumos;
+	}
+	public void resolucionSimplex() {
+		
+		PointValuePair resultado = adaptadorSimplex.getResocionSimplex();
+		/*TODO hay que ver bien que hacer con el resultado, si se muestra o que onda
+		 *Haciendo resultado.getPoint() devuelve un double[] con los resultados de todos los Xi
+		 */
+	}
 }
