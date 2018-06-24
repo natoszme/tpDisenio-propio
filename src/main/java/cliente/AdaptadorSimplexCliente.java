@@ -41,25 +41,41 @@ public class AdaptadorSimplexCliente {
 		List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();
 		int posicion = 0;
 		
-		restricciones.add(new LinearConstraint(cliente.getTodosLosConsumos(), Relationship.LEQ, 612));
+		restricciones.add(new LinearConstraint(this.getTodosLosConsumos(), Relationship.LEQ, 612));
 		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
 			
-			restricciones.add(	new LinearConstraint(	this.getCoeficientesSimples(posicion), 
-														Relationship.LEQ, 
-														dispositivo.getRestriccionMaxima()
-													)
-							);
-			
-			restricciones.add(	new LinearConstraint(	this.getCoeficientesSimples(posicion), 
-														Relationship.GEQ, 
-														dispositivo.getRestriccionMinima()
-													)
-							);
+			restricciones.add(this.getRestriccionLineal(posicion, Relationship.LEQ, dispositivo.getRestriccionMaxima()));
+			restricciones.add(this.getRestriccionLineal(posicion, Relationship.GEQ, dispositivo.getRestriccionMinima()));
 			
 			posicion++;
 		}
 			
 		return restricciones;
+	}
+	
+	public LinearConstraint getRestriccionLineal(int posicion, Relationship relacion, double restriccion) {		
+		return new LinearConstraint(
+				this.getCoeficientesSimples(posicion), 
+				relacion, 
+				restriccion
+		);		
+	}
+	
+	public double[] getTodosLosConsumos() {
+		
+		double[] listaDeConsumos = new double[(int) cliente.cantidadDispositivos()];
+		
+		int posicion = 0;
+		
+		for(Dispositivo dispositivo : cliente.getDispositivos()) {
+			
+			listaDeConsumos[posicion] = dispositivo.getKwPorHora();
+			posicion++;
+		}
+		
+		// TODO return cliente.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora()).collect(Collectors.toList());
+		
+		return listaDeConsumos;		
 	}
 	
 	public double[] getCoeficientesSimples(int posicionValida) { 

@@ -138,20 +138,6 @@ public class Cliente {
 		return dispositivos.size();
 	}
 	
-	public double[] getTodosLosConsumos() {
-		
-		double[] listaDeConsumos = new double[(int) this.cantidadDispositivos()];
-		
-		int posicion = 0;
-		
-		for(Dispositivo dispositivo : dispositivos) {
-			
-			listaDeConsumos[posicion] = dispositivo.getKwPorHora();
-			posicion++;
-		}
-		
-		return listaDeConsumos;
-	}
 	public void resolucionSimplex() {
 		
 		PointValuePair resultado = adaptadorSimplex.getResocionSimplex();
