@@ -61,21 +61,8 @@ public class AdaptadorSimplexCliente {
 		);		
 	}
 	
-	public double[] getTodosLosConsumos() {
-		
-		double[] listaDeConsumos = new double[(int) cliente.cantidadDispositivos()];
-		
-		int posicion = 0;
-		
-		for(Dispositivo dispositivo : cliente.getDispositivos()) {
-			
-			listaDeConsumos[posicion] = dispositivo.getKwPorHora();
-			posicion++;
-		}
-		
-		// TODO return cliente.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora()).collect(Collectors.toList());
-		
-		return listaDeConsumos;		
+	public double[] getTodosLosConsumos() {		
+		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora()).toArray();
 	}
 	
 	public double[] getCoeficientesSimples(int posicionValida) { 
@@ -96,17 +83,12 @@ public class AdaptadorSimplexCliente {
 		return listaDeCoeficientes;
 	}
 	
-	public double[] getCoeficientesFuncionEconomica() {
-		
-		double[] listaDeCoeficientes = new double[(int) this.cliente.cantidadDispositivos()];
-		int posicion = 0;
-		
-		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
-			listaDeCoeficientes[posicion] = 1;
-			posicion++;
-		}
-		
-		return listaDeCoeficientes;
+	public double[] getCoeficientesFuncionEconomica() {		
+		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> 1).toArray();
 	}
 	
+	// TODO recibir funciones por parametro, para no repetir logica en getTodosLosConsumos y getCoeficientesFuncionEconomica
+	public double[] getDoubleArray(double fn) {
+		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> fn).toArray();
+	}	
 }
