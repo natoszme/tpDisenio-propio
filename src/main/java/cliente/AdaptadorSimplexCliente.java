@@ -17,23 +17,22 @@ import dispositivo.Dispositivo;
 public class AdaptadorSimplexCliente {
 	
 	Cliente cliente;
+	final double MAX_CONSUMO = 612;
 	
 	public AdaptadorSimplexCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
-	public PointValuePair getResocionSimplex () {
+	public PointValuePair getResolucionSimplex() {
 		
-		SimplexSolver simplexSolver = new SimplexSolver();
-
+		SimplexSolver simplexSolver = new SimplexSolver();		
 		LinearObjectiveFunction funcionEconomica = new LinearObjectiveFunction(this.getCoeficientesFuncionEconomica(), 0);
 	 	
-		PointValuePair resultado = 	simplexSolver.optimize(	funcionEconomica, 
-															new LinearConstraintSet(this.generarRestricciones()), 
-															GoalType.MAXIMIZE, 
-															new NonNegativeConstraint(true)
-															);
-		return resultado;
+		return simplexSolver.optimize(	funcionEconomica, 
+										new LinearConstraintSet(this.generarRestricciones()), 
+										GoalType.MAXIMIZE, 
+										new NonNegativeConstraint(true)
+							 		 );
 	}
 	
 	private List<LinearConstraint> generarRestricciones() {
@@ -41,7 +40,7 @@ public class AdaptadorSimplexCliente {
 		List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();
 		int posicion = 0;
 		
-		restricciones.add(new LinearConstraint(this.getTodosLosConsumos(), Relationship.LEQ, 612));
+		restricciones.add(new LinearConstraint(this.getTodosLosConsumos(), Relationship.LEQ, MAX_CONSUMO));
 		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
 			
 			restricciones.add(this.getRestriccionLineal(posicion, Relationship.LEQ, dispositivo.getRestriccionMaxima()));
@@ -61,7 +60,7 @@ public class AdaptadorSimplexCliente {
 		);		
 	}
 	
-	public double[] getTodosLosConsumos() {		
+	public double[] getTodosLosConsumos() {
 		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora()).toArray();
 	}
 	
@@ -71,12 +70,7 @@ public class AdaptadorSimplexCliente {
 		int posicion = 0;
 		
 		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
-			
-			if(posicion == posicionValida)
-				listaDeCoeficientes[posicion] = 1;
-			else
-				listaDeCoeficientes[posicion] = 0;
-			
+			listaDeCoeficientes[posicion] = (posicion == posicionValida ? 1 : 0);			
 			posicion++;
 		}
 		

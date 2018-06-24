@@ -26,7 +26,7 @@ public class Fixture {
 	protected Dispositivo candelabro, televisor, microondas, equipoMusica, dvd, play4, televisorSmart, pc, aireAcondicionado;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
 	protected Cliente alejandro, lio, pepe, nico;
-	protected DispositivoConcreto mockPcConcreta, mockAireConcreto, mockTelevisorSmartConcreto, mockCandelabroConcreto;
+	protected DispositivoConcreto mockPcConcreta, mockAireConcreto, mockTelevisorSmartConcreto, mockCandelabroConcreto, mockLampara, mockLavarropas, mockMicroondas, mockPlancha, mockVentilador;
 	protected Regla unaReglaEstricta, unaReglaPermisiva;
 	protected Actuador actuadorQueApaga, actuadorQueEnciende;
 	protected CondicionSobreSensor mockCondicionSobreSensorQueCumple, mockCondicionSobreSensorQueNoCumple;
@@ -48,6 +48,12 @@ public class Fixture {
 		  mockAireConcreto = Mockito.mock(DispositivoConcreto.class);
 		  mockTelevisorSmartConcreto = Mockito.mock(DispositivoConcreto.class);
 		  mockCandelabroConcreto = Mockito.mock(DispositivoConcreto.class);
+		  
+		  mockLampara = Mockito.mock(DispositivoConcreto.class);
+		  mockLavarropas = Mockito.mock(DispositivoConcreto.class);
+		  mockMicroondas = Mockito.mock(DispositivoConcreto.class);
+		  mockPlancha = Mockito.mock(DispositivoConcreto.class);
+		  mockVentilador = Mockito.mock(DispositivoConcreto.class);
 				
 		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(), 9, new AdaptadorDispositivoSimplex(90, 360));
 		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(), 67.5, new AdaptadorDispositivoSimplex(90, 360));	  

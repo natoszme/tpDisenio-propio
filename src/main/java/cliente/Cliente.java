@@ -138,11 +138,12 @@ public class Cliente {
 		return dispositivos.size();
 	}
 	
-	public void resolucionSimplex() {
+	public PointValuePair resolucionSimplex() {
 		
-		PointValuePair resultado = adaptadorSimplex.getResocionSimplex();
-		/*TODO hay que ver bien que hacer con el resultado, si se muestra o que onda
+		PointValuePair resultado = adaptadorSimplex.getResolucionSimplex();
+		return resultado;
+		/*TODO hay que ver bien que hjaacer con el resultado, si se muestra o que onda
 		 *Haciendo resultado.getPoint() devuelve un double[] con los resultados de todos los Xi
-		 */
+		 */		 
 	}
 }

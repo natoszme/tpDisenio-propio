@@ -1,4 +1,4 @@
-package dispositivo.dispositivosBase.televisor;
+package dispositivo.dispositivosBase.ventilador;
 
 import dispositivo.AdaptadorDispositivoSimplex; 
 import dispositivo.Dispositivo;
