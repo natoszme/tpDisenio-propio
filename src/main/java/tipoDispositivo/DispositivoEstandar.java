@@ -58,7 +58,7 @@ public class DispositivoEstandar implements TipoDispositivo{
 	}
 
 	@Override
-	public double consumoACtual() {
+	public double consumoActual() {
 		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 } 

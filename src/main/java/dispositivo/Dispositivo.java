@@ -104,6 +104,6 @@ public class Dispositivo {
 	}
 	
 	public double consumoActual() {
-		return tipoDispositivo.consumoACtual();
+		return tipoDispositivo.consumoActual();
 	}
 }

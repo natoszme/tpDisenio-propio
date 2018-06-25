@@ -9,8 +9,18 @@ import repositorio.RepoTransformadores;
 public class Transformador {
 	private Point ubicacion;
 	
+	public Transformador() { /*es para el Json*/ }
+	
 	public Point ubicacion() {
 		return ubicacion;
+	}
+	
+	public Point getUbicacion() {
+		return ubicacion;
+	}
+	
+	public void setUbicacion(Point ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 	
 	public double consumoActual() {

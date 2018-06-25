@@ -40,7 +40,7 @@ public class DispositivoInteligente implements TipoDispositivo{
 				sum();
 	}
 
-	//ojo que podria calcular demas!
+	// ojo que podria calcular demas!
 	private boolean correspondeAPlazo(LocalDateTime dateTimeAEvaluar, int horasABuscar) {
 		return Duration.between(dateTimeAEvaluar, LocalDateTime.now()).toHours() <= horasABuscar;
 	}
@@ -88,7 +88,7 @@ public class DispositivoInteligente implements TipoDispositivo{
 	    return Duration.between(primerDiaDelMes, hoy).toHours();
 	}
 
-	public double consumoACtual() {
+	public double consumoActual() {
 		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 }
