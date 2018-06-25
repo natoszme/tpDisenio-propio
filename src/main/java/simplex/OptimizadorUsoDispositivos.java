@@ -2,6 +2,7 @@ package simplex;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.apache.commons.math3.optim.PointValuePair;
 import org.apache.commons.math3.optim.linear.LinearConstraint;
@@ -17,6 +18,7 @@ import dispositivo.Dispositivo;
 
 public class OptimizadorUsoDispositivos {
 	final double MAX_CONSUMO = 612;
+	final double COEF_FN_OBJETIVO = 1;
 	
 	private Cliente cliente;
 	public OptimizadorUsoDispositivos(Cliente cliente) {
@@ -26,7 +28,7 @@ public class OptimizadorUsoDispositivos {
 	public PointValuePair optimizarUsoDispositivos() {
 		
 		SimplexSolver simplexSolver = new SimplexSolver();		
-		LinearObjectiveFunction funcionEconomica = new LinearObjectiveFunction(this.getCoeficientesFuncionEconomica(), 0);
+		LinearObjectiveFunction funcionEconomica = new LinearObjectiveFunction(this.getCoeficientesFuncionEconomica(), COEF_FN_OBJETIVO);
 	 	
 		return simplexSolver.optimize(	funcionEconomica, 
 										new LinearConstraintSet(this.generarRestriccionesPara()), 
@@ -37,17 +39,13 @@ public class OptimizadorUsoDispositivos {
 	
 	private List<LinearConstraint> generarRestriccionesPara() {
 		
-		List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();
-		int posicion = 0;
-		
+		List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();		
 		restricciones.add(new LinearConstraint(this.getTodosLosConsumosDe(), Relationship.LEQ, MAX_CONSUMO));
-		for(Dispositivo dispositivo : cliente.getDispositivos()) {
-			
-			restricciones.add(this.getRestriccionLineal(posicion, Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
-			restricciones.add(this.getRestriccionLineal(posicion, Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
-			
-			posicion++;
-		}
+		
+		cliente.getDispositivos().stream().forEach(dispositivo -> {
+			restricciones.add(this.getRestriccionLineal(restricciones.size() - 1, Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
+			restricciones.add(this.getRestriccionLineal(restricciones.size() - 1, Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
+		});
 			
 		return restricciones;
 	}
@@ -64,28 +62,10 @@ public class OptimizadorUsoDispositivos {
 		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora()).toArray();
 	}
 	
-	public double[] getCoeficientesSimples(int posicionValida) { 
-		
-		//TODO habria que terminar de adaptarlo
-		/*List<Double> listaDeCoeficientes = new ArrayList<>();
-		cliente.getDispositivos().forEach(dispositivo -> setearCoeficientes(listaDeCoeficientes, posicionValida));
-		return listaDeCoeficientes.toArray();*/
-		
-		double[] listaDeCoeficientes = new double[(int) this.cliente.cantidadDispositivos()];
-		int posicion = 0;
-		
-		for(Dispositivo dispositivo : this.cliente.getDispositivos()) {
-			listaDeCoeficientes[posicion] = (posicion == posicionValida ? 1 : 0);			
-			posicion++;
-		}
-		
-		return listaDeCoeficientes;
+	public double[] getCoeficientesSimples(int posicionValida) {
+		int cantDispositivos = (int) this.cliente.cantidadDispositivos();		
+		return (double[]) IntStream.range(0, cantDispositivos).mapToDouble(i -> (i == posicionValida ? 1 : 0)).toArray();
 	}
-	
-	//se usaria para lo de arriba
-	/*private void setearCoeficientes(List<Double> listaDeCoeficientes, int posicionValida) {
-		listaDeCoeficientes.add((double) (listaDeCoeficientes.size() - 1 == posicionValida ? 1 : 0));
-	}*/
 	
 	public double[] getCoeficientesFuncionEconomica() {		
 		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> 1).toArray();

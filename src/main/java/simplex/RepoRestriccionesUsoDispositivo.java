@@ -3,9 +3,11 @@ package simplex;
 import java.util.ArrayList;
 import java.util.List;
 
+import categoria.Categoria;
 import dispositivo.Dispositivo;
+import repositorio.Repo;
 
-public class RepoRestriccionesUsoDispositivo {
+public class RepoRestriccionesUsoDispositivo extends Repo<RestriccionUsoDispositivo> {
 	
 	private static RepoRestriccionesUsoDispositivo instancia;
 	private List<RestriccionUsoDispositivo> restricciones = new ArrayList<>();

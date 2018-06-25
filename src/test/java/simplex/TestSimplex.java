@@ -18,14 +18,19 @@ public class TestSimplex extends Fixture {
 	
 	@Before
 	public void before() {
-		lio.agregarDispositivo(new ComputadoraDeEscritorio(mockPcConcreta));
-		lio.agregarDispositivo(new Aire2200Frigorias(mockAireConcreto));
+		Aire2200Frigorias aire = new Aire2200Frigorias(mockAireConcreto);
+		lio.agregarDispositivo(aire);
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire, 90, 360));
+		
+		//System.out.println(RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(aire));
+		
+		/*lio.agregarDispositivo(new ComputadoraDeEscritorio(mockPcConcreta));
 		lio.agregarDispositivo(new TelevisorLed40(mockTelevisorSmartConcreto));
 		lio.agregarDispositivo(new LamparaDe20W(mockLampara));
 		lio.agregarDispositivo(new LavarropasAutomatico5kg(mockLavarropas));
 		lio.agregarDispositivo(new PlanchaAVapor(mockPlancha));
 		lio.agregarDispositivo(new VentiladorDeTecho(mockVentilador));
-		lio.agregarDispositivo(new MicroondasConvencional(mockMicroondas));
+		lio.agregarDispositivo(new MicroondasConvencional(mockMicroondas));*/
 	}
 
 	@Test

@@ -21,7 +21,7 @@ public class TestImportadorTransformador {
 	}
 
 	@Test
-	public void laPrimerUbicacionEs1_1() {
+	public void laPrimerUbicacionEs1_1() {		
 		Assert.assertEquals(new Point (1, 1), transformadores.get(0).ubicacion());
 	}
 }

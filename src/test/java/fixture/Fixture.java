@@ -53,7 +53,7 @@ public class Fixture {
 		  mockLavarropas = Mockito.mock(DispositivoConcreto.class);
 		  mockMicroondas = Mockito.mock(DispositivoConcreto.class);
 		  mockPlancha = Mockito.mock(DispositivoConcreto.class);
-		  mockVentilador = Mockito.mock(DispositivoConcreto.class);
+		  mockVentilador = Mockito.mock(DispositivoConcreto.class);		  
 				
 		  candelabro = new Dispositivo("Candelabro", new DispositivoEstandar(), 9);
 		  televisor = new Dispositivo("Televisor", new DispositivoEstandar(), 67.5);	  

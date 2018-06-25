@@ -13,7 +13,7 @@ public class ImportadorTransformadores extends Importador<Transformador>{
 		}
 		return instancia;
 	}
-	
+
 	private ImportadorTransformadores(String rutaArchivo, RepoTransformadores repo, Class<Transformador> entidad) {
 		super(rutaArchivo, repo, entidad);
 	}

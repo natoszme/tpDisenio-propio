@@ -1,5 +1,20 @@
 [
 	{
-    	"ubicacion": "(1, 1)",
-	}	
+    	"ubicacion": {
+    		"x": 1,
+    		"y": 1
+    	}
+	},
+	{
+    	"ubicacion": {
+    		"x": 2,
+    		"y": 1
+    	}
+	},
+	{
+    	"ubicacion": {
+    		"x": 1,
+    		"y": 2
+    	}
+	}
 ]
