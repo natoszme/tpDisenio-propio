@@ -21,7 +21,7 @@ public class TestImportadorCliente {
 	@BeforeClass
 	public static void fixture() {
 		ImportadorClientes.getInstance().importarJSON();
-		clientes = RepoClientes.getInstance().obtenerTodos();
+		clientes = RepoClientes.getInstance().obtenerTodas();
 	}
 
 	@Test

@@ -1,4 +1,5 @@
 package cliente;
+import java.awt.Point;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Cliente {
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
 	AdaptadorSimplexCliente adaptadorSimplex = new AdaptadorSimplexCliente(this);
+	private Point ubicacion;
 	
 	public Cliente() { /*Es para el Json*/ }
 	
@@ -145,5 +147,16 @@ public class Cliente {
 		/*TODO hay que ver bien que hjaacer con el resultado, si se muestra o que onda
 		 *Haciendo resultado.getPoint() devuelve un double[] con los resultados de todos los Xi
 		 */		 
+	}
+
+	public double dameConsumoActual() {
+		return dispositivos.stream().
+				filter(Dispositivo::esInteligente).
+				mapToDouble(Dispositivo::consumoActual).
+				sum();
+	}
+
+	public Point getUbicacion() {
+		return ubicacion;
 	}
 }

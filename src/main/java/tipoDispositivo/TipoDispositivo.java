@@ -30,4 +30,5 @@ public interface TipoDispositivo {
 	public void ponerEnAhorroDeEnergia();
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo);
 	public double horasPrendidoEnMesActual();
+	public double consumoACtual();
 }

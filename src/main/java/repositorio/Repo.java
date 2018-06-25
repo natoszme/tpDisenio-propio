@@ -5,10 +5,6 @@ import java.util.List;
 
 public abstract class Repo<Entidad> {
 	protected List<Entidad> entidades = new ArrayList<>();
-	
-	public List<Entidad> obtenerTodos() {
-		return entidades;
-	}
 
 	public void agregarEntidad(Entidad entidad) {
 		entidades.add(entidad);

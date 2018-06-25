@@ -81,8 +81,14 @@ public class DispositivoInteligente implements TipoDispositivo{
 		return dispositivoConcreto.horasEncendidoEn(horasDeMesActual());
 	}
 
-	private double horasDeMesActual() {
-		//TODO implementar!
-		return 0;
+	private long horasDeMesActual() {
+		LocalDateTime hoy = LocalDateTime.now();
+		LocalDateTime primerDiaDelMes = LocalDateTime.of(hoy.getYear(), hoy.getMonth(), 1, 0, 0);
+
+	    return Duration.between(primerDiaDelMes, hoy).toHours();
+	}
+
+	public double consumoACtual() {
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 }

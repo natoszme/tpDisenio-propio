@@ -56,4 +56,9 @@ public class DispositivoEstandar implements TipoDispositivo{
 	public double horasPrendidoEnMesActual() {
 		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
+
+	@Override
+	public double consumoACtual() {
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
+	}
 } 

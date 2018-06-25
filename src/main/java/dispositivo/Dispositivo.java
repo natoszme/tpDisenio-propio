@@ -95,12 +95,15 @@ public class Dispositivo {
 		tipoDispositivo.guardarConsumoDeFecha(fecha, consumo);
 	}
 	
-	//TODO es posible que haya que retocar este metodo, depende de como se traten a los conjuntos de dispositivos (ej: todas las tv's)
-	public boolean equals(Dispositivo otroDispositivo) {
+	/*public boolean equals(Dispositivo otroDispositivo) {
 		return this.nombre == otroDispositivo.nombre;
-	}
+	}*/
 
 	public double horasPrendidoEnMesActual() {
 		return tipoDispositivo.horasPrendidoEnMesActual();
+	}
+	
+	public double consumoActual() {
+		return tipoDispositivo.consumoACtual();
 	}
 }
