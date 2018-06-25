@@ -11,6 +11,7 @@ import categoria.Categoria;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
+import simplex.OptimizadorUsoDispositivos;
 
 public class Cliente {
 	String nombre;
@@ -23,7 +24,6 @@ public class Cliente {
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
-	AdaptadorSimplexCliente adaptadorSimplex = new AdaptadorSimplexCliente(this);
 	private Point ubicacion;
 	
 	public Cliente() { /*Es para el Json*/ }
@@ -91,6 +91,7 @@ public class Cliente {
 		puntos += 10;		
 	}
 
+	//TODO refactor deberia llamarse tieneDispositivo
 	public void seEncuentraEntreLosDispostivos(Dispositivo dispositivo) {
 		if (!dispositivos.stream().anyMatch(dispositiv -> dispositiv == dispositivo)) {
 			throw new NoPuedeAfectarAUnDispositivoQueNoLePertenece();
@@ -138,15 +139,6 @@ public class Cliente {
 	
 	public int getCantidadDispositivos(){
 		return dispositivos.size();
-	}
-	
-	public PointValuePair resolucionSimplex() {
-		
-		PointValuePair resultado = adaptadorSimplex.getResolucionSimplex();
-		return resultado;
-		/*TODO hay que ver bien que hjaacer con el resultado, si se muestra o que onda
-		 *Haciendo resultado.getPoint() devuelve un double[] con los resultados de todos los Xi
-		 */		 
 	}
 
 	public double dameConsumoActual() {

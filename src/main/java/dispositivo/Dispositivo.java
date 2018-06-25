@@ -1,5 +1,5 @@
 package dispositivo;
-import java.time.LocalDateTime; 
+import java.time.LocalDateTime;
 
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
@@ -8,31 +8,17 @@ public class Dispositivo {
 	private String nombre;
 	private TipoDispositivo tipoDispositivo;
 	private double kwPorHora;
-	private AdaptadorDispositivoSimplex restriccionesSimplex;
 	
-	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo, double kwPorHora, AdaptadorDispositivoSimplex restriccionesSimplex) {
+	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo, double kwPorHora) {
 		this.nombre = nombre;
 		this.tipoDispositivo = tipoDispositivo;
 		this.kwPorHora = kwPorHora;
-		this.restriccionesSimplex = restriccionesSimplex; 
 	}
 	
 	public Dispositivo() {} /* Es para el JSON */
 	
 	public String getNombre() {
 		return nombre;
-	}
-	
-	public AdaptadorDispositivoSimplex getRestriccionesSimplex() {
-		return restriccionesSimplex;
-	}
-	
-	public double getRestriccionMinima() {
-		return restriccionesSimplex.usoMensualMinimo;
-	}
-	
-	public double getRestriccionMaxima() {
-		return restriccionesSimplex.usoMensualMaximo;
 	}
 	
 	public TipoDispositivo getTipoDispositivo() {
@@ -94,10 +80,6 @@ public class Dispositivo {
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo) {
 		tipoDispositivo.guardarConsumoDeFecha(fecha, consumo);
 	}
-	
-	/*public boolean equals(Dispositivo otroDispositivo) {
-		return this.nombre == otroDispositivo.nombre;
-	}*/
 
 	public double horasPrendidoEnMesActual() {
 		return tipoDispositivo.horasPrendidoEnMesActual();
@@ -105,5 +87,9 @@ public class Dispositivo {
 	
 	public double consumoActual() {
 		return tipoDispositivo.consumoActual();
+	}
+	
+	public boolean equals(Dispositivo otroDispositivo) {
+		return otroDispositivo.getNombre() == nombre;
 	}
 }

@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dispositivo.dispositivosBase.aire.Aire2200Frigorias;
-import dispositivo.dispositivosBase.aire.Aire3500Frigorias;
 import dispositivo.dispositivosBase.computadora.ComputadoraDeEscritorio;
 import dispositivo.dispositivosBase.lampara.LamparaDe20W;
 import dispositivo.dispositivosBase.lavarropas.LavarropasAutomatico5kg;
@@ -31,7 +30,9 @@ public class TestSimplex extends Fixture {
 
 	@Test
 	public void simplex() {
-		for (double elem : lio.resolucionSimplex().getPoint()) {        	
+		//TODO reveer si nos conviene usar un singleton para no instanciar todo el tiempo
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		for (double elem : optimizadorDeLio.optimizarUsoDispositivos().getPoint()) {        	
         	System.out.println(elem);        	
         }
 		assertTrue(true);

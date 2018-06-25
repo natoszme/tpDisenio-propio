@@ -10,7 +10,6 @@ import org.junit.Test;
 import fixture.Fixture;
 import tipoDispositivo.DispositivoInteligente;
 import categoria.Categoria;
-import dispositivo.AdaptadorDispositivoSimplex;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 
@@ -79,7 +78,7 @@ public class TestCliente extends Fixture {
 	@Test
 	public void seAgregaTVSmartAAlejandroConDispositivoConcretoQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {
 		DispositivoConcreto mockDispositivoeRetorna180 = mock(DispositivoConcreto.class);
-		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockDispositivoeRetorna180), 90, new AdaptadorDispositivoSimplex(90, 360));
+		televisorSmart = new Dispositivo("Televisor Smart", new DispositivoInteligente(mockDispositivoeRetorna180), 90);
 		when(mockDispositivoeRetorna180.consumoDuranteLasUltimas(2)).thenReturn(180.0);
 		alejandro.agregarDispositivo(televisorSmart);
 		alejandro.recategorizarSegunUso(2);
