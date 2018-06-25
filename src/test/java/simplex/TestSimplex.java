@@ -5,13 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dispositivo.dispositivosBase.aire.Aire2200Frigorias;
-import dispositivo.dispositivosBase.computadora.ComputadoraDeEscritorio;
-import dispositivo.dispositivosBase.lampara.LamparaDe20W;
-import dispositivo.dispositivosBase.lavarropas.LavarropasAutomatico5kg;
-import dispositivo.dispositivosBase.microondas.MicroondasConvencional;
-import dispositivo.dispositivosBase.plancha.PlanchaAVapor;
-import dispositivo.dispositivosBase.televisor.TelevisorLed40;
-import dispositivo.dispositivosBase.ventilador.VentiladorDeTecho;
 import fixture.Fixture;
 
 public class TestSimplex extends Fixture {
@@ -40,6 +33,5 @@ public class TestSimplex extends Fixture {
 		for (double elem : optimizadorDeLio.optimizarUsoDispositivos().getPoint()) {        	
         	System.out.println(elem);        	
         }
-		assertTrue(true);
 	}
 }

@@ -1,17 +1,10 @@
 package simplex;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import categoria.Categoria;
 import dispositivo.Dispositivo;
 import repositorio.Repo;
 
 public class RepoRestriccionesUsoDispositivo extends Repo<RestriccionUsoDispositivo> {
 	
-	private static RepoRestriccionesUsoDispositivo instancia;
-	private List<RestriccionUsoDispositivo> restricciones = new ArrayList<>();
-	
+	private static RepoRestriccionesUsoDispositivo instancia;	
 	
 	public static RepoRestriccionesUsoDispositivo getInstance(){
 		if (instancia == null) {
@@ -26,7 +19,7 @@ public class RepoRestriccionesUsoDispositivo extends Repo<RestriccionUsoDisposit
 	}*/
 	
 	private RestriccionUsoDispositivo obtenerRestriccionDe(Dispositivo dispositivo) {
-		RestriccionUsoDispositivo restriccion = restricciones.stream().filter(unaRestriccion -> unaRestriccion.esDe(dispositivo)).
+		RestriccionUsoDispositivo restriccion = entidades.stream().filter(unaRestriccion -> unaRestriccion.esDe(dispositivo)).
 				findFirst().orElseThrow(() -> new NoExisteRestriccionPara(dispositivo));
 		return restriccion;
 	}

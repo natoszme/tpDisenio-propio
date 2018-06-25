@@ -2,7 +2,7 @@ package simplex;
 
 import dispositivo.Dispositivo;
 
-public class RestriccionUsoDispositivo {	
+public class RestriccionUsoDispositivo {
 	private Dispositivo dispositivo;
 	double usoMensualMinimo;
 	double usoMensualMaximo;
