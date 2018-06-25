@@ -2,6 +2,7 @@ package simplex;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 import org.apache.commons.math3.optim.PointValuePair;
@@ -59,7 +60,7 @@ public class OptimizadorUsoDispositivos {
 	}
 	
 	public double[] getTodosLosConsumosDe() {
-		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora()).toArray();
+		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> {return dispositivo.getKwPorHora();});
 	}
 	
 	public double[] getCoeficientesSimples(int posicionValida) {
@@ -68,11 +69,11 @@ public class OptimizadorUsoDispositivos {
 	}
 	
 	public double[] getCoeficientesFuncionEconomica() {		
-		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> 1).toArray();
+		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> {return 1.0;});
 	}
 	
 	// TODO recibir funciones por parametro, para no repetir logica en getTodosLosConsumos y getCoeficientesFuncionEconomica
-	public double[] getDoubleArray(double fn) {
-		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> fn).toArray();
+	public double[] obtenerArrayDeDispositivosTransformadoCon(Function<Dispositivo, Double> lambda) {
+		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> lambda.apply(dispositivo)).toArray();
 	}	
 }
