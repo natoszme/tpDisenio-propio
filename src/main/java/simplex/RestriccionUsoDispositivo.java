@@ -9,7 +9,7 @@ public class RestriccionUsoDispositivo {
 	
 	public RestriccionUsoDispositivo(Dispositivo dispositivo, double usoMensualMinimo, double usoMensualMaximo) {
 		this.dispositivo = dispositivo;
-		this.usoMensualMinimo = usoMensualMaximo;
+		this.usoMensualMinimo = usoMensualMinimo;
 		this.usoMensualMaximo = usoMensualMaximo;
 	}
 
