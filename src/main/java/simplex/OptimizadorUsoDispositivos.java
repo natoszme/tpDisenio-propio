@@ -19,9 +19,10 @@ import dispositivo.Dispositivo;
 
 public class OptimizadorUsoDispositivos {
 	final double MAX_CONSUMO = 612;
-	final double COEF_FN_OBJETIVO = 1;
+	final double COEF_FN_OBJETIVO = 0;
 	
 	private Cliente cliente;
+	private int posicion = 0;
 	public OptimizadorUsoDispositivos(Cliente cliente) {
 		this.cliente = cliente;
 	}	
@@ -30,9 +31,10 @@ public class OptimizadorUsoDispositivos {
 		
 		SimplexSolver simplexSolver = new SimplexSolver();		
 		LinearObjectiveFunction funcionEconomica = new LinearObjectiveFunction(this.getCoeficientesFuncionEconomica(), COEF_FN_OBJETIVO);
-	 	
+		LinearConstraintSet restricciones = new LinearConstraintSet(this.generarRestriccionesPara());
+		
 		return simplexSolver.optimize(	funcionEconomica, 
-										new LinearConstraintSet(this.generarRestriccionesPara()), 
+										restricciones, 
 										GoalType.MAXIMIZE, 
 										new NonNegativeConstraint(true)
 							 		 );
@@ -44,13 +46,14 @@ public class OptimizadorUsoDispositivos {
 		restricciones.add(new LinearConstraint(this.getTodosLosConsumosDe(), Relationship.LEQ, MAX_CONSUMO));
 		
 		cliente.getDispositivos().stream().forEach(dispositivo -> {
-			restricciones.add(this.getRestriccionLineal(restricciones.size() - 1, Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
-			restricciones.add(this.getRestriccionLineal(restricciones.size() - 1, Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
+			restricciones.add(this.getRestriccionLineal(this.posicion, Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
+			restricciones.add(this.getRestriccionLineal(this.posicion, Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
+			this.posicion++;
 		});
-			
+
 		return restricciones;
 	}
-	
+
 	public LinearConstraint getRestriccionLineal(int posicion, Relationship relacion, double restriccion) {		
 		return new LinearConstraint(
 				this.getCoeficientesSimples(posicion), 
