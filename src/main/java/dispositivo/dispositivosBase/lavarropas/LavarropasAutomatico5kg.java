@@ -2,7 +2,6 @@ package dispositivo.dispositivosBase.lavarropas;
 
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
-import simplex.RestriccionUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 
 public class LavarropasAutomatico5kg extends Dispositivo {

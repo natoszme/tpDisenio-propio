@@ -18,11 +18,12 @@ import cliente.Cliente;
 import dispositivo.Dispositivo;
 
 public class OptimizadorUsoDispositivos {
-	final double MAX_CONSUMO = 612;
-	final double COEF_FN_OBJETIVO = 0;
+	private final double MAX_CONSUMO = 612;
+	private final double COEF_FN_OBJETIVO = 0;
 	
 	private Cliente cliente;
 	private int posicion = 0;
+	
 	public OptimizadorUsoDispositivos(Cliente cliente) {
 		this.cliente = cliente;
 	}	
@@ -63,7 +64,7 @@ public class OptimizadorUsoDispositivos {
 	}
 	
 	public double[] getTodosLosConsumosDe() {
-		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> {return dispositivo.getKwPorHora();});
+		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> { return dispositivo.getKwPorHora(); });
 	}
 	
 	public double[] getCoeficientesSimples(int posicionValida) {
@@ -72,11 +73,10 @@ public class OptimizadorUsoDispositivos {
 	}
 	
 	public double[] getCoeficientesFuncionEconomica() {		
-		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> {return 1.0;});
-	}
-	
-	// TODO recibir funciones por parametro, para no repetir logica en getTodosLosConsumos y getCoeficientesFuncionEconomica
-	public double[] obtenerArrayDeDispositivosTransformadoCon(Function<Dispositivo, Double> lambda) {
+		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> { return 1.0; });
+	}	
+
+	private double[] obtenerArrayDeDispositivosTransformadoCon(Function<Dispositivo, Double> lambda) {
 		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> lambda.apply(dispositivo)).toArray();
 	}	
 }

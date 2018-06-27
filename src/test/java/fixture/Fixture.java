@@ -18,7 +18,6 @@ import dispositivo.gadgets.regla.Regla;
 import dispositivo.gadgets.regla.ReglaEstricta;
 import dispositivo.gadgets.regla.ReglaPermisiva;
 import repositorio.RepoCategorias;
-import simplex.RestriccionUsoDispositivo;
 import tipoDispositivo.DispositivoEstandar;
 import tipoDispositivo.DispositivoInteligente;
 public class Fixture {

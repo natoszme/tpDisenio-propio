@@ -2,7 +2,6 @@ package dispositivo.dispositivosBase.lampara;
 
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
-import simplex.RestriccionUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 
 public class LamparaDe20W extends Dispositivo {

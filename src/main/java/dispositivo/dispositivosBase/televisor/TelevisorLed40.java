@@ -2,7 +2,6 @@ package dispositivo.dispositivosBase.televisor;
 
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
-import simplex.RestriccionUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 
 public class TelevisorLed40 extends Dispositivo {

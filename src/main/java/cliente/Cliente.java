@@ -4,14 +4,12 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.math3.optim.PointValuePair;
+import java.util.stream.Collectors;
 
 import categoria.Categoria;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
-import simplex.OptimizadorUsoDispositivos;
 
 public class Cliente {
 	String nombre;
@@ -25,10 +23,11 @@ public class Cliente {
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
 	private Point ubicacion;
+	boolean ahorroAutomatico = true;  
 	
 	public Cliente() { /*Es para el Json*/ }
 	
-	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos){
+	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -86,17 +85,17 @@ public class Cliente {
 	}
 	
 	public void convertirAInteligente(Dispositivo dispositivo, DispositivoConcreto dispositivoConcreto) {
-		this.seEncuentraEntreLosDispostivos(dispositivo);
+		this.tieneDispositivo(dispositivo);
 		dispositivo.convertirAInteligente(dispositivoConcreto);
 		puntos += 10;		
 	}
 
-	//TODO refactor deberia llamarse tieneDispositivo
-	public void seEncuentraEntreLosDispostivos(Dispositivo dispositivo) {
+	public void tieneDispositivo(Dispositivo dispositivo) {
 		if (!dispositivos.stream().anyMatch(dispositiv -> dispositiv == dispositivo)) {
 			throw new NoPuedeAfectarAUnDispositivoQueNoLePertenece();
 		}
 	}
+	
 	public Categoria categoria() {
 		return this.categoria;
 	}
@@ -150,5 +149,13 @@ public class Cliente {
 
 	public Point getUbicacion() {
 		return ubicacion;
+	}
+	
+	public void setAhorroAutomatico(boolean ahorroAutomatico) {
+		this.ahorroAutomatico = ahorroAutomatico;
+	}
+	
+	public boolean permiteAhorroAutomatico() {
+		return ahorroAutomatico;
 	}
 }

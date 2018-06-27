@@ -7,7 +7,6 @@ import static org.mockito.Mockito.*;
 import java.time.LocalDateTime;
 
 import fixture.Fixture;
-import simplex.RestriccionUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException;
 import tipoDispositivo.NoSePuedeReConvertirAInteligenteException;

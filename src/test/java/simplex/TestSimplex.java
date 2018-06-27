@@ -1,5 +1,6 @@
 package simplex;
-import static org.junit.Assert.*;
+
+import java.time.LocalDateTime;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import dispositivo.dispositivosBase.computadora.ComputadoraDeEscritorio;
 import dispositivo.dispositivosBase.lavarropas.LavarropasAutomatico5kg;
 import dispositivo.dispositivosBase.microondas.MicroondasConvencional;
 import fixture.Fixture;
+import repositorio.RepoClientes;
 
 public class TestSimplex extends Fixture {
 	
@@ -25,6 +27,10 @@ public class TestSimplex extends Fixture {
 		lio.agregarDispositivo(compu);
 		lio.agregarDispositivo(lavarropas);
 		lio.agregarDispositivo(microondas);
+		
+		aire.encender();
+		aire.guardarConsumoDeFecha(LocalDateTime.now(), 325);
+		
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire, 90, 360));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(compu, 90, 360));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire3500, 90, 360));

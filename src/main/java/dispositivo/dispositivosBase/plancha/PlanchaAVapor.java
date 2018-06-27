@@ -2,7 +2,6 @@ package dispositivo.dispositivosBase.plancha;
 
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
-import simplex.RestriccionUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 
 public class PlanchaAVapor extends Dispositivo {
