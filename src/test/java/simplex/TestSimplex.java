@@ -1,10 +1,15 @@
 package simplex;
 
+import java.awt.List;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import dispositivo.Dispositivo;
 import dispositivo.dispositivosBase.aire.Aire2200Frigorias;
 import dispositivo.dispositivosBase.aire.Aire3500Frigorias;
 import dispositivo.dispositivosBase.computadora.ComputadoraDeEscritorio;
@@ -55,4 +60,32 @@ public class TestSimplex extends Fixture {
         	System.out.println(elem);        	
         }
 	}
+	
+	@Test
+	public void buenNombre() {
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		double[] horasDeCadaDispositivoDeLio= optimizadorDeLio.optimizarUsoDispositivos().getPoint();
+		double horas1erElem = horasDeCadaDispositivoDeLio[0];
+		double restriccionMax1erElem = RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(lio.getDispositivos().get(0));
+		double restriccionMin1erElem = RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(lio.getDispositivos().get(0));
+		assertTrue(horas1erElem>=restriccionMin1erElem && horas1erElem<=restriccionMax1erElem);
+	}
+	
+	@Test
+	public void TodasLasHorasDevueltasPorElSimplexSeEncuentranEntreLasRestriccionesDeCadaDispositivo() {
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
+		Boolean cumpleRestriccionesDeHoras;
+		cumpleRestriccionesDeHoras = lio.getDispositivos().stream().map(dispositivo->
+										(	
+											RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo) >= horasSimplex[lio.getDispositivos().indexOf(dispositivo)] &&
+											RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo) <= horasSimplex[lio.getDispositivos().indexOf(dispositivo)]		
+										) 
+			).reduce(true, (Boolean a, Boolean b) -> a && b);
+									
+
+		assertTrue(cumpleRestriccionesDeHoras);
+	}
+		
+	
 }
