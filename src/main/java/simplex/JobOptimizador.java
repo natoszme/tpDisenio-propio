@@ -18,10 +18,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+import repositorio.RepoCategorias;
 import repositorio.RepoClientes;
 
 public class JobOptimizador {
 	Actuador actuador = new ActuadorQueApaga();
+	
+	public static JobOptimizador instancia;
+	public static JobOptimizador getInstance() {
+		if (instancia == null) {
+			instancia = new JobOptimizador();
+		}
+		return instancia;
+	}
 	
 	public void ejecutar() {
 		RepoClientes.getInstance().obtenerAhorradores().forEach(cliente -> {			
@@ -50,4 +59,6 @@ public class JobOptimizador {
 		Regla regla = new ReglaEstricta(Arrays.asList(actuador), Arrays.asList(condicion), dispositivo);
 		regla.aplicarSiCumpleCriterio();
 	}
+	
+	
 }
