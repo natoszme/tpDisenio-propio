@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,8 +35,17 @@ public class TestSimplex extends Fixture {
 		lio.agregarDispositivo(lavarropas);
 		lio.agregarDispositivo(microondas);
 		
+		nico.agregarDispositivo(aire3500);
+		nico.agregarDispositivo(lavarropas);
+		
 		aire.encender();
 		aire.guardarConsumoDeFecha(LocalDateTime.now(), 325);
+		
+		lavarropas.encender();
+		lavarropas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
+		
+		microondas.encender();
+		microondas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
 		
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire, 90, 360));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(compu, 90, 360));
@@ -86,6 +97,30 @@ public class TestSimplex extends Fixture {
 
 		assertTrue(cumpleRestriccionesDeHoras);
 	}
+	@Test
+	public void ElSimplexEnElPrimerDispositivoDeNicoEs360() {
 		
+		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
+		double[] horasSimplex = optimizadorDeNico.optimizarUsoDispositivos().getPoint();
+				
+		assertEquals(360, horasSimplex[0],0);
+	}
+	
+	@Test
+	public void ElLavarropasDeNicoConsumeMasQueSuRestriccionDelSimplex() {
+		
+		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
+		double[] horasSimplex = optimizadorDeNico.optimizarUsoDispositivos().getPoint();
+						
+		assertTrue(100>horasSimplex[1]);
+	}
+		
+	 @Test
+    public void ElSimplexDiferidoDebeApagarElMicroondas() {	
+		JobOptimizador job = JobOptimizador.getInstance();
+		job.ejecutar();
+		
+		verify(mockMicroondas, times(1)).apagar();
+    }
 	
 }
