@@ -72,31 +72,36 @@ public class TestSimplex extends Fixture {
         }
 	}
 	
-	@Test
-	public void buenNombre() {
-		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
-		double[] horasDeCadaDispositivoDeLio= optimizadorDeLio.optimizarUsoDispositivos().getPoint();
-		double horas1erElem = horasDeCadaDispositivoDeLio[0];
-		double restriccionMax1erElem = RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(lio.getDispositivos().get(0));
-		double restriccionMin1erElem = RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(lio.getDispositivos().get(0));
-		assertTrue(horas1erElem>=restriccionMin1erElem && horas1erElem<=restriccionMax1erElem);
-	}
+
 	
 	@Test
-	public void TodasLasHorasDevueltasPorElSimplexSeEncuentranEntreLasRestriccionesDeCadaDispositivo() {
+	public void TodasLasHorasDevueltasPorElSimplexCumplenLasRestriccionesDeCadaDispositivo() {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
-		Boolean cumpleRestriccionesDeHoras;
-		cumpleRestriccionesDeHoras = lio.getDispositivos().stream().map(dispositivo->
+		Boolean cumpleRestriccionesDeHoras = lio.getDispositivos().stream().allMatch(dispositivo->
 										(	
 											RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo) >= horasSimplex[lio.getDispositivos().indexOf(dispositivo)] &&
 											RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo) <= horasSimplex[lio.getDispositivos().indexOf(dispositivo)]		
 										) 
-			).reduce(true, (Boolean a, Boolean b) -> a && b);
+			);
 									
-
 		assertTrue(cumpleRestriccionesDeHoras);
 	}
+	
+	@Test
+	public void elConsumoTotalMaxDaMenosQue612() {
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
+		double consumoTotal = lio.getDispositivos().stream().mapToDouble(dispositivo -> 
+																		dispositivo.getKwPorHora() * horasSimplex[lio.getDispositivos().indexOf(dispositivo)]
+															
+		).sum();
+		
+		assertTrue(consumoTotal <= 612);
+
+	}
+	
+	
 	@Test
 	public void ElSimplexEnElPrimerDispositivoDeNicoEs360() {
 		
