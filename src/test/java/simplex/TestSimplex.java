@@ -1,6 +1,7 @@
 package simplex;
 
 import java.awt.List;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ import dispositivo.dispositivosBase.lavarropas.LavarropasAutomatico5kg;
 import dispositivo.dispositivosBase.microondas.MicroondasConvencional;
 import fixture.Fixture;
 import repositorio.RepoClientes;
+import java.util.Arrays;
 
 public class TestSimplex extends Fixture {
 	
@@ -127,5 +129,18 @@ public class TestSimplex extends Fixture {
 		
 		verify(mockMicroondas, times(1)).apagar();
     }
+	 
+	 @Test
+	 public void LosCoeficientesDeLaFuncionEconomicaSonTodos1() {
+			OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+			assertTrue (Arrays.stream(optimizadorDeLio.getCoeficientesFuncionEconomica()).allMatch(coeficiente -> (coeficiente == 1)));
+
+	 }
+	 @Test
+	 public void EnLaFuncionEconomicaHayTantosCoeficientesComoDispositivosTieneElCliente() {
+		 OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		assertEquals(lio.cantidadDispositivos(), optimizadorDeLio.getCoeficientesFuncionEconomica().length, 0);
+	 }
+	
 	
 }
