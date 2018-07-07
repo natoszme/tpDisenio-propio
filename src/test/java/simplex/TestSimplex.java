@@ -13,11 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dispositivo.Dispositivo;
-import dispositivo.dispositivosBase.aire.Aire2200Frigorias;
-import dispositivo.dispositivosBase.aire.Aire3500Frigorias;
-import dispositivo.dispositivosBase.computadora.ComputadoraDeEscritorio;
-import dispositivo.dispositivosBase.lavarropas.LavarropasAutomatico5kg;
-import dispositivo.dispositivosBase.microondas.MicroondasConvencional;
+import dispositivo.DispositivosBaseFactory;
 import fixture.Fixture;
 import repositorio.RepoClientes;
 import java.util.Arrays;
@@ -26,22 +22,23 @@ public class TestSimplex extends Fixture {
 	
 	@Before
 	public void before() {
-		Aire2200Frigorias aire = new Aire2200Frigorias(mockAireConcreto);
-		Aire3500Frigorias aire3500 = new Aire3500Frigorias(mockAireConcreto);
-		ComputadoraDeEscritorio compu = new ComputadoraDeEscritorio(mockPcConcreta);
-		LavarropasAutomatico5kg lavarropas = new LavarropasAutomatico5kg(mockLavarropas);
-		MicroondasConvencional microondas = new MicroondasConvencional(mockMicroondas);
-		lio.agregarDispositivo(aire);
-		lio.agregarDispositivo(aire3500);
+		Dispositivo aire2200Frigorias = DispositivosBaseFactory.getInstance().aire2200Frigorias(mockAireConcreto);
+		Dispositivo aire3500Frigorias = DispositivosBaseFactory.getInstance().aire3500Frigorias(mockAireConcreto);
+		Dispositivo compu = DispositivosBaseFactory.getInstance().computadoraDeEscritorio(mockPcConcreta);
+		Dispositivo lavarropas = DispositivosBaseFactory.getInstance().lavarropasAutomatico5kg(mockLavarropas);
+		Dispositivo microondas = DispositivosBaseFactory.getInstance().microondas(mockMicroondas);
+		lio.agregarDispositivo(aire2200Frigorias);
+		lio.agregarDispositivo(aire3500Frigorias);
 		lio.agregarDispositivo(compu);
 		lio.agregarDispositivo(lavarropas);
 		lio.agregarDispositivo(microondas);
 		
-		nico.agregarDispositivo(aire3500);
+		nico.agregarDispositivo(aire3500Frigorias);
 		nico.agregarDispositivo(lavarropas);
 		
-		aire.encender();
-		aire.guardarConsumoDeFecha(LocalDateTime.now(), 325);
+		//TODO reveer esto!
+		aire2200Frigorias.encender();
+		aire2200Frigorias.guardarConsumoDeFecha(LocalDateTime.now(), 325);
 		
 		lavarropas.encender();
 		lavarropas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
@@ -49,9 +46,9 @@ public class TestSimplex extends Fixture {
 		microondas.encender();
 		microondas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
 		
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire, 90, 360));
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire2200Frigorias, 90, 360));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(compu, 90, 360));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire3500, 90, 360));
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire3500Frigorias, 90, 360));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(lavarropas, 6, 30));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(microondas, 6, 15));
 		//System.out.println(RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(aire));
