@@ -22,7 +22,6 @@ public class OptimizadorUsoDispositivos {
 	private final double COEF_FN_OBJETIVO = 0;
 	
 	private Cliente cliente;
-	private int posicion = 0;
 	
 	public OptimizadorUsoDispositivos(Cliente cliente) {
 		this.cliente = cliente;
@@ -47,9 +46,8 @@ public class OptimizadorUsoDispositivos {
 		restricciones.add(new LinearConstraint(this.getTodosLosConsumosDe(), Relationship.LEQ, MAX_CONSUMO));
 		
 		cliente.getDispositivos().stream().forEach(dispositivo -> {
-			restricciones.add(this.getRestriccionLineal(this.posicion, Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
-			restricciones.add(this.getRestriccionLineal(this.posicion, Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
-			this.posicion++;
+			restricciones.add(this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
+			restricciones.add(this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
 		});
 
 		return restricciones;
