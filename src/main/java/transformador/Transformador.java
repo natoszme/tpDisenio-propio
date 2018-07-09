@@ -1,37 +1,18 @@
 package transformador;
 
-import java.awt.Point;
 import java.util.List;
 
 import cliente.Cliente;
-import repositorio.RepoTransformadores;
-
-public class Transformador {
-	private Point ubicacion;
+import zona.ConsumoMasivoEnBaseA;
+public class Transformador extends ConsumoMasivoEnBaseA<Cliente>{
 	
 	public Transformador() { /*es para el Json*/ }
 	
-	public Point ubicacion() {
-		return ubicacion;
+	public Transformador(List<Cliente> clientes) {
+		super(clientes);
 	}
-	
-	public Point getUbicacion() {
-		return ubicacion;
-	}
-	
-	public void setUbicacion(Point ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-	
-	public double consumoActual() {
-		return obtenerConsumoActualDe(RepoTransformadores.getInstance().obtenerClientesDe(this));
-	}
-	
-	private double obtenerConsumoActualDe(List<Cliente> clientes) {
-		return clientes.stream().mapToDouble(Cliente::dameConsumoActual).sum();
-	}
-	
-	public double distanciaA(Cliente cliente) {
-		return ubicacion.distance(cliente.getUbicacion());
-	}
+
+	public double miConsumoActual(Cliente cliente) {
+		return cliente.consumoActual();
+	}	
 }

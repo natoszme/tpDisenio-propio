@@ -1,17 +1,19 @@
 package zona;
 
-import java.awt.Point;
-import java.util.ArrayList;
 import java.util.List;
 
 import transformador.Transformador;
 
-public class Zona {
-	private Point ubicacion;
-	private double radio;
-	private  List<Transformador> transformadores = new ArrayList<>();
+public class Zona extends ConsumoMasivoEnBaseA<Transformador>{
 	
-	public double consumoActual(){
-		return transformadores.stream().mapToDouble(Transformador::consumoActual).sum();
+	private String nombre;
+	
+	public Zona(String nombre, List<Transformador> transformadores) {
+		super(transformadores);
+		this.nombre = nombre;
+	}
+
+	public double miConsumoActual(Transformador transformador) {
+		return transformador.consumoActual();
 	}
 }

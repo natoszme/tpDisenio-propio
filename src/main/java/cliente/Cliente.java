@@ -1,10 +1,8 @@
 package cliente;
-import java.awt.Point;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import categoria.Categoria;
 import dispositivo.Dispositivo;
@@ -22,7 +20,6 @@ public class Cliente {
 	Categoria categoria;
 	List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
-	private Point ubicacion;
 	boolean ahorroAutomatico = true;  
 	
 	public Cliente() { /*Es para el Json*/ }
@@ -140,15 +137,11 @@ public class Cliente {
 		return dispositivos.size();
 	}
 
-	public double dameConsumoActual() {
+	public double consumoActual() {
 		return dispositivos.stream().
 				filter(Dispositivo::esInteligente).
 				mapToDouble(Dispositivo::consumoActual).
 				sum();
-	}
-
-	public Point getUbicacion() {
-		return ubicacion;
 	}
 	
 	public void setAhorroAutomatico(boolean ahorroAutomatico) {
