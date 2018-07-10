@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 
+import cliente.Cliente;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivosBaseFactory;
 import fixture.Fixture;
@@ -65,7 +66,7 @@ public class TestSimplex extends Fixture {
 		//TODO reveer si nos conviene usar un singleton para no instanciar todo el tiempo
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		for (double elem : optimizadorDeLio.optimizarUsoDispositivos().getPoint()) {        	
-        	System.out.println(elem);        	
+        	//System.out.println(elem);        	
         }
 	}
 	
@@ -73,18 +74,32 @@ public class TestSimplex extends Fixture {
 	public void TodasLasHorasDevueltasPorElSimplexCumplenLasRestriccionesDeCadaDispositivo() {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
-		Boolean cumpleRestriccionesDeHoras = lio.getDispositivos().stream().allMatch(dispositivo -> dispositivo.cumploConLaRestriccionParaElCliente(lio, horasSimplex));
+		Boolean cumpleRestriccionesDeHoras = lio.getDispositivos().stream().allMatch(dispositivo -> this.cumpleConLaRestriccionParaElCliente(dispositivo, lio, horasSimplex));
 		assertTrue(cumpleRestriccionesDeHoras);
+	}
+
+	public boolean cumpleConLaRestriccionParaElCliente(Dispositivo dispositivo, Cliente cliente, double[] horasSimplex) {
+		return RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo) >= horasSimplex[cliente.getDispositivos().indexOf(dispositivo)] 
+				&& RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo) <= horasSimplex[cliente.getDispositivos().indexOf(dispositivo)];
 	}
 	
 	@Test
 	public void elConsumoTotalMaxDaMenosQue612() {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
+		lio.getDispositivos().stream().forEach(dispositivo -> {
+			System.out.println("KwXhora:");
+			System.out.println(dispositivo.getKwPorHora());
+			System.out.println("Horas:");
+			System.out.println(horasSimplex[lio.getDispositivos().indexOf(dispositivo)]);
+		});
 		double consumoTotal = lio.getDispositivos().stream().mapToDouble(dispositivo -> dispositivo.getKwPorHora() * horasSimplex[lio.getDispositivos().indexOf(dispositivo)]).sum();
 		
+		System.out.println("Consumo total:");
+		System.out.println(consumoTotal);
+		
 		assertTrue(consumoTotal <= 612);
-	}	
+	}
 	
 	@Test
 	public void ElSimplexEnElPrimerDispositivoDeNicoEs360() {		
@@ -99,7 +114,7 @@ public class TestSimplex extends Fixture {
 		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
 		double[] horasSimplex = optimizadorDeNico.optimizarUsoDispositivos().getPoint();
 						
-		assertTrue(100>horasSimplex[1]);
+		assertTrue(100 > horasSimplex[1]);
 	}
 		
 	@Test
@@ -113,7 +128,7 @@ public class TestSimplex extends Fixture {
 	 @Test
 	 public void LosCoeficientesDeLaFuncionEconomicaSonTodos1() {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
-		assertTrue (Arrays.stream(optimizadorDeLio.getCoeficientesFuncionEconomica()).allMatch(coeficiente -> (coeficiente == 1)));
+		assertTrue(Arrays.stream(optimizadorDeLio.getCoeficientesFuncionEconomica()).allMatch(coeficiente -> (coeficiente == 1)));
 	 }
 	 
 	 @Test
