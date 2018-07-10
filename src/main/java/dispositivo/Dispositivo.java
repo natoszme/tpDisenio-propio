@@ -1,6 +1,8 @@
 package dispositivo;
 import java.time.LocalDateTime;
 
+import cliente.Cliente;
+import simplex.RepoRestriccionesUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
 
@@ -91,5 +93,9 @@ public class Dispositivo {
 	
 	public boolean equals(Dispositivo otroDispositivo) {
 		return otroDispositivo.getNombre() == nombre;
+	}
+
+	public boolean cumploConLaRestriccionParaElCliente(Cliente cliente, double[] horasSimplex) {
+		return RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(this) >= horasSimplex[cliente.getDispositivos().indexOf(this)] && RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(this) <= horasSimplex[cliente.getDispositivos().indexOf(this)];
 	}
 }
