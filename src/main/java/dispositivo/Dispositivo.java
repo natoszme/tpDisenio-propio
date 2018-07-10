@@ -2,7 +2,7 @@ package dispositivo;
 import java.time.LocalDateTime;
 
 import cliente.Cliente;
-import simplex.RepoRestriccionesUsoDispositivo;
+import repositorio.RepoRestriccionesUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
 

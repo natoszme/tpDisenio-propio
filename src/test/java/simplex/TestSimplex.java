@@ -12,6 +12,8 @@ import org.junit.Test;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivosBaseFactory;
 import fixture.Fixture;
+import repositorio.RepoRestriccionesUsoDispositivo;
+
 import java.util.Arrays;
 
 public class TestSimplex extends Fixture {
