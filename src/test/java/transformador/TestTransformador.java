@@ -1,34 +1,12 @@
 package transformador;
 
-import static org.mockito.Mockito.when;
-
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import fixture.Fixture;
+import fixture.FixtureConsumoMasivo;
 import repositorio.RepoClientes;
-import repositorio.RepoTransformadores;
 
-public class TestTransformador extends Fixture{
-	
-	@Before
-	public void before() {
-		//TODO por que sin estas dos rompe?
-		RepoTransformadores.getInstance().limpiarEntidades();
-		RepoClientes.getInstance().limpiarEntidades();
-		
-		RepoTransformadores.getInstance().agregarEntidad(transformadorLaMatanza);
-		RepoTransformadores.getInstance().agregarEntidad(transformadorPalermo);
-		
-		when(mockAireConcreto.consumoActual()).thenReturn(180.0);
-		alejandro.agregarDispositivo(aireAcondicionado);
-		RepoClientes.getInstance().agregarEntidad(alejandro);
-		
-		when(mockTelevisorSmartConcreto.consumoActual()).thenReturn(50.0);
-		nico.agregarDispositivo(televisorSmart);
-		RepoClientes.getInstance().agregarEntidad(nico);
-	}
+public class TestTransformador extends FixtureConsumoMasivo{
 	
 	@Test
 	public void elConsumoActualDeLaMatanzaEsElDeSuUnicoCliente() {		

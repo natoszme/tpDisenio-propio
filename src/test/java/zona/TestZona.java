@@ -3,9 +3,8 @@ package zona;
 import org.junit.Assert;
 import org.junit.Test;
 
-import fixture.Fixture;
-
-public class TestZona extends Fixture{
+import fixture.FixtureConsumoMasivo;
+public class TestZona extends FixtureConsumoMasivo{
 	
 	@Test
 	public void unTransformadorUbicadoEnElCorazonDePalermoLePerteneceADichaZona() {
@@ -19,6 +18,11 @@ public class TestZona extends Fixture{
 	
 	@Test
 	public void aPalermoLeCorrespondeElConsumoDeTodosSusTransformadores() {
-		
+		Assert.assertEquals(50, palermo.consumoActual(), 0);
+	}
+	
+	@Test
+	public void aLaMatanzaLeCorrespondeElConsumoDeSusTransformadores() {
+		Assert.assertEquals(180, laMatanza.consumoActual(), 0);
 	}
 }

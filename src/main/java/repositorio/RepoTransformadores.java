@@ -25,8 +25,13 @@ public class RepoTransformadores extends Repo<Transformador>{
 	}	
 		
 	private boolean leCorresponde(Cliente cliente, Transformador transformador) {	
-		return transformadorMasCercanoA(cliente).equals(transformador);	
-	}	
+		return transformadorMasCercanoA(cliente).equals(transformador); /*&& transformadorEnLaMismaZonaQue(cliente, transformador)*/	
+	}
+	
+	//esto no es necesari: un trasnformador de una zona puede medir el consumo de un cliente de otra zona, la consigna no especifica
+	/*private boolean transformadorEnLaMismaZonaQue(Cliente cliente, Transformador transformador) {
+		RepoZonas.getInstance().zonaDe(transformador) == RepoZonas.getInstance().zonaDe(cliente);
+	}*/
 		
 	private Transformador transformadorMasCercanoA(Cliente cliente) {	
 		return entidades.stream().min(Comparator.comparing(unTransformador -> unTransformador.distanciaA(cliente))).get();	
