@@ -17,6 +17,11 @@ public class TestZona extends FixtureConsumoMasivo{
 	}
 	
 	@Test
+	public void aLaMatanzaNoLeCorrespondeElTransformadorDePalermo() {
+		Assert.assertFalse(laMatanza.mePertenece(transformadorPalermo));
+	}
+	
+	@Test
 	public void aPalermoLeCorrespondeElConsumoDeTodosSusTransformadores() {
 		Assert.assertEquals(50, palermo.consumoActual(), 0);
 	}
