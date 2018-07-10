@@ -29,7 +29,7 @@ public class Zona extends ConsumoMasivoEnBaseA<Transformador>{
 				collect(Collectors.toList());
 	}
 
-	private boolean mePertenece(Transformador transformador) {
+	public boolean mePertenece(Transformador transformador) {
 		return ubicacion.distance(transformador.ubicacion()) < radio;
 	}
 }
