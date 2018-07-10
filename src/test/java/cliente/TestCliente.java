@@ -15,7 +15,6 @@ import dispositivo.DispositivoConcreto;
 
 public class TestCliente extends Fixture {	
 	
-	// Test entrega 0
 	@Test
 	public void elClienteAlejandroTiene1DispositivoInicialmente() {
 		assertEquals(1, alejandro.cantidadDispositivos());
@@ -72,8 +71,6 @@ public class TestCliente extends Fixture {
 		alejandro.recategorizarSegunUso(2);
 		assertEquals("R8", alejandro.categoria().getNombre());
 	}
-	
-//test entrega 1
 	
 	@Test
 	public void seAgregaTVSmartAAlejandroConDispositivoConcretoQueRetorna180DeConsumoPorHoraYAlRecategorizarEsR2() {

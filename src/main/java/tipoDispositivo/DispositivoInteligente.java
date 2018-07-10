@@ -89,6 +89,6 @@ public class DispositivoInteligente implements TipoDispositivo{
 	}
 
 	public double consumoActual() {
-		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
+		return dispositivoConcreto.consumoActual();
 	}
 }

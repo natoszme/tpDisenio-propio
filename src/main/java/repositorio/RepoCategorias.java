@@ -15,10 +15,6 @@ public class RepoCategorias extends Repo<Categoria> {
 	public Categoria obtenerCategoriaSegunConsumo(double consumo) {
 		return entidades.stream().filter(categoria -> categoria.meCorrespondeElConsumo(consumo)).findFirst().orElse(dameR1());
 	}
-
-	public void limpiarEntidades() {
-		entidades.clear();
-	}
 	
 	private Categoria dameR1() {
 		return entidades.stream().filter(categoria -> categoria.getNombre() == "R1").findFirst().orElse(null);

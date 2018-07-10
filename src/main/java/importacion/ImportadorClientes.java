@@ -6,6 +6,7 @@ import repositorio.RepoClientes;
 
 public class ImportadorClientes extends Importador<Cliente>{
 	private static ImportadorClientes instancia;
+	//TODO revisar esto
 	private int horasParaCalcularCategoria = 1;
 	
 	public static ImportadorClientes getInstance() {
@@ -22,7 +23,6 @@ public class ImportadorClientes extends Importador<Cliente>{
 	public void importarJSON() {
 		ImportadorCategorias.getInstance().importarJSON();
 		super.importarJSON();
-		//TODO revisar esto
 		repo.obtenerTodas().forEach(cliente -> cliente.recategorizarSegunUso(horasParaCalcularCategoria));
 	}
 	

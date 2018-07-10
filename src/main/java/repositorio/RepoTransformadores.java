@@ -1,6 +1,13 @@
 package repositorio;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import cliente.Cliente;
 import transformador.Transformador;
+
+import repositorio.RepoClientes;
 
 public class RepoTransformadores extends Repo<Transformador>{
 	
@@ -11,5 +18,17 @@ public class RepoTransformadores extends Repo<Transformador>{
 			instancia = new RepoTransformadores();
 		}
 		return instancia;
+	}
+	
+	public List<Cliente> obtenerClientesDe(Transformador transformador){	
+		return RepoClientes.getInstance().obtenerTodas().stream().filter(cliente -> leCorresponde(cliente, transformador)).collect(Collectors.toList());	
+	}	
+		
+	private boolean leCorresponde(Cliente cliente, Transformador transformador) {	
+		return transformadorMasCercanoA(cliente).equals(transformador);	
+	}	
+		
+	private Transformador transformadorMasCercanoA(Cliente cliente) {	
+		return entidades.stream().min(Comparator.comparing(unTransformador -> unTransformador.distanciaA(cliente))).get();	
 	}
 }

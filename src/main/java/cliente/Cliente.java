@@ -4,27 +4,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.geodds.Point;
+
 import categoria.Categoria;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
 
 public class Cliente {
-	String nombre;
-	String apellido;
-	TipoDocumento tipoDocumento;
-	long nroDocumento;
-	long telefono;
-	String domicilio;
-	LocalDate fechaAlta;
-	Categoria categoria;
-	List<Dispositivo> dispositivos = new ArrayList<>();
+	private String nombre;
+	private String apellido;
+	private TipoDocumento tipoDocumento;
+	private long nroDocumento;
+	private long telefono;
+	private String domicilio;
+	private LocalDate fechaAlta;
+	private Categoria categoria;
+	private List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
 	boolean ahorroAutomatico = true;  
+	private Point ubicacion;
 	
 	public Cliente() { /*Es para el Json*/ }
 	
-	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos) {
+	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos, Point ubicacion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tipoDocumento = tipoDocumento;
@@ -34,6 +37,7 @@ public class Cliente {
 		this.categoria = categoria;
 		this.dispositivos = dispositivos;
 		this.fechaAlta = LocalDate.now();
+		this.ubicacion = ubicacion;
 	}
 	
 	public boolean algunInteligenteEncendido() {
@@ -129,6 +133,7 @@ public class Cliente {
 	public Categoria getCategoria() {
 		return this.categoria;
 	}
+	
 	public List<Dispositivo> getDispositivos(){
 		return this.dispositivos;
 	}
@@ -150,5 +155,13 @@ public class Cliente {
 	
 	public boolean permiteAhorroAutomatico() {
 		return ahorroAutomatico;
+	}
+
+	public Point ubicacion() {
+		return ubicacion;
+	}
+	
+	public void setUbicacion(Point ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 }

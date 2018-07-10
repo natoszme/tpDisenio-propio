@@ -62,6 +62,14 @@
 	    <artifactId>commons-math3</artifactId>
 	    <version>3.2</version>
 	</dependency>
+
+  <!-- https://mvnrepository.com/artifact/org.uqbar-project/geodds-xtend -->
+  <dependency>
+      <groupId>org.uqbar-project</groupId>
+      <artifactId>geodds-xtend</artifactId>
+      <version>1.0.3</version>
+  </dependency>
+
 	
  </dependencies>
 </project>

@@ -17,4 +17,8 @@ public abstract class Repo<Entidad> {
 	public List<Entidad> obtenerTodas() {
 		return entidades;
 	}
+	
+	public void limpiarEntidades() {
+		entidades.clear();
+	}
 }
