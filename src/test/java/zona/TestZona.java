@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import fixture.FixtureConsumoMasivo;
+import repositorio.RepoClientes;
 public class TestZona extends FixtureConsumoMasivo{
 	
 	@Test
@@ -30,4 +31,13 @@ public class TestZona extends FixtureConsumoMasivo{
 	public void aLaMatanzaLeCorrespondeElConsumoDeSusTransformadores() {
 		Assert.assertEquals(180, laMatanza.consumoActual(), 0);
 	}
+	
+	@Test 
+	public void laZonaDeCaballitoTieneDosConsumidoresDeEnergia() {
+		lio.agregarDispositivo(televisorSmart);
+		RepoClientes.getInstance().agregarEntidad(lio);
+		Assert.assertEquals(2, caballito.obtenerFuentesDeConsumo().size());
+	}
+	
+	
 }

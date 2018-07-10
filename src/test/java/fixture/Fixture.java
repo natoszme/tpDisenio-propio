@@ -39,7 +39,7 @@ public class Fixture {
 	private Point ubicacionCaballito = new Point(-34.616286, -58.442747);
 	private Point ubicacionLaPlata = new Point(-34.919116, -57.952484);
 	private Point ubicacionPalermo = new Point(-34.574704, -58.423419);
-	public Zona palermo, laMatanza;
+	public Zona palermo, laMatanza, caballito;
 	
 	public Fixture() {
 		  r1 = new Categoria("R1", 0, 150, 18.76, 0.644);			
@@ -93,6 +93,7 @@ public class Fixture {
 		  
 		  palermo = new Zona(ubicacionPalermo, 3);
 		  laMatanza = new Zona(ubicacionLaMatanza, 5);
+		  caballito = new Zona (ubicacionCaballito, 5);
 		
 		  alejandro = new Cliente("Alejandro", "Saez", TipoDocumento.DNI, 3876675, 43543245, "Macos Sastre 324", r1, dispositivos, ubicacionLaMatanza);
 		  nico = new Cliente("nico", "otamendi", TipoDocumento.DNI, 35102594, 42012594, "Av. Siempre Viva 20", r1, new ArrayList<Dispositivo>(), ubicacionPalermo);

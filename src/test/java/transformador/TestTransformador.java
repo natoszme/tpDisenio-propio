@@ -28,14 +28,12 @@ public class TestTransformador extends FixtureConsumoMasivo{
 	
 	@Test
 	public void elTransformadorDeCaballitoTieneAYaninayLioDeClientes() {
-		RepoClientes.getInstance().agregarEntidad(yanina);
 		RepoClientes.getInstance().agregarEntidad(lio);
 		Assert.assertEquals(2, RepoTransformadores.getInstance().obtenerClientesDe(transformadorCaballito).size(), 0);
 	}
 	
 	@Test 
 	public void alAgregarUnNuevoDispositivoAumentaLaEnergiaSumistridadPorElTransformador() {
-		RepoClientes.getInstance().agregarEntidad(yanina);
 		RepoClientes.getInstance().agregarEntidad(lio);
 		double consumoAnterior = transformadorCaballito.consumoActual();
 		yanina.agregarDispositivo(televisorSmart);
