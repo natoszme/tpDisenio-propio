@@ -27,14 +27,14 @@ public class Fixture {
 	protected Categoria r1, r2, r3, r4, r5, r6, r7, r8, r9;
 	protected Dispositivo candelabro, televisor, microondas, equipoMusica, dvd, play4, televisorSmart, pc, aireAcondicionado;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
-	protected Cliente alejandro, lio, pepe, nico, ricardo;
+	protected Cliente alejandro, lio, pepe, nico, ricardo, yanina;
 	protected DispositivoConcreto mockPcConcreta, mockAireConcreto, mockTelevisorSmartConcreto, mockCandelabroConcreto, mockLampara, mockLavarropas, mockMicroondas, mockPlancha, mockVentilador;
 	protected Regla unaReglaEstricta, unaReglaPermisiva;
 	protected Actuador actuadorQueApaga, actuadorQueEnciende;
 	protected CondicionSobreSensor mockCondicionSobreSensorQueCumple, mockCondicionSobreSensorQueNoCumple;
 	protected List<CondicionSobreSensor> condicionesSobreSensorQueNoCumplen = new ArrayList<>(), condicionesSobreSensorQueCumplen = new ArrayList<>();
 	protected List<Actuador> actuadores = new ArrayList<>();
-	protected Transformador transformadorLaMatanza, transformadorPalermo;
+	protected Transformador transformadorLaMatanza, transformadorPalermo, transformadorCaballito;
 	private Point ubicacionLaMatanza = new Point(-34.762985, -58.631242);
 	private Point ubicacionCaballito = new Point(-34.616286, -58.442747);
 	private Point ubicacionLaPlata = new Point(-34.919116, -57.952484);
@@ -99,7 +99,7 @@ public class Fixture {
 		  pepe = new Cliente("pepe", "argento", TipoDocumento.CI, 12549785, 40000001, "Manuel Rodriguez 1251", r1, new ArrayList<Dispositivo>(), ubicacionLaPlata);
 		  lio = new Cliente("lio", "messi", TipoDocumento.DNI, 40216458, 10101010, "Av. Catalunia 10", r2, new ArrayList<Dispositivo>(), ubicacionCaballito);
 		  ricardo = new Cliente("ricardo", "ruben", TipoDocumento.DNI, 45178257, 41013591, "Av. Lugones 1001", r2, new ArrayList<Dispositivo>(), ubicacionPalermo);
-		  
+		  yanina = new Cliente("yanina","latorre", TipoDocumento.DNI, 7865432,46498374, "Av. Constituyentes 2012",r1 , new ArrayList<Dispositivo>(), ubicacionCaballito);
 		  RepoCategorias.getInstance().agregarEntidad(r1);
 		  RepoCategorias.getInstance().agregarEntidad(r2);
 		  RepoCategorias.getInstance().agregarEntidad(r3);
@@ -112,6 +112,7 @@ public class Fixture {
 		  
 		  transformadorLaMatanza = new Transformador(ubicacionLaMatanza);
 		  transformadorPalermo = new Transformador(ubicacionPalermo);
+		  transformadorCaballito = new Transformador(ubicacionCaballito);
 	}
 	
 	@After
