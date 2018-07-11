@@ -16,6 +16,7 @@ import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
 
 import cliente.Cliente;
 import dispositivo.Dispositivo;
+import repositorio.RepoRestriccionesUsoDispositivo;
 
 public class OptimizadorUsoDispositivos {
 	private final double MAX_CONSUMO = 612;

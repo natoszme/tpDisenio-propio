@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import repositorio.RepoClientes;
+import repositorio.RepoRestriccionesUsoDispositivo;
 
 public class JobOptimizador {
 	
