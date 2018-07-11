@@ -19,37 +19,7 @@ import repositorio.RepoRestriccionesUsoDispositivo;
 
 import java.util.Arrays;
 
-public class TestSimplex extends Fixture {
-	
-	@Before
-	public void before() {
-		Dispositivo aire2200Frigorias = DispositivosBaseFactory.getInstance().aire2200Frigorias(mockAireConcreto);
-		Dispositivo aire3500Frigorias = DispositivosBaseFactory.getInstance().aire3500Frigorias(mockAireConcreto);
-		Dispositivo compu = DispositivosBaseFactory.getInstance().computadoraDeEscritorio(mockPcConcreta);
-		Dispositivo lavarropas = DispositivosBaseFactory.getInstance().lavarropasAutomatico5kg(mockLavarropas);
-		Dispositivo microondas = DispositivosBaseFactory.getInstance().microondas(mockMicroondas);
-		lio.agregarDispositivo(aire2200Frigorias);
-		lio.agregarDispositivo(aire3500Frigorias);
-		lio.agregarDispositivo(compu);
-		lio.agregarDispositivo(lavarropas);
-		lio.agregarDispositivo(microondas);
-		
-		nico.agregarDispositivo(aire3500Frigorias);
-		nico.agregarDispositivo(lavarropas);
-		
-		//TODO reveer esto!
-		aire2200Frigorias.guardarConsumoDeFecha(LocalDateTime.now(), 325);
-		
-		lavarropas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
-		
-		microondas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
-		
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire2200Frigorias, 90, 360, new ActuadorQueApaga()));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(compu, 90, 360, new ActuadorQueApaga()));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire3500Frigorias, 90, 360, new ActuadorQueApaga()));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(lavarropas, 6, 30, new ActuadorQuePoneEnAhorroDeEnergia()));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(microondas, 6, 15, new ActuadorQueApaga()));
-	}
+public class TestSimplex extends FixtureSimplex {
 
 	@Test
 	public void simplex() {
@@ -60,8 +30,6 @@ public class TestSimplex extends Fixture {
         	//System.out.println(elem);        	
         }
 	}
-	
-
 	
 	@Test
 	public void TodasLasHorasDevueltasPorElSimplexCumplenLasRestriccionesDeCadaDispositivo() {
@@ -105,7 +73,7 @@ public class TestSimplex extends Fixture {
 		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
 		double[] horasSimplex = optimizadorDeNico.optimizarUsoDispositivos().getPoint();
 				
-		assertEquals(360, horasSimplex[0],0);
+		assertEquals(360, horasSimplex[0], 0);
 	}
 	
 	@Test
@@ -114,22 +82,6 @@ public class TestSimplex extends Fixture {
 		double[] horasSimplex = optimizadorDeNico.optimizarUsoDispositivos().getPoint();
 						
 		assertTrue(100 > horasSimplex[1]);
-	}
-		
-	@Test
-    public void ElSimplexDiferidoDebeApagarElMicroondas() {	
-		JobOptimizador job = JobOptimizador.getInstance();
-		job.ejecutar();
-		
-		verify(mockMicroondas, times(1)).apagar();
-    }
-	 
-	@Test
-	public void alOptimizarSePoneEnAhorroDeEnergiaElLavarropas() {
-		JobOptimizador job = JobOptimizador.getInstance();
-		job.ejecutar();
-		
-		verify(mockLavarropas, times(1)).ponerEnAhorroDeEnergia();
 	}
 	
 	@Test
