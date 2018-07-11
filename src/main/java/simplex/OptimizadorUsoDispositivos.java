@@ -3,6 +3,7 @@ package simplex;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.apache.commons.math3.optim.PointValuePair;
@@ -13,6 +14,7 @@ import org.apache.commons.math3.optim.linear.NonNegativeConstraint;
 import org.apache.commons.math3.optim.linear.Relationship;
 import org.apache.commons.math3.optim.linear.SimplexSolver;
 import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
+import org.apache.commons.math3.util.Pair;
 
 import cliente.Cliente;
 import dispositivo.Dispositivo;
@@ -28,17 +30,27 @@ public class OptimizadorUsoDispositivos {
 		this.cliente = cliente;
 	}	
 	
-	public PointValuePair optimizarUsoDispositivos() {
+	public List<Pair<Dispositivo, Double>> optimizarUsoDispositivos() {
 		
 		SimplexSolver simplexSolver = new SimplexSolver();		
 		LinearObjectiveFunction funcionEconomica = new LinearObjectiveFunction(this.getCoeficientesFuncionEconomica(), COEF_FN_OBJETIVO);
 		LinearConstraintSet restricciones = new LinearConstraintSet(this.generarRestriccionesPara());
 		
-		return simplexSolver.optimize(	funcionEconomica, 
+		PointValuePair resultadoSimplex = simplexSolver.optimize(	funcionEconomica, 
 										restricciones, 
 										GoalType.MAXIMIZE, 
 										new NonNegativeConstraint(true)
 							 		 );
+		 
+		 return zipDispositivosYConsumos(cliente.getDispositivos(), resultadoSimplex);
+	}
+
+	private List<Pair<Dispositivo, Double>> zipDispositivosYConsumos(List<Dispositivo> list, PointValuePair resultadoSimplex) {
+		double[] array = resultadoSimplex.getPoint();
+		
+		return IntStream.range(0,  Math.min(list.size(), array.length)).mapToObj(
+				posicionDispositivo -> new Pair<>(list.get(posicionDispositivo), array[posicionDispositivo])
+		).collect(Collectors.toList());
 	}
 	
 	private List<LinearConstraint> generarRestriccionesPara() {
@@ -77,5 +89,12 @@ public class OptimizadorUsoDispositivos {
 
 	private double[] obtenerArrayDeDispositivosTransformadoCon(Function<Dispositivo, Double> lambda) {
 		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> lambda.apply(dispositivo)).toArray();
-	}	
+	}
+	
+	public List<Pair<Dispositivo, Double>> obtenerMaximosDeConsumoDeInteligentes(Cliente cliente) {
+		
+		return optimizarUsoDispositivos().stream().filter(
+			par -> par.getFirst().esInteligente()
+		).collect(Collectors.toList());
+	} 
 }

@@ -30,25 +30,13 @@ public class JobOptimizador {
 	}
 	
 	public void ejecutar() {
-		RepoClientes.getInstance().obtenerAhorradores().forEach(cliente -> {			
-			this.zipDispositivosInteligentesYConsumos(cliente).forEach(
-				par -> this.generarYAplicarRegla(par.getFirst(), par.getSecond())
-			);			
-		});
+		RepoClientes.getInstance().obtenerAhorradores().forEach(cliente -> this.obtenerMaximosYGenerarReglas(cliente));
 	}
-	
-	private List<Pair<Dispositivo, Double>> zipDispositivosInteligentesYConsumos(Cliente cliente) {
-		double[] horasDeConsumoMaximas = new OptimizadorUsoDispositivos(cliente).optimizarUsoDispositivos().getPoint();
-		
-		return this.zipDispositivosYConsumos(cliente.getDispositivos(), horasDeConsumoMaximas).stream().filter(
-			par -> par.getFirst().esInteligente()
-		).collect(Collectors.toList());
-	} 
 
-	private List<Pair<Dispositivo, Double>> zipDispositivosYConsumos(List<Dispositivo> list, double[] array) {
-		return IntStream.range(0,  Math.min(list.size(), array.length)).mapToObj(
-				i -> new Pair<>(list.get(i), array[i])
-		).collect(Collectors.toList());
+	public void obtenerMaximosYGenerarReglas(Cliente cliente) {
+		new OptimizadorUsoDispositivos(cliente).obtenerMaximosDeConsumoDeInteligentes().forEach(
+			par -> this.generarYAplicarRegla(par.getFirst(), par.getSecond())
+		);
 	}
 	
 	private void generarYAplicarRegla(Dispositivo dispositivo, double consumoMaximo) {
@@ -59,7 +47,5 @@ public class JobOptimizador {
 	
 	private List<Actuador> obtenerActuadorDe(Dispositivo dispositivo) {
 		return Arrays.asList(RepoRestriccionesUsoDispositivo.getInstance().dameAccionDe(dispositivo));
-	}
-	
-	
+	}	
 }
