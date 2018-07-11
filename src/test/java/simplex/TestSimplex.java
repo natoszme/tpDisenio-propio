@@ -36,13 +36,10 @@ public class TestSimplex extends Fixture {
 		nico.agregarDispositivo(lavarropas);
 		
 		//TODO reveer esto!
-		aire2200Frigorias.encender();
 		aire2200Frigorias.guardarConsumoDeFecha(LocalDateTime.now(), 325);
 		
-		lavarropas.encender();
 		lavarropas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
 		
-		microondas.encender();
 		microondas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
 		
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire2200Frigorias, 90, 360));
