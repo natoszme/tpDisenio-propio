@@ -2,12 +2,13 @@ package simplex;
 
 import static org.junit.Assert.*;
 
+import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
 import org.apache.commons.math3.util.Pair;
 import org.junit.Test;
 
-import cliente.Cliente;
 import dispositivo.Dispositivo;
 import repositorio.RepoRestriccionesUsoDispositivo;
+import tipoDispositivo.DispositivoInteligente;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,6 @@ public class TestSimplex extends FixtureSimplex {
 	@Test
 	public void elConsumoTotaDeLiolMaxDaMenosQue612() {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
-		List<Pair<Dispositivo, Double>> horasSimplex = optimizadorDeLio.optimizarUsoDispositivos();
 		
 		//TODO esto es realmente imprescindible?
 		lio.getDispositivos().stream().forEach(dispositivo -> {
@@ -77,5 +77,15 @@ public class TestSimplex extends FixtureSimplex {
 	public void EnLaFuncionEconomicaHayTantosCoeficientesComoDispositivosTieneElCliente() {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		assertEquals(lio.cantidadDispositivos(), optimizadorDeLio.getCoeficientesFuncionEconomica().length, 0);
+	}
+	
+	@Test (expected = NoFeasibleSolutionException.class)
+	public void unDispositivoIrresolubleNoPuedeSerOptimizado() {
+		Dispositivo jacuzzi = new Dispositivo("jacuzzi", new DispositivoInteligente(null), 7);
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(jacuzzi, 100, 200, null));
+		
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		lio.agregarDispositivo(jacuzzi);
+		optimizadorDeLio.obtenerHorasOptimasPara(jacuzzi);
 	}
 }
