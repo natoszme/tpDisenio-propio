@@ -15,7 +15,6 @@ import dispositivo.gadgets.sensor.SensorHorasEncendido;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 
 import repositorio.RepoClientes;
 import repositorio.RepoRestriccionesUsoDispositivo;
@@ -33,7 +32,7 @@ public class JobOptimizador {
 	public void ejecutar() {
 		RepoClientes.getInstance().obtenerAhorradores().forEach(cliente -> {			
 			this.zipDispositivosInteligentesYConsumos(cliente).forEach(
-				(Consumer<? super Pair<Dispositivo, Double>>) par -> this.generarYAplicarRegla(par.getFirst(), par.getSecond())
+				par -> this.generarYAplicarRegla(par.getFirst(), par.getSecond())
 			);			
 		});
 	}
