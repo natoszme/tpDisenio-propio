@@ -149,19 +149,11 @@ public class Cliente {
 				sum();
 	}
 	
-	public void setAhorroAutomatico(boolean ahorroAutomatico) {
-		this.ahorroAutomatico = ahorroAutomatico;
-	}
-	
 	public boolean permiteAhorroAutomatico() {
 		return ahorroAutomatico;
 	}
 
 	public Point ubicacion() {
 		return ubicacion;
-	}
-	
-	public void setUbicacion(Point ubicacion) {
-		this.ubicacion = ubicacion;
 	}
 }
