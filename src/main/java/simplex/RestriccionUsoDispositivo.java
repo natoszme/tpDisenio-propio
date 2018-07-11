@@ -1,16 +1,19 @@
 package simplex;
 
 import dispositivo.Dispositivo;
+import dispositivo.gadgets.actuador.Actuador;
 
 public class RestriccionUsoDispositivo {
 	private Dispositivo dispositivo;
 	double usoMensualMinimo;
 	double usoMensualMaximo;
+	private Actuador actuadorAlExcederse;
 	
-	public RestriccionUsoDispositivo(Dispositivo dispositivo, double usoMensualMinimo, double usoMensualMaximo) {
+	public RestriccionUsoDispositivo(Dispositivo dispositivo, double usoMensualMinimo, double usoMensualMaximo, Actuador actuadorAlExcederse) {
 		this.dispositivo = dispositivo;
 		this.usoMensualMinimo = usoMensualMinimo;
 		this.usoMensualMaximo = usoMensualMaximo;
+		this.actuadorAlExcederse = actuadorAlExcederse;
 	}
 
 	public boolean esDe(Dispositivo dispositivo) {
@@ -23,5 +26,9 @@ public class RestriccionUsoDispositivo {
 
 	public double getUsoMensualMaximo() {
 		return usoMensualMaximo;
+	}
+	
+	public Actuador getActuadorAlExcederse() {
+		return actuadorAlExcederse;
 	}
 }

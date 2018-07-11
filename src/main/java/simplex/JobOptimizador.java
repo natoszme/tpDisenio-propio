@@ -8,7 +8,6 @@ import org.apache.commons.math3.util.Pair;
 import cliente.Cliente;
 import dispositivo.Dispositivo;
 import dispositivo.gadgets.actuador.Actuador;
-import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.regla.CondicionDeConsumoMayorOIgual;
 import dispositivo.gadgets.regla.Regla;
 import dispositivo.gadgets.regla.ReglaEstricta;
@@ -18,11 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-import repositorio.RepoCategorias;
 import repositorio.RepoClientes;
 
 public class JobOptimizador {
-	Actuador actuador = new ActuadorQueApaga();
 	
 	public static JobOptimizador instancia;
 	public static JobOptimizador getInstance() {
@@ -56,8 +53,12 @@ public class JobOptimizador {
 	
 	private void generarYAplicarRegla(Dispositivo dispositivo, double consumoMaximo) {
 		CondicionDeConsumoMayorOIgual condicion = new CondicionDeConsumoMayorOIgual(consumoMaximo, new SensorHorasEncendido(dispositivo));
-		Regla regla = new ReglaEstricta(Arrays.asList(actuador), Arrays.asList(condicion), dispositivo);
+		Regla regla = new ReglaEstricta(obtenerActuadorDe(dispositivo), Arrays.asList(condicion), dispositivo);
 		regla.aplicarSiCumpleCriterio();
+	}
+	
+	private List<Actuador> obtenerActuadorDe(Dispositivo dispositivo) {
+		return Arrays.asList(RepoRestriccionesUsoDispositivo.getInstance().dameAccionDe(dispositivo));
 	}
 	
 	

@@ -1,5 +1,6 @@
 package simplex;
 import dispositivo.Dispositivo;
+import dispositivo.gadgets.actuador.Actuador;
 import repositorio.Repo;
 
 public class RepoRestriccionesUsoDispositivo extends Repo<RestriccionUsoDispositivo> {
@@ -12,11 +13,6 @@ public class RepoRestriccionesUsoDispositivo extends Repo<RestriccionUsoDisposit
 		}
 		return instancia;
 	}
-	
-	/*public RestriccionUsoDispositivo dameRestriccionesDe(Dispositivo dispositivo) {
-		return restricciones.stream().filter(restriccion -> restriccion.esDe(dispositivo)).
-				findFirst().orElse(null);
-	}*/
 	
 	private RestriccionUsoDispositivo obtenerRestriccionDe(Dispositivo dispositivo) {
 		RestriccionUsoDispositivo restriccion = entidades.stream().filter(unaRestriccion -> unaRestriccion.esDe(dispositivo)).
@@ -34,5 +30,9 @@ public class RepoRestriccionesUsoDispositivo extends Repo<RestriccionUsoDisposit
 		RestriccionUsoDispositivo restriccion = obtenerRestriccionDe(dispositivo);
 		
 		return restriccion.getUsoMensualMinimo();
+	}
+
+	public Actuador dameAccionDe(Dispositivo dispositivo) {
+		return obtenerRestriccionDe(dispositivo).getActuadorAlExcederse();
 	}
 }

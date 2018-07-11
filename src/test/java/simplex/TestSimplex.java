@@ -1,9 +1,6 @@
 package simplex;
 
-import java.awt.List;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
@@ -14,8 +11,9 @@ import org.junit.Test;
 
 import dispositivo.Dispositivo;
 import dispositivo.DispositivosBaseFactory;
+import dispositivo.gadgets.actuador.ActuadorQueApaga;
+import dispositivo.gadgets.actuador.ActuadorQuePoneEnAhorroDeEnergia;
 import fixture.Fixture;
-import repositorio.RepoClientes;
 import java.util.Arrays;
 
 public class TestSimplex extends Fixture {
@@ -46,20 +44,11 @@ public class TestSimplex extends Fixture {
 		microondas.encender();
 		microondas.guardarConsumoDeFecha(LocalDateTime.now(), 100);
 		
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire2200Frigorias, 90, 360));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(compu, 90, 360));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire3500Frigorias, 90, 360));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(lavarropas, 6, 30));
-		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(microondas, 6, 15));
-		//System.out.println(RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(aire));
-		
-		/*lio.agregarDispositivo(new ComputadoraDeEscritorio(mockPcConcreta));
-		lio.agregarDispositivo(new TelevisorLed40(mockTelevisorSmartConcreto));
-		lio.agregarDispositivo(new LamparaDe20W(mockLampara));
-		lio.agregarDispositivo(new LavarropasAutomatico5kg(mockLavarropas));
-		lio.agregarDispositivo(new PlanchaAVapor(mockPlancha));
-		lio.agregarDispositivo(new VentiladorDeTecho(mockVentilador));
-		lio.agregarDispositivo(new MicroondasConvencional(mockMicroondas));*/
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire2200Frigorias, 90, 360, new ActuadorQueApaga()));
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(compu, 90, 360, new ActuadorQueApaga()));
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(aire3500Frigorias, 90, 360, new ActuadorQueApaga()));
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(lavarropas, 6, 30, new ActuadorQuePoneEnAhorroDeEnergia()));
+		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(microondas, 6, 15, new ActuadorQueApaga()));
 	}
 
 	@Test
@@ -78,10 +67,10 @@ public class TestSimplex extends Fixture {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
 		Boolean cumpleRestriccionesDeHoras = lio.getDispositivos().stream().allMatch(dispositivo->
-										(	
-											RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo) >= horasSimplex[lio.getDispositivos().indexOf(dispositivo)] &&
-											RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo) <= horasSimplex[lio.getDispositivos().indexOf(dispositivo)]		
-										) 
+				(	
+					RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo) >= horasSimplex[lio.getDispositivos().indexOf(dispositivo)] &&
+					RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo) <= horasSimplex[lio.getDispositivos().indexOf(dispositivo)]		
+				) 
 			);
 									
 		assertTrue(cumpleRestriccionesDeHoras);
@@ -92,14 +81,12 @@ public class TestSimplex extends Fixture {
 		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		double[] horasSimplex = optimizadorDeLio.optimizarUsoDispositivos().getPoint();
 		double consumoTotal = lio.getDispositivos().stream().mapToDouble(dispositivo -> 
-																		dispositivo.getKwPorHora() * horasSimplex[lio.getDispositivos().indexOf(dispositivo)]
+			dispositivo.getKwPorHora() * horasSimplex[lio.getDispositivos().indexOf(dispositivo)]
 															
 		).sum();
 		
 		assertTrue(consumoTotal <= 612);
-
 	}
-	
 	
 	@Test
 	public void ElSimplexEnElPrimerDispositivoDeNicoEs360() {
@@ -116,10 +103,10 @@ public class TestSimplex extends Fixture {
 		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
 		double[] horasSimplex = optimizadorDeNico.optimizarUsoDispositivos().getPoint();
 						
-		assertTrue(100>horasSimplex[1]);
+		assertTrue(100 > horasSimplex[1]);
 	}
 		
-	 @Test
+	@Test
     public void ElSimplexDiferidoDebeApagarElMicroondas() {	
 		JobOptimizador job = JobOptimizador.getInstance();
 		job.ejecutar();
@@ -127,17 +114,23 @@ public class TestSimplex extends Fixture {
 		verify(mockMicroondas, times(1)).apagar();
     }
 	 
-	 @Test
-	 public void LosCoeficientesDeLaFuncionEconomicaSonTodos1() {
-			OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
-			assertTrue (Arrays.stream(optimizadorDeLio.getCoeficientesFuncionEconomica()).allMatch(coeficiente -> (coeficiente == 1)));
-
-	 }
-	 @Test
-	 public void EnLaFuncionEconomicaHayTantosCoeficientesComoDispositivosTieneElCliente() {
-		 OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+	@Test
+	public void alOptimizarSePoneEnAhorroDeEnergiaElLavarropas() {
+		JobOptimizador job = JobOptimizador.getInstance();
+		job.ejecutar();
+		
+		verify(mockLavarropas, times(1)).ponerEnAhorroDeEnergia();
+	}
+	
+	@Test
+	public void LosCoeficientesDeLaFuncionEconomicaSonTodos1() {
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		assertTrue (Arrays.stream(optimizadorDeLio.getCoeficientesFuncionEconomica()).allMatch(coeficiente -> (coeficiente == 1)));
+	}
+	
+	@Test
+	public void EnLaFuncionEconomicaHayTantosCoeficientesComoDispositivosTieneElCliente() {
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
 		assertEquals(lio.cantidadDispositivos(), optimizadorDeLio.getCoeficientesFuncionEconomica().length, 0);
-	 }
-	
-	
+	}	
 }
