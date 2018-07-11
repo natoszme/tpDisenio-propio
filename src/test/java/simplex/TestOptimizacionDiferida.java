@@ -1,6 +1,7 @@
 package simplex;
 
 import static org.mockito.Mockito.times;
+
 import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
@@ -21,6 +22,14 @@ public class TestOptimizacionDiferida extends FixtureSimplex{
 		JobOptimizador job = JobOptimizador.getInstance();
 		job.ejecutar();
 		
+		verify(mockTelevisorSmartConcreto, times(0)).apagar();
+    }
+	
+	@Test
+    public void ElSimplexDiferidoApagaUnInteligente() {	
+		JobOptimizador job = JobOptimizador.getInstance();
+		job.ejecutar();
+		
 		verify(mockMicroondas, times(0)).apagar();
     }
 	 
@@ -30,5 +39,6 @@ public class TestOptimizacionDiferida extends FixtureSimplex{
 		job.ejecutar();
 		
 		verify(mockLavarropas, times(0)).ponerEnAhorroDeEnergia();
-	}
+	}	
+	
 }
