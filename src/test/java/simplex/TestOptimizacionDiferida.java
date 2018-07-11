@@ -30,7 +30,7 @@ public class TestOptimizacionDiferida extends FixtureSimplex{
 		JobOptimizador job = JobOptimizador.getInstance();
 		job.ejecutar();
 		
-		verify(mockMicroondas, times(0)).apagar();
+		verify(mockMicroondas, times(1)).apagar();
     }
 	 
 	@Test
