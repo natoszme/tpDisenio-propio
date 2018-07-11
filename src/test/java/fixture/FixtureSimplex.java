@@ -1,4 +1,4 @@
-package simplex;
+package fixture;
 
 import java.time.LocalDateTime;
 
@@ -8,8 +8,8 @@ import dispositivo.Dispositivo;
 import dispositivo.DispositivosBaseFactory;
 import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.actuador.ActuadorQuePoneEnAhorroDeEnergia;
-import fixture.Fixture;
 import repositorio.RepoRestriccionesUsoDispositivo;
+import simplex.RestriccionUsoDispositivo;
 
 public class FixtureSimplex extends Fixture{
 	@Before

@@ -7,6 +7,7 @@ import org.apache.commons.math3.util.Pair;
 import org.junit.Test;
 
 import dispositivo.Dispositivo;
+import fixture.FixtureSimplex;
 import repositorio.RepoRestriccionesUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 
@@ -60,7 +61,7 @@ public class TestSimplex extends FixtureSimplex {
 	}
 	
 	@Test
-	public void ElLavarropasDeNicoConsumeMasQueSuRestriccionDelSimplex() {		
+	public void ElLavarropasDeNicoEstaMasTiempoPrendidoQueSuRestriccionDelSimplex() {		
 		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
 		List<Pair<Dispositivo, Double>> horasSimplex = optimizadorDeNico.optimizarUsoDispositivos();
 						

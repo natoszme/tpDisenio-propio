@@ -5,24 +5,30 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 
+import fixture.FixtureSimplex;
+
 public class TestOptimizacionDiferida extends FixtureSimplex{
 	
-	/*@Test
-	public void */
+	/*@Before
+	public void before() {
+		super.before();
+		when(mockMicroondas.estaEncendido()).thenReturn(true);
+		when(mockLavarropas.estaEncendido()).thenReturn(true);
+	}*/
 	
 	@Test
-    public void ElSimplexDiferidoApagaElMicroondas() {	
+    public void ElSimplexDiferidoNoApagaUnNoInteligente() {	
 		JobOptimizador job = JobOptimizador.getInstance();
 		job.ejecutar();
 		
-		verify(mockMicroondas, times(1)).apagar();
+		verify(mockMicroondas, times(0)).apagar();
     }
 	 
 	@Test
-	public void alOptimizarSePoneEnAhorroDeEnergiaElLavarropas() {
+	public void alOptimizarNoSePoneEnAhorroDeEnergiaElLavarropasEstandar() {
 		JobOptimizador job = JobOptimizador.getInstance();
 		job.ejecutar();
 		
-		verify(mockLavarropas, times(1)).ponerEnAhorroDeEnergia();
+		verify(mockLavarropas, times(0)).ponerEnAhorroDeEnergia();
 	}
 }
