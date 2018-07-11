@@ -1,10 +1,5 @@
 package simplex;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import org.apache.commons.math3.util.Pair;
-
 import cliente.Cliente;
 import dispositivo.Dispositivo;
 import dispositivo.gadgets.actuador.Actuador;

@@ -30,6 +30,8 @@ public class OptimizadorUsoDispositivos {
 		this.cliente = cliente;
 	}	
 	
+	//TODO podriamos pasar el cliente por parametro pero lo estariamos arrastrando por todos los metodos.
+	//la otra es que se setee una variable local y que esta clase sea un singleton pero habria que limpiar esa variable cuando se termina de usar
 	public List<Pair<Dispositivo, Double>> optimizarUsoDispositivos() {
 		
 		SimplexSolver simplexSolver = new SimplexSolver();		
@@ -91,10 +93,19 @@ public class OptimizadorUsoDispositivos {
 		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> lambda.apply(dispositivo)).toArray();
 	}
 	
-	public List<Pair<Dispositivo, Double>> obtenerMaximosDeConsumoDeInteligentes(Cliente cliente) {
-		
+	public List<Pair<Dispositivo, Double>> obtenerMaximosDeConsumoDeInteligentes() {		
 		return optimizarUsoDispositivos().stream().filter(
 			par -> par.getFirst().esInteligente()
 		).collect(Collectors.toList());
-	} 
+	}
+
+	public double obtenerHorasOptimasPara(Dispositivo dispositivo) {
+		Double horasOptimas = optimizarUsoDispositivos().stream().
+				filter(horaOptima -> horaOptima.getFirst() == dispositivo).
+				findFirst().
+				orElseThrow(() -> new DispositivoNoOptimizadoException(dispositivo)).
+				getSecond();
+		
+		return Math.round(horasOptimas);
+	}
 }
