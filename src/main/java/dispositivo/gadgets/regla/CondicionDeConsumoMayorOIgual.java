@@ -4,7 +4,7 @@ import dispositivo.gadgets.sensor.Sensor;
 
 public class CondicionDeConsumoMayorOIgual extends CondicionSobreSensor {
 	
-	double factorDeComparacion;
+	private double factorDeComparacion;
 	
 	public CondicionDeConsumoMayorOIgual(double factorDeComparacion, Sensor sensor) {
 		super(sensor);
