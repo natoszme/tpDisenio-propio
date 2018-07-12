@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import repositorio.RepoClientes;
+import repositorio.RepoReglas;
 import repositorio.RepoRestriccionesUsoDispositivo;
 
 public class JobOptimizador {
@@ -30,14 +31,14 @@ public class JobOptimizador {
 
 	public void obtenerMaximosYGenerarReglas(Cliente cliente) {
 		new OptimizadorUsoDispositivos(cliente).obtenerMaximosDeConsumoDeInteligentes().forEach(
-			par -> this.generarYAplicarRegla(par.getFirst(), par.getSecond())
+			par -> this.generarRegla(par.getFirst(), par.getSecond())
 		);
 	}
 	
-	private void generarYAplicarRegla(Dispositivo dispositivo, double consumoMaximo) {
+	private void generarRegla(Dispositivo dispositivo, double consumoMaximo) {
 		CondicionDeConsumoMayorOIgual condicion = new CondicionDeConsumoMayorOIgual(consumoMaximo, new SensorHorasEncendido(dispositivo));
 		Regla regla = new ReglaEstricta(obtenerActuadorDe(dispositivo), Arrays.asList(condicion), dispositivo);
-		regla.aplicarSiCumpleCriterio();
+		RepoReglas.getInstance().agregarEntidad(regla);
 	}
 	
 	private List<Actuador> obtenerActuadorDe(Dispositivo dispositivo) {
