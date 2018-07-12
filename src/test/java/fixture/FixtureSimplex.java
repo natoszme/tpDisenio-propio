@@ -10,6 +10,7 @@ import dispositivo.DispositivoConcreto;
 import dispositivo.DispositivosBaseFactory;
 import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.actuador.ActuadorQuePoneEnAhorroDeEnergia;
+import repositorio.RepoClientes;
 import repositorio.RepoRestriccionesUsoDispositivo;
 import simplex.RestriccionUsoDispositivo;
 
@@ -28,18 +29,25 @@ public class FixtureSimplex extends Fixture{
  
 		Dispositivo tv40 = DispositivosBaseFactory.getInstance().tvLed40Pulgadas(mockTv40);
 
-
 		mockMicroondas = Mockito.mock(DispositivoConcreto.class);
 		
-
+		lio.limpiarDispositivos();
 		lio.agregarDispositivo(aire2200Frigorias);
 		lio.agregarDispositivo(aire3500Frigorias);
 		lio.agregarDispositivo(compu);
 		lio.agregarDispositivo(lavarropas);
 		lio.agregarDispositivo(microondas);
 		
+		nico.limpiarDispositivos();
 		nico.agregarDispositivo(aire3500Frigorias);
 		nico.agregarDispositivo(lavarropas);
+		
+		yanina.agregarDispositivo(tv40);
+		
+		RepoClientes.getInstance().limpiarEntidades();
+		RepoClientes.getInstance().agregarEntidad(nico);
+		RepoClientes.getInstance().agregarEntidad(lio);
+		RepoClientes.getInstance().agregarEntidad(yanina);
 		
 		aire2200Frigorias.guardarConsumoDeFecha(LocalDateTime.now(), 325);
 		

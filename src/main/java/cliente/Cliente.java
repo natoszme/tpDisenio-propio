@@ -156,4 +156,8 @@ public class Cliente {
 	public Point ubicacion() {
 		return ubicacion;
 	}
+
+	public void limpiarDispositivos() {
+		dispositivos.clear();		
+	}
 }
