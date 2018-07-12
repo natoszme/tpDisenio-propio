@@ -17,6 +17,18 @@ public abstract class Regla {
 		this.actuadores = actuadores;
 		this.condiciones = condiciones;
 	}
+
+	public Dispositivo getDispositivo() {
+		return dispositivo;
+	}
+
+	public List<CondicionSobreSensor> getCondiciones() {
+		return condiciones;
+	}
+
+	public List<Actuador> getActuadores() {
+		return actuadores;
+	}
 	
 	private void validarDispositivoInteligente(Dispositivo dispositivo) {
 		if(!dispositivo.esInteligente()) throw new NoSePuedeUsarReglaSobreDispositivoNoInteligenteException();
@@ -29,6 +41,10 @@ public abstract class Regla {
 	}
 	
 	protected abstract boolean seCumpleCriterio();
+	
+	public boolean esIgualAMi(Regla otraRegla) {
+		return dispositivo == otraRegla.getDispositivo() && condiciones == otraRegla.getCondiciones() && actuadores == otraRegla.getActuadores();
+	}
 
 	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion()); ? (de las subclases)
 	
