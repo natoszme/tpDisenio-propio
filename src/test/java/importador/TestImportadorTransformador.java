@@ -25,4 +25,14 @@ public class TestImportadorTransformador {
 		Assert.assertEquals(new Point (1, 1).getX(), transformadores.get(0).ubicacion().getX(), 0);
 		Assert.assertEquals(new Point (1, 1).getY(), transformadores.get(0).ubicacion().getY(), 0);
 	}
+	@Test
+	public void laUbicacionDelTercerTransformadorEnXNoEs2() {		
+		Assert.assertNotEquals(new Point (2, 1).getX(), transformadores.get(2).ubicacion().getX());	
+	}
+	@Test
+	public void existeUnTransformadorConUbicacion2_1() {		
+		Assert.assertTrue(transformadores.stream()
+				.anyMatch(transformador->(transformador.ubicacion().getX()==new Point (2, 1).getX()) 
+						&& transformador.ubicacion().getY()==new Point (2, 1).getY()));	
+	}
 }
