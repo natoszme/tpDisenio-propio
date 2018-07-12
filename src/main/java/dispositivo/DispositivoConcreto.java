@@ -2,12 +2,6 @@ package dispositivo;
 
 public abstract class DispositivoConcreto {
 	
-	protected long identificadorDeFabrica;
-	
-	public DispositivoConcreto(long identificadorDeFabrica) {
-		this.identificadorDeFabrica = identificadorDeFabrica;
-	}
-	
 	public abstract void encender();	
 	public abstract void apagar();	
 	public abstract void ponerEnAhorroDeEnergia();
