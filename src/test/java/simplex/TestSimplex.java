@@ -61,7 +61,7 @@ public class TestSimplex extends FixtureSimplex {
 	}
 	
 	@Test
-	public void ElLavarropasDeNicoEstaMasTiempoPrendidoQueSuRestriccionDelSimplex() {		
+	public void ElSegundoDispositivoDeNicoEstaMasTiempoPrendidoQueSuRestriccionDelSimplex() {		
 		OptimizadorUsoDispositivos optimizadorDeNico = new OptimizadorUsoDispositivos(nico);
 		List<Pair<Dispositivo, Double>> horasSimplex = optimizadorDeNico.optimizarUsoDispositivos();
 						
