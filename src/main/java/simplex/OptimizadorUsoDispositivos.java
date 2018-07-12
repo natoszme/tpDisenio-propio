@@ -1,10 +1,13 @@
 package simplex;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.apache.commons.math3.optim.PointValuePair;
 import org.apache.commons.math3.optim.linear.LinearConstraint;
@@ -60,12 +63,18 @@ public class OptimizadorUsoDispositivos {
 		List<LinearConstraint> restricciones = new ArrayList<LinearConstraint>();		
 		restricciones.add(new LinearConstraint(this.getTodosLosConsumosDe(), Relationship.LEQ, MAX_CONSUMO));
 		
-		cliente.getDispositivos().stream().forEach(dispositivo -> {
-			restricciones.add(this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)));
-			restricciones.add(this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo)));
-		});
+		
+		List<LinearConstraint> restriccionesdeldispositivo = cliente.getDispositivos().stream().flatMap(dispositivo -> this.restriccionesPara(dispositivo)).collect(Collectors.toList());
+		restricciones.addAll(restriccionesdeldispositivo);
 
 		return restricciones;
+	}
+
+	private Stream<LinearConstraint> restriccionesPara(Dispositivo dispositivo) {
+		return Arrays.asList(
+				this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)),
+				this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.GEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMinimaDe(dispositivo))
+		).stream();
 	}
 
 	public LinearConstraint getRestriccionLineal(int posicion, Relationship relacion, double restriccion) {		
@@ -76,11 +85,11 @@ public class OptimizadorUsoDispositivos {
 		);		
 	}
 	
-	public double[] getTodosLosConsumosDe() {
+	private double[] getTodosLosConsumosDe() {
 		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> { return dispositivo.getKwPorHora(); });
 	}
 	
-	public double[] getCoeficientesSimples(int posicionValida) {
+	private double[] getCoeficientesSimples(int posicionValida) {
 		int cantDispositivos = (int) this.cliente.cantidadDispositivos();		
 		return (double[]) IntStream.range(0, cantDispositivos).mapToDouble(i -> (i == posicionValida ? 1 : 0)).toArray();
 	}
