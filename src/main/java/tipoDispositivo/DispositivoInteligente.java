@@ -78,14 +78,7 @@ public class DispositivoInteligente implements TipoDispositivo{
 	}
 
 	public double horasPrendidoEnMesActual() {
-		return dispositivoConcreto.horasEncendidoEn(horasDeMesActual());
-	}
-
-	private long horasDeMesActual() {
-		LocalDateTime hoy = LocalDateTime.now();
-		LocalDateTime primerDiaDelMes = LocalDateTime.of(hoy.getYear(), hoy.getMonth(), 1, 0, 0);
-
-	    return Duration.between(primerDiaDelMes, hoy).toHours();
+		return dispositivoConcreto.horasEncendidoEn(CalculadoraHorasMesActual.getInstance().horasDeMesActual());
 	}
 
 	public double consumoActual() {
