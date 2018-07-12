@@ -3,8 +3,10 @@ package fixture;
 import java.time.LocalDateTime;
 
 import org.junit.Before;
+import org.mockito.Mockito;
 
 import dispositivo.Dispositivo;
+import dispositivo.DispositivoConcreto;
 import dispositivo.DispositivosBaseFactory;
 import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.actuador.ActuadorQuePoneEnAhorroDeEnergia;
@@ -17,10 +19,18 @@ public class FixtureSimplex extends Fixture{
 		Dispositivo aire2200Frigorias = DispositivosBaseFactory.getInstance().aire2200Frigorias(mockAireConcreto);
 		Dispositivo aire3500Frigorias = DispositivosBaseFactory.getInstance().aire3500Frigorias(mockAireConcreto);
 		Dispositivo compu = DispositivosBaseFactory.getInstance().computadoraDeEscritorio(mockPcConcreta);
+		
 		Dispositivo lavarropas = DispositivosBaseFactory.getInstance().lavarropasAutomatico5kg(mockLavarropas);
+		mockLavarropas = Mockito.mock(DispositivoConcreto.class);
+		
 		Dispositivo microondas = DispositivosBaseFactory.getInstance().microondas(mockMicroondas);
+
  
 		Dispositivo tv40 = DispositivosBaseFactory.getInstance().tvLed40Pulgadas(mockTv40);
+
+
+		mockMicroondas = Mockito.mock(DispositivoConcreto.class);
+		
 
 		lio.agregarDispositivo(aire2200Frigorias);
 		lio.agregarDispositivo(aire3500Frigorias);

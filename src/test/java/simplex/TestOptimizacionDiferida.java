@@ -14,13 +14,6 @@ import tipoDispositivo.DispositivoInteligente;
 
 public class TestOptimizacionDiferida extends FixtureSimplex{
 	
-	/*@Before
-	public void before() {
-		super.before();
-		when(mockMicroondas.estaEncendido()).thenReturn(true);
-		when(mockLavarropas.estaEncendido()).thenReturn(true);
-	}*/
-	
 	@Test
     public void ElSimplexDiferidoNoApagaUnNoInteligente() {	
 		JobOptimizador job = JobOptimizador.getInstance();
