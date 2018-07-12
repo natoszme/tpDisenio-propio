@@ -2,9 +2,9 @@ package simplex;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -98,8 +98,8 @@ public class OptimizadorUsoDispositivos {
 		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> { return 1.0; });
 	}	
 
-	private double[] obtenerArrayDeDispositivosTransformadoCon(Function<Dispositivo, Double> lambda) {
-		return cliente.getDispositivos().stream().mapToDouble(dispositivo -> lambda.apply(dispositivo)).toArray();
+	private double[] obtenerArrayDeDispositivosTransformadoCon(ToDoubleFunction<Dispositivo> lambda) {
+		return cliente.getDispositivos().stream().mapToDouble(lambda).toArray();
 	}
 	
 	public List<Pair<Dispositivo, Double>> obtenerMaximosDeConsumoDeInteligentes() {		
