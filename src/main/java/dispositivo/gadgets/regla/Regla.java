@@ -42,13 +42,17 @@ public abstract class Regla {
 	
 	protected abstract boolean seCumpleCriterio();
 	
-	public boolean esIgualA(Regla otraRegla) {
+	public boolean esIgualA(Regla otraRegla) {		
 		return dispositivo.esIgualA(otraRegla.getDispositivo()) && sonIgualesA(condiciones, otraRegla.getCondiciones())
 				&& sonIgualesA(actuadores, otraRegla.getActuadores());
 	}
 	
-	public boolean sonIgualesA(List<Gadget> gadgets, List<Gadget otrosGadgets) {
-		return gadgets.stream().foreach(gadget -> gadget.esIgualA(otroGadget));
+	private boolean sonIgualesA(List<? extends Gadget> gadgets, List<? extends Gadget> otrosGadgets) {
+		return todosLosDeUnaListaEstanEnLaOtra(gadgets, otrosGadgets) && todosLosDeUnaListaEstanEnLaOtra(otrosGadgets, gadgets);
+	}
+	
+	private boolean todosLosDeUnaListaEstanEnLaOtra(List<? extends Gadget> gadgets, List<? extends Gadget> otrosGadgets) {
+		return gadgets.stream().allMatch(gadget -> gadget.estaEn((List<Gadget>) otrosGadgets));
 	}
 
 	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion()); ? (de las subclases)

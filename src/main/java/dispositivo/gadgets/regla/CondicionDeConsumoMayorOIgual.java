@@ -14,4 +14,14 @@ public class CondicionDeConsumoMayorOIgual extends CondicionSobreSensor {
 	public boolean condicionSobreMedicion(double medicion) {
 		return medicion >= factorDeComparacion;
 	}
+
+	//TODO revisar esto, es medio turbio por el casteo
+	@Override
+	public boolean esIgualA(Gadget gadget) {
+		return super.esIgualA(gadget) && factorDeComparacion == ((CondicionDeConsumoMayorOIgual) gadget).getFactorComparacion();
+	}
+	
+	public double getFactorComparacion() {
+		return factorDeComparacion;
+	}
 }

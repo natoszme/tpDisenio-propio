@@ -2,7 +2,7 @@ package dispositivo.gadgets.regla;
 
 import dispositivo.gadgets.sensor.Sensor;
 
-public abstract class CondicionSobreSensor {
+public abstract class CondicionSobreSensor extends Gadget{
 	private Sensor sensor;
 	
 	public CondicionSobreSensor(Sensor sensor) {
@@ -17,5 +17,10 @@ public abstract class CondicionSobreSensor {
 	
 	public Sensor getSensor() {
 		return sensor;
+	}
+	
+	@Override
+	public boolean esIgualA(Gadget gadget) {
+		return sensor == ((CondicionSobreSensor)gadget).getSensor();
 	}
 }
