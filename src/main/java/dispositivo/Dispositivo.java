@@ -89,7 +89,7 @@ public class Dispositivo {
 		return tipoDispositivo.consumoActual();
 	}
 	
-	public boolean equals(Dispositivo otroDispositivo) {
+	public boolean esIgualA(Dispositivo otroDispositivo) {
 		return otroDispositivo.getNombre() == nombre;
 	}
 }

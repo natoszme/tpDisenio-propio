@@ -17,7 +17,7 @@ public class RestriccionUsoDispositivo {
 	}
 
 	public boolean esDe(Dispositivo dispositivo) {
-		return this.dispositivo.equals(dispositivo);
+		return this.dispositivo.esIgualA(dispositivo);
 	}
 
 	public double getUsoMensualMinimo() {
