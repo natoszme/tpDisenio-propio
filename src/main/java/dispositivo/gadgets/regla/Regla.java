@@ -53,6 +53,8 @@ public abstract class Regla {
 		return todosLosDeUnaListaEstanEnLaOtra(gadgets, otrosGadgets) && todosLosDeUnaListaEstanEnLaOtra(otrosGadgets, gadgets);
 	}
 	
+	//ademas aca hay algo raro: en el casteo se esta pasando de una lista mas restrictiva a una menos, que es eso que Java no puede resolver...
+	@SuppressWarnings("unchecked")
 	private boolean todosLosDeUnaListaEstanEnLaOtra(List<? extends Gadget> gadgets, List<? extends Gadget> otrosGadgets) {
 		return gadgets.stream().allMatch(gadget -> gadget.estaEn((List<Gadget>) otrosGadgets));
 	}
