@@ -24,7 +24,7 @@ public class RepoReglas extends Repo<Regla>{
 
 	@Override
 	public void agregarEntidades(List<Regla> reglas) {
-		reglas.forEach(regla -> reemplazarSiExiste(regla));
+		reglas.forEach(regla -> agregarEntidad(regla));
 	}
 	
 	private void reemplazarSiExiste(Regla nuevaRegla) {
