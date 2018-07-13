@@ -1,7 +1,7 @@
 package dispositivo.gadgets.actuador;
 
 import dispositivo.Dispositivo;
-import dispositivo.gadget.Gadget;
+import dispositivo.gadgets.Gadget;
 
 public abstract class Actuador extends Gadget{
 

@@ -1,4 +1,4 @@
-package dispositivo.gadget;
+package dispositivo.gadgets;
 
 import java.util.List;
 
