@@ -13,6 +13,6 @@ public class JobRegla {
 	}
 	
 	public void ejecutar() {
-		RepoReglas.getInstance().obtenerTodas().forEach(regla -> regla.aplicarSiCumpleCriterio());
+		RepoReglas.getInstance().obtenerTodas().forEach(Regla::aplicarSiCumpleCriterio);
 	}	
 }
