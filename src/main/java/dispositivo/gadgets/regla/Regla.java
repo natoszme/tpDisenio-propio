@@ -42,7 +42,7 @@ public abstract class Regla {
 	
 	protected abstract boolean seCumpleCriterio();
 	
-	public boolean esIgualAMi(Regla otraRegla) {
+	public boolean esIgualA(Regla otraRegla) {
 		return dispositivo.esIgualA(otraRegla.getDispositivo()) && sonIgualesA(condiciones, otraRegla.getCondiciones())
 				&& sonIgualesA(actuadores, otraRegla.getActuadores());
 	}

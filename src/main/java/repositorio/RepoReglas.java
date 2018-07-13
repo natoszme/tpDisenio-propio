@@ -28,7 +28,7 @@ public class RepoReglas extends Repo<Regla>{
 	}
 	
 	private void reemplazarSiExiste(Regla nuevaRegla) {
-		entidades = entidades.stream().filter(reglaExistente -> !reglaExistente.esIgualAMi(nuevaRegla)).collect(Collectors.toList());
+		entidades = entidades.stream().filter(reglaExistente -> !reglaExistente.esIgualA(nuevaRegla)).collect(Collectors.toList());
 		entidades.add(nuevaRegla);
 	}
 }
