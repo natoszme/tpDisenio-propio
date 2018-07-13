@@ -47,6 +47,8 @@ public abstract class Regla {
 				&& sonIgualesA(actuadores, otraRegla.getActuadores());
 	}
 	
+	//TODO revisar desde aca. no es tan trivial hacer esto porque las listas que se pasan como parametro son de un tipo mas restrictivo que Gadget
+	//y Java no permite eso. Por eso hay que hacerlo asi:
 	private boolean sonIgualesA(List<? extends Gadget> gadgets, List<? extends Gadget> otrosGadgets) {
 		return todosLosDeUnaListaEstanEnLaOtra(gadgets, otrosGadgets) && todosLosDeUnaListaEstanEnLaOtra(otrosGadgets, gadgets);
 	}
