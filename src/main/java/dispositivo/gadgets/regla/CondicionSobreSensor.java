@@ -1,5 +1,6 @@
 package dispositivo.gadgets.regla;
 
+import dispositivo.gadget.Gadget;
 import dispositivo.gadgets.sensor.Sensor;
 
 public abstract class CondicionSobreSensor extends Gadget{

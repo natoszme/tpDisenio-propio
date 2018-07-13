@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dispositivo.Dispositivo;
+import dispositivo.gadget.Gadget;
 import dispositivo.gadgets.actuador.Actuador;
 
 public abstract class Regla {
