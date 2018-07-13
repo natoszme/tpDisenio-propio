@@ -37,11 +37,11 @@ public class JobOptimizador {
 	
 	private void generarRegla(Dispositivo dispositivo, double consumoMaximo) {
 		CondicionDeConsumoMayorOIgual condicion = new CondicionDeConsumoMayorOIgual(consumoMaximo, new SensorHorasEncendido(dispositivo));
-		Regla regla = new ReglaEstricta(obtenerActuadorDe(dispositivo), Arrays.asList(condicion), dispositivo);
+		Regla regla = new ReglaEstricta(obtenerActuadoresDe(dispositivo), Arrays.asList(condicion), dispositivo);
 		RepoReglas.getInstance().agregarEntidad(regla);
 	}
 	
-	private List<Actuador> obtenerActuadorDe(Dispositivo dispositivo) {
+	private List<Actuador> obtenerActuadoresDe(Dispositivo dispositivo) {
 		return Arrays.asList(RepoRestriccionesUsoDispositivo.getInstance().dameAccionDe(dispositivo));
 	}	
 }

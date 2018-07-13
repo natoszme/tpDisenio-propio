@@ -14,7 +14,7 @@ import tipoDispositivo.CalculadoraHorasMesActual;
 public class TestOptimizacionDiferida extends FixtureSimplex {
 	
 	@Test
-    public void ElSimplexDiferidoNoApagaUnNoInteligente() {	
+    public void elSimplexDiferidoNoApagaUnNoInteligente() {	
 		JobOptimizador job = JobOptimizador.getInstance();
 		job.ejecutar();
 		
@@ -30,7 +30,7 @@ public class TestOptimizacionDiferida extends FixtureSimplex {
 	}
 	
 	@Test
-    public void ElSimplexDiferidoAgregaLaReglaParaApagarElTelevisor() {	    
+    public void elSimplexDiferidoAgregaLaReglaParaApagarElTelevisor() {	    
 		JobOptimizador job = JobOptimizador.getInstance();
 		when(mockTv40.horasEncendidoEn(CalculadoraHorasMesActual.getInstance().horasDeMesActual())).thenReturn(80000.0);
 		job.ejecutar(); 
