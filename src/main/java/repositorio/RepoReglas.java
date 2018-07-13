@@ -2,6 +2,7 @@ package repositorio;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dispositivo.Dispositivo;
 import dispositivo.gadgets.regla.Regla;
 
 public class RepoReglas extends Repo<Regla>{
@@ -30,5 +31,9 @@ public class RepoReglas extends Repo<Regla>{
 	private void reemplazarSiExiste(Regla nuevaRegla) {
 		entidades = entidades.stream().filter(reglaExistente -> !reglaExistente.esIgualA(nuevaRegla)).collect(Collectors.toList());
 		entidades.add(nuevaRegla);
+	}
+
+	public boolean tieneReglaDe(Dispositivo dispositivo) {
+		return entidades.stream().anyMatch(regla -> regla.esDe(dispositivo));
 	}
 }

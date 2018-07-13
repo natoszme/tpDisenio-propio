@@ -84,4 +84,12 @@ public class DispositivoInteligente implements TipoDispositivo{
 	public double consumoActual() {
 		return dispositivoConcreto.consumoActual();
 	}
+
+	public boolean esElMismoConcretoQue(Dispositivo dispositivo) {
+		return dispositivoConcreto == dispositivo.dispositivoConcreto();
+	}
+
+	public DispositivoConcreto getDispositivoConcreto() {
+		return dispositivoConcreto;
+	}
 }

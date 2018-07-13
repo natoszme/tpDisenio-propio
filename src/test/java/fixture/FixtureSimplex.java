@@ -11,26 +11,28 @@ import dispositivo.DispositivosBaseFactory;
 import dispositivo.gadgets.actuador.ActuadorQueApaga;
 import dispositivo.gadgets.actuador.ActuadorQuePoneEnAhorroDeEnergia;
 import repositorio.RepoClientes;
+import repositorio.RepoReglas;
 import repositorio.RepoRestriccionesUsoDispositivo;
 import simplex.RestriccionUsoDispositivo;
 
 public class FixtureSimplex extends Fixture{
-	@Before
-	public void before() {
-		Dispositivo aire2200Frigorias = DispositivosBaseFactory.getInstance().aire2200Frigorias(mockAireConcreto);
-		Dispositivo aire3500Frigorias = DispositivosBaseFactory.getInstance().aire3500Frigorias(mockAireConcreto);
-		Dispositivo compu = DispositivosBaseFactory.getInstance().computadoraDeEscritorio(mockPcConcreta);
+	
+	protected Dispositivo aire2200Frigorias = DispositivosBaseFactory.getInstance().aire2200Frigorias(mockAireConcreto);
+	protected Dispositivo aire3500Frigorias = DispositivosBaseFactory.getInstance().aire3500Frigorias(mockAireConcreto);
+	protected Dispositivo compu = DispositivosBaseFactory.getInstance().computadoraDeEscritorio(mockPcConcreta);
+	protected Dispositivo lavarropas = DispositivosBaseFactory.getInstance().lavarropasAutomatico5kg(mockLavarropas);
+	protected Dispositivo microondas = DispositivosBaseFactory.getInstance().microondas(mockMicroondas);
+	protected Dispositivo tv40 = DispositivosBaseFactory.getInstance().tvLed40Pulgadas(mockTv40);
+	
+	public FixtureSimplex() {
+		super();
 		
-		Dispositivo lavarropas = DispositivosBaseFactory.getInstance().lavarropasAutomatico5kg(mockLavarropas);
 		mockLavarropas = Mockito.mock(DispositivoConcreto.class);
-		
-		Dispositivo microondas = DispositivosBaseFactory.getInstance().microondas(mockMicroondas);
-
- 
-		Dispositivo tv40 = DispositivosBaseFactory.getInstance().tvLed40Pulgadas(mockTv40);
-
 		mockMicroondas = Mockito.mock(DispositivoConcreto.class);
-		
+	}
+	
+	@Before
+	public void before() {		
 		lio.limpiarDispositivos();
 		lio.agregarDispositivo(aire2200Frigorias);
 		lio.agregarDispositivo(aire3500Frigorias);
@@ -63,5 +65,6 @@ public class FixtureSimplex extends Fixture{
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(televisorSmart, 50, 400, new ActuadorQueApaga()));
 		RepoRestriccionesUsoDispositivo.getInstance().agregarEntidad(new RestriccionUsoDispositivo(tv40, 50, 400, new ActuadorQueApaga()));
 		
+		RepoReglas.getInstance().limpiarEntidades();		
 	}
 }

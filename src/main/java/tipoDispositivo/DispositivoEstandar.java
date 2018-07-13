@@ -52,13 +52,19 @@ public class DispositivoEstandar implements TipoDispositivo{
 		return dispositivo.estimacionDeConsumoEn(horas);
 	}
 
-	@Override
 	public double horasPrendidoEnMesActual() {
 		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 
-	@Override
 	public double consumoActual() {
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
+	}
+
+	public boolean esElMismoConcretoQue(Dispositivo dispositivo) {
+		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
+	}
+
+	public DispositivoConcreto getDispositivoConcreto() {
 		throw new ElMensajeEnviadoNoPuedeSerRespondidoPorUnEstandarException();
 	}
 } 

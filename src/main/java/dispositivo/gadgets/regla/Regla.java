@@ -59,6 +59,10 @@ public abstract class Regla {
 		return gadgets.stream().allMatch(gadget -> gadget.estaEn((List<Gadget>) otrosGadgets));
 	}
 
+	public boolean esDe(Dispositivo dispositivo) {
+		return this.dispositivo.esElMismoConcretoQue(dispositivo);
+	}
+
 	// Se pueden abstraer los condiciones.stream().X(condicion -> condicion.seCumpleCondicion()); ? (de las subclases)
 	
 	/*private <Condicion> boolean seCumpleQue(Stream<Condicion> stream, Predicate<? super Condicion> predicate) {

@@ -92,4 +92,12 @@ public class Dispositivo {
 	public boolean esIgualA(Dispositivo otroDispositivo) {
 		return otroDispositivo.getNombre() == nombre;
 	}
+
+	public boolean esElMismoConcretoQue(Dispositivo dispositivo) {
+		return tipoDispositivo.esElMismoConcretoQue(dispositivo);
+	}
+	
+	public DispositivoConcreto dispositivoConcreto() {
+		return tipoDispositivo.getDispositivoConcreto();
+	}
 }

@@ -31,4 +31,6 @@ public interface TipoDispositivo {
 	public void guardarConsumoDeFecha(LocalDateTime fecha, double consumo);
 	public double horasPrendidoEnMesActual();
 	public double consumoActual();
+	public boolean esElMismoConcretoQue(Dispositivo dispositivo);
+	public DispositivoConcreto getDispositivoConcreto();
 }
