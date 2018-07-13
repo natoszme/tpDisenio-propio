@@ -22,6 +22,6 @@ public abstract class CondicionSobreSensor extends Gadget{
 	
 	@Override
 	public boolean esIgualA(Gadget gadget) {
-		return sensor == ((CondicionSobreSensor)gadget).getSensor();
+		return super.esIgualA(gadget) && sensor == ((CondicionSobreSensor)gadget).getSensor();
 	}
 }
