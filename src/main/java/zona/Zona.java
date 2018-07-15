@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
+import consumoMasivo.ConsumoMasivoEnBaseA;
 import repositorio.RepoTransformadores;
 import transformador.Transformador;
 
@@ -18,7 +19,7 @@ public class Zona extends ConsumoMasivoEnBaseA<Transformador>{
 		this.radio = radio;
 	}
 
-	public double miConsumoActual(Transformador transformador) {
+	public double consumoActual(Transformador transformador) {
 		return transformador.consumoActual();
 	}
 

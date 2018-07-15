@@ -7,11 +7,12 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import categoria.Categoria;
+import consumoMasivo.ConsumidorMasivo;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
 
-public class Cliente {
+public class Cliente implements ConsumidorMasivo{
 	private String nombre;
 	private String apellido;
 	private TipoDocumento tipoDocumento;

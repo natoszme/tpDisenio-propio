@@ -5,9 +5,10 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import cliente.Cliente;
+import consumoMasivo.ConsumidorMasivo;
+import consumoMasivo.ConsumoMasivoEnBaseA;
 import repositorio.RepoTransformadores;
-import zona.ConsumoMasivoEnBaseA;
-public class Transformador extends ConsumoMasivoEnBaseA<Cliente>{
+public class Transformador extends ConsumoMasivoEnBaseA<Cliente> implements ConsumidorMasivo{
 	
 	private Point ubicacion;
 	
@@ -17,7 +18,7 @@ public class Transformador extends ConsumoMasivoEnBaseA<Cliente>{
 		this.ubicacion = ubicacion;
 	}
 
-	public double miConsumoActual(Cliente cliente) {
+	public double consumoActual(Cliente cliente) {
 		return cliente.consumoActual();
 	}
 
