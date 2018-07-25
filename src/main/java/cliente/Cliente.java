@@ -93,7 +93,7 @@ public class Cliente implements ConsumidorMasivo{
 	}
 
 	public void tieneDispositivo(Dispositivo dispositivo) {
-		if (!dispositivos.stream().anyMatch(dispositiv -> dispositiv == dispositivo)) {
+		if (!dispositivos.stream().anyMatch(unDispositivo -> unDispositivo == dispositivo)) {
 			throw new NoPuedeAfectarAUnDispositivoQueNoLePerteneceException();
 		}
 	}
