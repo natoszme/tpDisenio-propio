@@ -3,7 +3,6 @@ package simplex;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -86,7 +85,7 @@ public class OptimizadorUsoDispositivos {
 	}
 	
 	private double[] getTodosLosConsumosDe() {
-		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> { return dispositivo.getKwPorHora(); });
+		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> dispositivo.getKwPorHora());
 	}
 	
 	private double[] getCoeficientesSimples(int posicionValida) {
@@ -95,7 +94,7 @@ public class OptimizadorUsoDispositivos {
 	}
 	
 	public double[] getCoeficientesFuncionEconomica() {		
-		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> { return 1.0; });
+		return obtenerArrayDeDispositivosTransformadoCon((Dispositivo dispositivo) -> 1.0);
 	}	
 
 	private double[] obtenerArrayDeDispositivosTransformadoCon(ToDoubleFunction<Dispositivo> lambda) {
