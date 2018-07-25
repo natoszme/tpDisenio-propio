@@ -100,7 +100,7 @@ public class TestCliente extends Fixture {
 		assertEquals(1,alejandro.cantidadDispositivosInteligentes());
 	}
 	
-	 @Test(expected = NoPuedeAfectarAUnDispositivoQueNoLePertenece.class)
+	 @Test(expected = NoPuedeAfectarAUnDispositivoQueNoLePerteneceException.class)
 	 public void alejandroNoPuedeConvertirAInteligenteElTelevisor() {
 		 alejandro.convertirAInteligente(televisor, mockTelevisorSmartConcreto);
 	 }
