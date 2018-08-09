@@ -2,8 +2,12 @@ package simplex;
 
 import static org.junit.Assert.*;
 
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealVector;
+import org.apache.commons.math3.optim.linear.LinearConstraint;
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
 import org.apache.commons.math3.util.Pair;
+import org.junit.Assert;
 import org.junit.Test;
 
 import dispositivo.Dispositivo;
@@ -11,6 +15,7 @@ import fixture.FixtureSimplex;
 import repositorio.RepoRestriccionesUsoDispositivo;
 import tipoDispositivo.DispositivoInteligente;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -89,4 +94,28 @@ public class TestSimplex extends FixtureSimplex {
 		lio.agregarDispositivo(jacuzzi);
 		optimizadorDeLio.obtenerHorasOptimasPara(jacuzzi);
 	}
+	
+	@Test
+	public void lasRestriccionesHorariasDelOptimizadorDeLioEstanCorrectamenteArmadas() {
+		OptimizadorUsoDispositivos optimizadorDeLio = new OptimizadorUsoDispositivos(lio);
+		List<LinearConstraint> restriccionesDeDispositivos = optimizadorDeLio.getRestrccionesDeHora();
+
+		double m [][] = {	{1,0,0,0,0},
+							{1,0,0,0,0},
+							{0,1,0,0,0},
+							{0,1,0,0,0},
+							{0,0,1,0,0},
+							{0,0,1,0,0}, 
+							{0,0,0,1,0},
+							{0,0,0,1,0},
+							{0,0,0,0,1},
+							{0,0,0,0,1}
+						};
+		double m2 [][] = new double[10] [5];
+		restriccionesDeDispositivos.forEach( restriccion -> m2[restriccionesDeDispositivos.indexOf(restriccion)]= restriccion.getCoefficients().toArray());
+
+		Assert.assertArrayEquals(m, m2);
+		
+	}
+	
 }
