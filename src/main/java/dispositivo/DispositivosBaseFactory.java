@@ -48,4 +48,6 @@ public class DispositivosBaseFactory {
 	public Dispositivo ventiladorDeTecho(DispositivoConcreto dispositivoConcreto) {
 		return new Dispositivo("Ventilador de techo", new DispositivoInteligente(dispositivoConcreto), 0.06);
 	}
+	
+	//faltan todos los estandar? estaria bueno que haya al menos un ejemplo de uno
 }
