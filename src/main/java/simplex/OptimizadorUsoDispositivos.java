@@ -63,12 +63,18 @@ public class OptimizadorUsoDispositivos {
 		restricciones.add(new LinearConstraint(this.getTodosLosConsumosDe(), Relationship.LEQ, MAX_CONSUMO));
 		
 		
-		List<LinearConstraint> restriccionesdeldispositivo = cliente.getDispositivos().stream().flatMap(dispositivo -> this.restriccionesPara(dispositivo)).collect(Collectors.toList());
-		restricciones.addAll(restriccionesdeldispositivo);
-
+		List<LinearConstraint> restriccionesDeDispositivos = this.getRestrccionesDeHora();
+		restricciones.addAll(restriccionesDeDispositivos);
+		
+		
 		return restricciones;
 	}
-
+	
+	public List<LinearConstraint> getRestrccionesDeHora(){
+		
+		return cliente.getDispositivos().stream().flatMap(dispositivo -> this.restriccionesPara(dispositivo)).collect(Collectors.toList());
+	}
+	
 	private Stream<LinearConstraint> restriccionesPara(Dispositivo dispositivo) {
 		return Arrays.asList(
 				this.getRestriccionLineal(this.cliente.getDispositivos().indexOf(dispositivo), Relationship.LEQ, RepoRestriccionesUsoDispositivo.getInstance().dameRestriccionMaximaDe(dispositivo)),
