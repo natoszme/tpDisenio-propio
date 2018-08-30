@@ -4,8 +4,10 @@ import dispositivo.Dispositivo;
 
 public class SensorHorasEncendido extends Sensor {
 	
+	protected Dispositivo dispositivo;
+	
 	public SensorHorasEncendido(Dispositivo dispositivo) {
-		super(dispositivo);
+		this.dispositivo = dispositivo;		
 	}
 	
 	public double medir() {
