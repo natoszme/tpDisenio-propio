@@ -6,7 +6,7 @@ public class Categoria {
 	double cargoFijo;
 	double cargoVariable;
 	
-	public Categoria() { /*es para el Json*/ }
+	public Categoria() {}
 	public Categoria(String nombre, double consumoMinimo, double consumoMaximo, double cargoFijo, double cargoVariable) {
 		this.nombre = nombre;
 		this.consumoMinimo = consumoMinimo;

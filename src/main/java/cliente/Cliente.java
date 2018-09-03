@@ -23,10 +23,10 @@ public class Cliente implements ConsumidorMasivo{
 	private Categoria categoria;
 	private List<Dispositivo> dispositivos = new ArrayList<>();
 	private double puntos = 0;
-	boolean ahorroAutomatico = true;  
+	private boolean ahorroAutomatico = true;  
 	private Point ubicacion;
 	
-	public Cliente() { /*Es para el Json*/ }
+	public Cliente() {}
 	
 	public Cliente(String nombre, String apellido, TipoDocumento tipoDocumento, long nroDocumento, long telefono, String domicilio, Categoria categoria, List<Dispositivo> dispositivos, Point ubicacion) {
 		this.nombre = nombre;

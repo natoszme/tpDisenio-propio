@@ -12,7 +12,7 @@ public class Transformador extends ConsumoMasivoEnBaseA<Cliente> implements Cons
 	
 	private Point ubicacion;
 	
-	public Transformador() { /*es para el Json*/ }
+	public Transformador() {}
 
 	public Transformador(Point ubicacion) {
 		this.ubicacion = ubicacion;
