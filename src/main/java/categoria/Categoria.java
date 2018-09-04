@@ -1,5 +1,11 @@
 package categoria;
-public class Categoria {
+
+import javax.persistence.Entity;
+
+import model.DatosBasicos;
+
+@Entity
+public class Categoria extends DatosBasicos {
 	String nombre;
 	double consumoMinimo;
 	double consumoMaximo;

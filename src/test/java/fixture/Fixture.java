@@ -2,9 +2,13 @@ package fixture;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.junit.After;
 import org.mockito.Mockito;
 import org.uqbar.geodds.Point;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import categoria.Categoria;
 import cliente.Cliente;
@@ -23,7 +27,7 @@ import tipoDispositivo.DispositivoEstandar;
 import tipoDispositivo.DispositivoInteligente;
 import transformador.Transformador;
 import zona.Zona;
-public class Fixture {
+public class Fixture extends AbstractPersistenceTest implements WithGlobalEntityManager { 
 	protected Categoria r1, r2, r3, r4, r5, r6, r7, r8, r9;
 	protected Dispositivo candelabro, televisor, microondas, equipoMusica, dvd, play4, televisorSmart, pc, aireAcondicionado;
 	protected List<Dispositivo> dispositivos = new ArrayList<>();
@@ -123,5 +127,22 @@ public class Fixture {
 	@After
 	public void after() {
 		RepoCategorias.getInstance().limpiarEntidades();
+	}
+
+	public void run() {
+		EntityManager em = entityManager();
+		withTransaction(() -> {
+			em.persist(r1);
+			em.persist(r2);
+			em.persist(r3);
+			em.persist(r4);
+			em.persist(r5);
+			em.persist(r6);
+			em.persist(r7);
+			em.persist(r8);
+			em.persist(r9);
+			
+			em.persist(lio);
+		});
 	}
 }
