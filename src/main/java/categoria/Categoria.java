@@ -1,5 +1,6 @@
 package categoria;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import db.DatosBasicos;
@@ -7,7 +8,9 @@ import db.DatosBasicos;
 @Entity
 public class Categoria extends DatosBasicos {
 	
+	@Column(nullable = false, unique = true)
 	private String nombre;
+	
 	private double consumoMinimo;
 	private double consumoMaximo;
 	private double cargoFijo;
