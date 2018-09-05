@@ -8,8 +8,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.uqbar.geodds.Point;
@@ -25,20 +26,27 @@ import repositorio.RepoCategorias;
 @Entity
 public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	
+	@Column(nullable = false)
 	private String nombre;
+	
+	@Column(nullable = false)
 	private String apellido;
 	
-	@Enumerated
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
 	private TipoDocumento tipoDocumento;
 	
+	@Column(nullable = false)
 	private long nroDocumento;
+	
 	private long telefono;
+	
 	private String domicilio;
 	
 	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fechaAlta;
 	
-	@OneToOne
+	@ManyToOne(optional = false)
 	private Categoria categoria;
 	
 	//@OneToMany(fetch=FetchType.LAZY, mappedBy="dispositivo_id")
@@ -46,9 +54,12 @@ public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	private List<Dispositivo> dispositivos = new ArrayList<>();
 	
 	private double puntos = 0;
+	
+	@Column(nullable = false)
 	private boolean ahorroAutomatico = true;  
 	
 	@Transient
+	//tendra que ser optional = false, porque se usa para calcular consumos de transformadores/zonas
 	private Point ubicacion;
 	
 	public Cliente() {}
