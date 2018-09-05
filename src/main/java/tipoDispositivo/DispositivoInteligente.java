@@ -5,13 +5,30 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import db.DatosBasicos;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 
-public class DispositivoInteligente implements TipoDispositivo{
+@Entity
+public class DispositivoInteligente extends DatosBasicos implements TipoDispositivo{
+	
+	//TODO mapeo de clase abstracta a enum?
+	@Transient
 	private DispositivoConcreto dispositivoConcreto;
+	
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@MapKey(name = "fecha")
 	private Map<LocalDateTime, Double> consumosHastaElMomento = new LinkedHashMap<>();
-	int duracionPlazoCronConsumo = 6;
+	
+	//deberia ser una variable de entorno?
+	@Transient
+	private int duracionPlazoCronConsumo = 6;
 	
 	public DispositivoInteligente(DispositivoConcreto dispositivoConcreto) {
 		this.dispositivoConcreto = dispositivoConcreto;
