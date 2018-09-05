@@ -22,8 +22,10 @@ public class DispositivoInteligente extends DatosBasicos implements TipoDisposit
 	@Transient
 	private DispositivoConcreto dispositivoConcreto;
 	
+	//TODO mapeo de Double?
 	@OneToMany(cascade = CascadeType.PERSIST)
 	@MapKey(name = "fecha")
+	@Transient
 	private Map<LocalDateTime, Double> consumosHastaElMomento = new LinkedHashMap<>();
 	
 	//deberia ser una variable de entorno?
