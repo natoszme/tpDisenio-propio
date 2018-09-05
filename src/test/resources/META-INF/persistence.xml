@@ -14,6 +14,9 @@
     	<class>tipoDispositivo.DispositivoInteligente</class>
     	<class>dispositivo.gadgets.sensor.Sensor</class>
     	<class>dispositivo.gadgets.sensor.SensorHorasEncendido</class>
+    	<class>dispositivo.gadgets.regla.CondicionSobreSensor</class>
+    	<class>dispositivo.gadgets.regla.CondicionDeConsumoMayorOIgual</class>
+    	<class>dispositivo.gadgets.regla.Regla</class>
     	
         <properties> 
 	    	<property name="hibernate.archive.autodetection" value="class"/>
