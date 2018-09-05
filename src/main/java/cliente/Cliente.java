@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import org.uqbar.geodds.Point;
 
@@ -24,6 +26,7 @@ import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"tipoDocumento", "nroDocumento"}))
 public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	
 	@Column(nullable = false)
