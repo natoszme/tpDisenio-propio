@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -54,8 +55,9 @@ public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Categoria categoria;
 	
+	//TODO revisar esto porque la lista que aca es de dispositivos, en la db son registros de Dispositivos_cliente
 	//eager porque el cliente no es + que un repo de dispositivos
-	@OneToMany
+	@Transient
 	private List<Dispositivo> dispositivos = new ArrayList<>();
 	
 	private double puntos = 0;
