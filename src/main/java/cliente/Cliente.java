@@ -1,29 +1,54 @@
 package cliente;
+
 import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
 import org.uqbar.geodds.Point;
 
 import categoria.Categoria;
 import consumoMasivo.ConsumidorMasivo;
+import db.DatosBasicos;
+import db.LocalDateAttributeConverter;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 import repositorio.RepoCategorias;
 
-public class Cliente implements ConsumidorMasivo{
+@Entity
+public class Cliente extends DatosBasicos implements ConsumidorMasivo {
+	
 	private String nombre;
 	private String apellido;
+	
+	@Enumerated
 	private TipoDocumento tipoDocumento;
+	
 	private long nroDocumento;
 	private long telefono;
 	private String domicilio;
+	
+	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fechaAlta;
+	
+	@OneToOne
 	private Categoria categoria;
+	
+	//@OneToMany(fetch=FetchType.LAZY, mappedBy="dispositivo_id")
+	@Transient
 	private List<Dispositivo> dispositivos = new ArrayList<>();
+	
 	private double puntos = 0;
 	private boolean ahorroAutomatico = true;  
+	
+	@Transient
 	private Point ubicacion;
 	
 	public Cliente() {}
