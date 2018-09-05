@@ -1,0 +1,63 @@
+[
+	{
+    	"ubicacion": {
+    		"x": 1,
+    		"y": 1
+    	}
+	},
+	{
+    	"ubicacion": {
+    		"x": 2,
+    		"y": 1
+    	}
+	},
+	{
+    	"ubicacion": {
+    		"x": 1,
+    		"y": 2
+    	}
+	}
+]
+
+/*[
+    {
+        "zona" : "Caballito",
+        "clientes" : [
+
+
+        ]
+    }
+]*/
+
+/*[
+    {
+        "nombre" : "Caballito",
+        "transformadores" : [
+            {
+                "clientes" : [
+                    {
+                        "nombre" : "lio",
+                        "apellido" : "messi"
+                    },
+                    {
+                        "nombre" : "pepe",
+                        "apellido" : "sanchez"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "nombre" : "Palermo",
+        "transformadores" : [
+            {
+                 "clientes" : [
+                    {
+                        "nombre" : "rodri",
+                        "apellido" : "alvarez"
+                    }
+                ]
+            }
+        ]
+    }
+]*/
