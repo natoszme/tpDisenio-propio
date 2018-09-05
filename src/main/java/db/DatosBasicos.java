@@ -7,5 +7,5 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class DatosBasicos {
 	@Id @GeneratedValue
-	public Long id;
+	public long id;
 }
