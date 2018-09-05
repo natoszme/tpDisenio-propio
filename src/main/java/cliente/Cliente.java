@@ -12,6 +12,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -53,8 +54,8 @@ public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Categoria categoria;
 	
-	//@OneToMany(fetch=FetchType.LAZY, mappedBy="dispositivo_id")
-	@Transient
+	//eager porque el cliente no es + que un repo de dispositivos
+	@OneToMany
 	private List<Dispositivo> dispositivos = new ArrayList<>();
 	
 	private double puntos = 0;

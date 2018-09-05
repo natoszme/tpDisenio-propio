@@ -1,12 +1,25 @@
 package dispositivo;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import db.DatosBasicos;
 import tipoDispositivo.DispositivoInteligente;
 import tipoDispositivo.TipoDispositivo;
 
-public class Dispositivo {
+@Entity
+public class Dispositivo extends DatosBasicos{
+	
+	@Column(nullable = false)
 	private String nombre;
+	
+	//esto no se puede usar porque no es un enum, es una interfaz
+	//@Enumerated(EnumType.STRING)
 	private TipoDispositivo tipoDispositivo;
+	
 	private double kwPorHora;
 	
 	public Dispositivo(String nombre, TipoDispositivo tipoDispositivo, double kwPorHora) {
