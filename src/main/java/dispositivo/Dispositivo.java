@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
 
 import db.DatosBasicos;
 import tipoDispositivo.DispositivoInteligente;
@@ -18,6 +19,7 @@ public class Dispositivo extends DatosBasicos{
 	
 	//esto no se puede usar porque no es un enum, es una interfaz
 	//@Enumerated(EnumType.STRING)
+	@Transient
 	private TipoDispositivo tipoDispositivo;
 	
 	private double kwPorHora;
