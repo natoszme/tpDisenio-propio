@@ -10,6 +10,7 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -49,7 +50,7 @@ public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fechaAlta;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Categoria categoria;
 	
 	//@OneToMany(fetch=FetchType.LAZY, mappedBy="dispositivo_id")
