@@ -6,11 +6,12 @@ import db.DatosBasicos;
 
 @Entity
 public class Categoria extends DatosBasicos {
-	String nombre;
-	double consumoMinimo;
-	double consumoMaximo;
-	double cargoFijo;
-	double cargoVariable;
+	
+	private String nombre;
+	private double consumoMinimo;
+	private double consumoMaximo;
+	private double cargoFijo;
+	private double cargoVariable;
 	
 	public Categoria() {}
 	public Categoria(String nombre, double consumoMinimo, double consumoMaximo, double cargoFijo, double cargoVariable) {
