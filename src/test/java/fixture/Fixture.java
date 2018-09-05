@@ -54,7 +54,7 @@ public class Fixture extends AbstractPersistenceTest implements WithGlobalEntity
 		  r6 = new Categoria("R6", 500, 600, 220.75, 0.832);			
 		  r7 = new Categoria("R7", 600, 700, 443.59, 0.851);			
 		  r8 = new Categoria("R8", 700, 1400, 545.19, 0.851);				
-		  r9 = new Categoria("R9",1400, Double.MAX_VALUE, 545.19, 0.851); 
+		  r9 = new Categoria("R9", 1400, 99999999, 545.19, 0.851); 
 		  
 		  mockPcConcreta = Mockito.mock(DispositivoConcreto.class);
 		  mockAireConcreto = Mockito.mock(DispositivoConcreto.class);
