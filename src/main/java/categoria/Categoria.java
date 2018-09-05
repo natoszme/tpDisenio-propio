@@ -2,7 +2,7 @@ package categoria;
 
 import javax.persistence.Entity;
 
-import model.DatosBasicos;
+import db.DatosBasicos;
 
 @Entity
 public class Categoria extends DatosBasicos {

@@ -16,9 +16,10 @@ import org.uqbar.geodds.Point;
 
 import categoria.Categoria;
 import consumoMasivo.ConsumidorMasivo;
+import db.DatosBasicos;
+import db.LocalDateAttributeConverter;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
-import model.DatosBasicos;
 import repositorio.RepoCategorias;
 
 @Entity
@@ -34,7 +35,7 @@ public class Cliente extends DatosBasicos implements ConsumidorMasivo {
 	private long telefono;
 	private String domicilio;
 	
-	@Column
+	@Convert(converter = LocalDateAttributeConverter.class)
 	private LocalDate fechaAlta;
 	
 	@OneToOne

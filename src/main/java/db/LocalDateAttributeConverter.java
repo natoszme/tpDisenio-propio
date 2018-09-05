@@ -1,4 +1,4 @@
-package model;
+package db;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-@Converter(autoApply = true)
+@Converter
 public class LocalDateAttributeConverter implements AttributeConverter<LocalDate, Date> {
 	
     @Override

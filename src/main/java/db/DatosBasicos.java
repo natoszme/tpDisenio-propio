@@ -1,4 +1,4 @@
-package model;
+package db;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
