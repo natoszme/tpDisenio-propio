@@ -37,6 +37,7 @@
         id bigint not null auto_increment,
         kwPorHora double precision not null,
         nombre varchar(255) not null,
+        idCliente bigint not null,
         primary key (id)
     )
 
@@ -80,6 +81,11 @@
         add constraint FK_9rna43b6se79ta1gj6kbo0wt9 
         foreign key (idRegla) 
         references Regla (id)
+
+    alter table Dispositivo 
+        add constraint FK_q57uofk60oah5ncey1wrevdf9 
+        foreign key (idCliente) 
+        references Cliente (id)
 
     alter table Regla 
         add constraint FK_jlmnuc7r42qhcrce381jeuofd 
