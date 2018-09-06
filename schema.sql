@@ -46,7 +46,9 @@
     )
 
     create table Regla (
+        tipo varchar(31) not null,
         id bigint not null auto_increment,
+        dispositivo_id bigint not null,
         primary key (id)
     )
 
@@ -76,3 +78,8 @@
         add constraint FK_9rna43b6se79ta1gj6kbo0wt9 
         foreign key (idRegla) 
         references Regla (id)
+
+    alter table Regla 
+        add constraint FK_jlmnuc7r42qhcrce381jeuofd 
+        foreign key (dispositivo_id) 
+        references Dispositivo (id)
