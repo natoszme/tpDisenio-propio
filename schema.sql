@@ -40,11 +40,6 @@
         primary key (id)
     )
 
-    create table DispositivoInteligente (
-        id bigint not null auto_increment,
-        primary key (id)
-    )
-
     create table Regla (
         tipo varchar(31) not null,
         id bigint not null auto_increment,
@@ -55,6 +50,13 @@
     create table Sensor (
         tipo varchar(31) not null,
         id bigint not null auto_increment,
+        primary key (id)
+    )
+
+    create table TipoDispositivo (
+        tipo varchar(31) not null,
+        id bigint not null auto_increment,
+        dispositivoConcreto varchar(255) not null,
         primary key (id)
     )
 

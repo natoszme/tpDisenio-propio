@@ -11,7 +11,9 @@
     	<class>cliente.Cliente</class>
     	<class>categoria.Categoria</class>
     	<class>dispositivo.Dispositivo</class>
+    	<class>tipoDispositivo.TipoDispositivo</class>
     	<class>tipoDispositivo.DispositivoInteligente</class>
+    	<class>tipoDispositivo.DispositivoEstandar</class>
     	<class>dispositivo.gadgets.sensor.Sensor</class>
     	<class>dispositivo.gadgets.sensor.SensorHorasEncendido</class>
     	<class>dispositivo.gadgets.regla.CondicionSobreSensor</class>

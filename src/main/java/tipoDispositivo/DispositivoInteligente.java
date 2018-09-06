@@ -6,7 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -17,8 +20,8 @@ import dispositivo.DispositivoConcreto;
 @Entity
 public class DispositivoInteligente extends TipoDispositivo{
 	
-	//TODO mapeo de clase abstracta a enum?
-	@Transient
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private DispositivoConcreto dispositivoConcreto;
 	
 	//TODO mapeo de Double?
@@ -27,7 +30,7 @@ public class DispositivoInteligente extends TipoDispositivo{
 	@Transient
 	private Map<LocalDateTime, Double> consumosHastaElMomento = new LinkedHashMap<>();
 	
-	//deberia ser una variable de entorno?
+	//TODO deberia ser una variable de entorno?
 	@Transient
 	private int duracionPlazoCronConsumo = 6;
 	
