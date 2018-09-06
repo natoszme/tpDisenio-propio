@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -20,8 +22,7 @@ import dispositivo.gadgets.actuador.Actuador;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Regla extends DatosBasicos{
 	
-	//TODO tiene que estar relacionado al del cliente, no al general
-	@Transient
+	@ManyToOne(fetch = FetchType.EAGER)
 	protected Dispositivo dispositivo;
 	
 	@OneToMany(cascade = CascadeType.PERSIST)
