@@ -2,6 +2,8 @@ package tipoDispositivo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
@@ -21,7 +23,9 @@ import dispositivo.DispositivoConcreto;
     @Type(value = DispositivoEstandar.class, name = "dispositivoEstandar"),
     @Type(value = DispositivoInteligente.class, name = "dispositivoInteligente")})
 
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class TipoDispositivo extends DatosBasicos{
 	
 	public abstract double puntosPorRegistrar();

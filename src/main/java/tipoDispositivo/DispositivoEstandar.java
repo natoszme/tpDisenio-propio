@@ -1,9 +1,12 @@
 package tipoDispositivo;
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 
+@Entity
 public class DispositivoEstandar extends TipoDispositivo{
 	
 	public DispositivoEstandar() {}
