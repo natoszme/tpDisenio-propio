@@ -11,12 +11,11 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-import db.DatosBasicos;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 
 @Entity
-public class DispositivoInteligente extends DatosBasicos implements TipoDispositivo{
+public class DispositivoInteligente extends TipoDispositivo{
 	
 	//TODO mapeo de clase abstracta a enum?
 	@Transient

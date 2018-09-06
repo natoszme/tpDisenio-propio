@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import dispositivo.Dispositivo;
 import dispositivo.DispositivoConcreto;
 
-public class DispositivoEstandar implements TipoDispositivo{
+public class DispositivoEstandar extends TipoDispositivo{
 	
 	public DispositivoEstandar() {}
 	
