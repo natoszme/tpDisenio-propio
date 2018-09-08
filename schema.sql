@@ -57,7 +57,7 @@
     create table TipoDispositivo (
         tipo varchar(31) not null,
         id bigint not null auto_increment,
-        dispositivoConcreto varchar(255) not null,
+        dispositivoConcreto varchar(255),
         primary key (id)
     )
 
