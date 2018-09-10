@@ -37,6 +37,7 @@
         id bigint not null auto_increment,
         kwPorHora double precision not null,
         nombre varchar(255) not null,
+        tipoDispositivo_id bigint not null,
         idCliente bigint not null,
         primary key (id)
     )
@@ -67,6 +68,9 @@
     alter table Cliente 
         add constraint UK_g7aer5ydwwrpt04p5pt90bh9n  unique (tipoDocumento, nroDocumento)
 
+    alter table Dispositivo 
+        add constraint UK_faeydi51outwmjrhi3jjunblf  unique (tipoDispositivo_id)
+
     alter table Cliente 
         add constraint FK_svhhh7o13efkdj194w94ppex7 
         foreign key (categoria_id) 
@@ -81,6 +85,11 @@
         add constraint FK_9rna43b6se79ta1gj6kbo0wt9 
         foreign key (idRegla) 
         references Regla (id)
+
+    alter table Dispositivo 
+        add constraint FK_faeydi51outwmjrhi3jjunblf 
+        foreign key (tipoDispositivo_id) 
+        references TipoDispositivo (id)
 
     alter table Dispositivo 
         add constraint FK_q57uofk60oah5ncey1wrevdf9 
